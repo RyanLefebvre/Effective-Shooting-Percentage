@@ -38,6 +38,13 @@ class Team(object):
     totalShotAttempts = 0
     effectiveShootingPercentage = 0.0 
     roster = []
+    
+    def toString( self ):
+        return ( "Name: " + self.name + "\t League: " + self.league  + 
+                "\t One Point Goals: " + str(self.onePointGoals) + 
+                "\t Two Point Goals: " + str(self.twoPointGoals) + 
+                "\t Shots: " + str(self.totalShotAttempts) + "\tES%: " + 
+                str( self.effectiveShootingPercentage) )    
         
 
 #function for calculating ES% of a player
@@ -45,7 +52,8 @@ def getEffectiveShootingPercentage( onePointGoals ,
                                    twoPointGoals , totalShotAttempts ):
     if( totalShotAttempts == 0 ):
         return 0 
-    return ( onePointGoals + ( 1.5 * twoPointGoals ) ) / totalShotAttempts 
+    return round( ( onePointGoals + ( 1.5 * twoPointGoals ) ) /
+                 totalShotAttempts , 2 ) 
 
 # creates and returns a new player object based on the arguments passed in as 
 # parameters, calculates ES% for a player in the process
@@ -63,9 +71,6 @@ def makePlayer( firstName , lastName , team ,  onePointGoals,
     newPlayer.effectiveShootingPercentage = getEffectiveShootingPercentage(
             newPlayer.onePointGoals , newPlayer.twoPointGoals ,
             newPlayer.totalShotAttempts)
-    #round to two dec places 
-    newPlayer.effectiveShootingPercentage = round( 
-            newPlayer.effectiveShootingPercentage , 2 )
     return newPlayer 
 
 
@@ -77,7 +82,7 @@ def makeTeam( teamName , league ):
 
 def addPlayerToTeam( player , teamName  , teams ):
     # first check if the team does not already exist 
-    if( teams[teamName] == None  ):
+    if( not( teamName in teams.keys() )  ):
         # if not then make a new team
         teams[teamName] =  makeTeam( teamName , player.league ) 
     #add player to teams roster and update stats
@@ -86,10 +91,6 @@ def addPlayerToTeam( player , teamName  , teams ):
     teams[teamName].twoPointGoals += player.twoPointGoals 
     teams[teamName].totalShotAttempts += player.totalShotAttempts
     
-    ##STILL NEED TO CALCULATE ES% FOR THIS TO WORK
-    
-    # now add player to the teams roster and update the teams stats 
-    listOfTeams
 
 def getPLLPlayerData( playerList , teamDict ):
     pll_response = requests.get("https://dn0a11v09sa0t.cloudfront.net/" + 
@@ -104,6 +105,7 @@ def getPLLPlayerData( playerList , teamDict ):
                    player['TwoPointGoals'] , eval(player['Shots']),
                    "PLL" , player["Position"] ))
            playerList.append( newPlayer )
+           #figure out error
            addPlayerToTeam( newPlayer, newPlayer.team , teamDict )
     return
 
@@ -119,7 +121,14 @@ try:
     #contains a list of all players currently playing professional lacrosse 
     playerList = []
     teamDict  = {}
-    getPLLPlayerData( playerList , teamDict )      
+    getPLLPlayerData( playerList , teamDict )   
+    #need to get MLL player data 
+    
+    #still need to calc ES% for each team 
+    for team in teamDict.keys():
+        teamDict[team].effectiveShootingPercentage = getEffectiveShootingPercentage(
+                 teamDict[team].onePointGoals, teamDict[team].twoPointGoals,
+                 teamDict[team].totalShotAttempts )
     
 ##################  need to get stats for MLL, then iterate through all players and construct #####################################
 ################### stats for teams , based on this see if we can predict who wins games  ######################################### 
@@ -128,8 +137,13 @@ try:
     #sort list from lowest to highest Es%
     playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
     #print Players test
-    for pllPlayer in playerList:
-        print( pllPlayer.toString() )
+    #for pllPlayer in playerList:
+        #print( pllPlayer.toString() )
+        #print("\n----------------------------------\n")
+    
+    for key in teamDict.keys():
+        print( "Key: " +  key )
+        print( teamDict[key].toString() )
         print("\n----------------------------------\n")
            
 
