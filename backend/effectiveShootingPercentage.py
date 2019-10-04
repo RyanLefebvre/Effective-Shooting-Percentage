@@ -21,6 +21,8 @@ class Player(object):
     totalShotAttempts = 0
     effectiveShootingPercentage = 0.0
     
+    
+    
     def toString( self ):
         return ( "Name: " + self.firstName + " " + self.lastName +
                 "\t League: " + self.league  + "\tTeam: " + self.team +
@@ -38,6 +40,9 @@ class Team(object):
     totalShotAttempts = 0
     effectiveShootingPercentage = 0.0 
     roster = []
+    
+    def getEffectiveShots( self ):
+        return self.effectiveShootingPercentage * self.totalShotAttempts
     
     def toString( self ):
         return ( "Name: " + self.name + "\t League: " + self.league  + 
@@ -73,7 +78,6 @@ def makePlayer( firstName , lastName , team ,  onePointGoals,
             newPlayer.totalShotAttempts)
     return newPlayer 
 
-
 def makeTeam( teamName , league ):
     newTeam = Team()
     newTeam.name = teamName
@@ -92,7 +96,7 @@ def addPlayerToTeam( player , teamName  , teams ):
     teams[teamName].totalShotAttempts += player.totalShotAttempts
     
 
-def getPLLPlayerData( playerList , teamDict ):
+def getPLLData( playerList , teamDict ):
     pll_response = requests.get("https://dn0a11v09sa0t.cloudfront.net/" + 
                                 "SeasonTeamAndPlayersStats.json")
     pllSoup = BeautifulSoup( pll_response.text ,"lxml" ).find("p").text
@@ -109,7 +113,24 @@ def getPLLPlayerData( playerList , teamDict ):
            addPlayerToTeam( newPlayer, newPlayer.team , teamDict )
     return
 
-def getMLLData( playerList ):
+def getMLLData( playerList , teamDict ):
+    mll_response = requests.get("https://iframe.faststats.online/iframes/" + 
+                                "offense-stats-table-iframe.php")
+    mllSoup = BeautifulSoup( mll_response.text ,"lxml" ).find("div" ,
+                           {"id":"regular-season"}).find("table" ,
+                           {"id":"player-table"}).find("tbody").findAll("tr")
+    for player in mllSoup:
+        playerColumns = player.findAll("td")
+        #name in MLL data is one column of form last , first 
+        # remove comma and separate tokens 
+        fixedNameList = playerColumns[0].text.split(",")
+        firstName  = fixedNameList[0].strip()
+        lastName = fixedNameList[1].strip()
+        newPlayer = makePlayer( firstName , lastName , playerColumns[1].text ,
+                   eval(playerColumns[6].text), eval(playerColumns[7].text) , 
+                   eval(playerColumns[10].text), "MLL", playerColumns[2].text)
+        playerList.append( newPlayer )
+        addPlayerToTeam( newPlayer , newPlayer.team , teamDict )      
     return
 
     
@@ -121,9 +142,11 @@ try:
     #contains a list of all players currently playing professional lacrosse 
     playerList = []
     teamDict  = {}
-    getPLLPlayerData( playerList , teamDict )   
+    print( " Grabbing PLL data ")
+    getPLLData( playerList , teamDict )   
     #need to get MLL player data 
-    
+    print( " Grabbing  MLL data ")
+    getMLLData( playerList , teamDict )
     #still need to calc ES% for each team 
     for team in teamDict.keys():
         teamDict[team].effectiveShootingPercentage = getEffectiveShootingPercentage(
@@ -135,19 +158,20 @@ try:
     
     
     #sort list from lowest to highest Es%
-    playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
-    #print Players test
+    #playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
     #for pllPlayer in playerList:
         #print( pllPlayer.toString() )
         #print("\n----------------------------------\n")
     
+    
+    #need to fix weird team names for players on multiple teams and 
+    # need to add checks to put the names to the real teams 
     for key in teamDict.keys():
-        print( "Key: " +  key )
         print( teamDict[key].toString() )
         print("\n----------------------------------\n")
            
 
-        
+    # going to want to be able to calc ES% for games most likely 
 except Exception as e:
     print( "ERROR, PROGRAM TERMINATING\n" )
     print( e )
