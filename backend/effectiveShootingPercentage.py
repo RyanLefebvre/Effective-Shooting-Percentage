@@ -84,6 +84,8 @@ def makeTeam( teamName , league ):
     newTeam.league = league
     return newTeam
 
+#adds a player to the team if their team exists, otherwise a new team is 
+# created and the player is added to the team 
 def addPlayerToTeam( player , teamName  , teams ):
     # first check if the team does not already exist 
     if( not( teamName in teams.keys() )  ):
@@ -95,7 +97,8 @@ def addPlayerToTeam( player , teamName  , teams ):
     teams[teamName].twoPointGoals += player.twoPointGoals 
     teams[teamName].totalShotAttempts += player.totalShotAttempts
     
-
+#gets data for all current PLL players and updates teamlist/playerlist to 
+# include new data 
 def getPLLData( playerList , teamDict ):
     pll_response = requests.get("https://dn0a11v09sa0t.cloudfront.net/" + 
                                 "SeasonTeamAndPlayersStats.json")
@@ -105,7 +108,7 @@ def getPLLData( playerList , teamDict ):
        for player in team['Players']:
            newPlayer = ( makePlayer( 
                    player['FirstName'] , player['LastName'],
-                   player['TeamId'], player['OnePointGoals'], 
+                   getFullTeamName(player['TeamId']), player['OnePointGoals'], 
                    player['TwoPointGoals'] , eval(player['Shots']),
                    "PLL" , player["Position"] ))
            playerList.append( newPlayer )
@@ -113,6 +116,8 @@ def getPLLData( playerList , teamDict ):
            addPlayerToTeam( newPlayer, newPlayer.team , teamDict )
     return
 
+#gets data for all current MLL players and updates teamlist/playerlist to 
+# include new data 
 def getMLLData( playerList , teamDict ):
     mll_response = requests.get("https://iframe.faststats.online/iframes/" + 
                                 "offense-stats-table-iframe.php")
@@ -130,8 +135,47 @@ def getMLLData( playerList , teamDict ):
                    eval(playerColumns[6].text), eval(playerColumns[7].text) , 
                    eval(playerColumns[10].text), "MLL", playerColumns[2].text)
         playerList.append( newPlayer )
+        #need to fix the team name for the player if it lists multiple teams 
+        if( len( newPlayer.team) > 3 ):
+            #just grab the first team 
+            newPlayer.team = newPlayer.team[0:3]
+        newPlayer.team = getFullTeamName( newPlayer.team )
         addPlayerToTeam( newPlayer , newPlayer.team , teamDict )      
     return
+
+# converts a 3 letter team abbreviation to the temas full name 
+def getFullTeamName( abreviation ):
+    abreviation = abreviation.lower()
+    fullName = abreviation #default in case we dont know the team 
+    
+    #PLL team names 
+    if( abreviation == "arc" ):
+        fullName = "Archers"
+    elif( abreviation == "atl"):
+        fullName = "Atlas"
+    elif( abreviation == "cha" ):
+        fullName = "Chaos"
+    elif( abreviation == "chr" ):
+        fullName = "Chrome"
+    elif( abreviation == "red" ):
+        fullName = "Redwoods"
+    elif( abreviation == "whp" ):
+        fullName = "Whipsnakes"
+    #MLL
+    elif( abreviation == "atl" ):
+        fullName = "Blaze"
+    elif( abreviation == "che"):
+        fullName = "Bayhawks"
+    elif( abreviation == "bos" ):
+        fullName = "Cannons"
+    elif( abreviation == "dal" ):
+        fullName = "Rattlers"
+    elif( abreviation == "den" ):
+        fullName = "Outlaws"
+    elif( abreviation == "nyl" ):
+        fullName = "Lizards"
+        
+    return fullName
 
     
 #  MAIN   ####################################################################
@@ -153,9 +197,6 @@ try:
                  teamDict[team].onePointGoals, teamDict[team].twoPointGoals,
                  teamDict[team].totalShotAttempts )
     
-##################  need to get stats for MLL, then iterate through all players and construct #####################################
-################### stats for teams , based on this see if we can predict who wins games  ######################################### 
-    
     
     #sort list from lowest to highest Es%
     #playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
@@ -165,7 +206,8 @@ try:
     
     
     #need to fix weird team names for players on multiple teams and 
-    # need to add checks to put the names to the real teams 
+    # need to add checks to put the names to the real teams *********************************************
+    # same with positions 
     for key in teamDict.keys():
         print( teamDict[key].toString() )
         print("\n----------------------------------\n")
