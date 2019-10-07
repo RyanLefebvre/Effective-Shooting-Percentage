@@ -110,7 +110,7 @@ def getPLLData( playerList , teamDict ):
                    player['FirstName'] , player['LastName'],
                    getFullTeamName(player['TeamId']), player['OnePointGoals'], 
                    player['TwoPointGoals'] , eval(player['Shots']),
-                   "PLL" , player["Position"] ))
+                   "PLL" , getFullPosition( player["Position"] ) ) )
            playerList.append( newPlayer )
            #figure out error
            addPlayerToTeam( newPlayer, newPlayer.team , teamDict )
@@ -133,7 +133,8 @@ def getMLLData( playerList , teamDict ):
         lastName = fixedNameList[1].strip()
         newPlayer = makePlayer( firstName , lastName , playerColumns[1].text ,
                    eval(playerColumns[6].text), eval(playerColumns[7].text) , 
-                   eval(playerColumns[10].text), "MLL", playerColumns[2].text)
+                   eval(playerColumns[10].text), "MLL", getFullPosition( 
+                           playerColumns[2].text ) )
         playerList.append( newPlayer )
         #need to fix the team name for the player if it lists multiple teams 
         if( len( newPlayer.team) > 3 ):
@@ -177,6 +178,24 @@ def getFullTeamName( abreviation ):
         
     return fullName
 
+#converts position abreviations to full position names, if the position
+# is not abreviated, then the original position is returned 
+def getFullPosition( abreviation ):
+    if( abreviation == "D" ):
+        return "Defense"
+    elif( abreviation == "A" ):
+        return "Attack"
+    elif( abreviation == "SSDM" or
+         abreviation == "M" or
+         abreviation == "FO" ):
+        return "Midfield"
+    elif( abreviation == "G" ):
+        return "Goalie"
+    elif( abreviation == "LSM" ):
+        return "Long Stick Midfield" 
+    return abreviation
+        
+
     
 #  MAIN   ####################################################################
 # this program scrapes player statisics from MLL and PLL websites to calculate
@@ -200,17 +219,17 @@ try:
     
     #sort list from lowest to highest Es%
     #playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
-    #for pllPlayer in playerList:
-        #print( pllPlayer.toString() )
-        #print("\n----------------------------------\n")
+    for pllPlayer in playerList:
+        print( pllPlayer.toString() )
+        print("\n----------------------------------\n")
     
     
     #need to fix weird team names for players on multiple teams and 
     # need to add checks to put the names to the real teams *********************************************
     # same with positions 
-    for key in teamDict.keys():
-        print( teamDict[key].toString() )
-        print("\n----------------------------------\n")
+    #for key in teamDict.keys():
+        #print( teamDict[key].toString() )
+        #print("\n----------------------------------\n")
            
 
     # going to want to be able to calc ES% for games most likely 
