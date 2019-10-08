@@ -41,12 +41,12 @@ def exportToCSV( playerList ):
     with open('players.csv' , 'w' ) as writeFile:
         writer = csv.writer( writeFile )
         rowList = []
-        colHeaders = [ "LAST NAME",  "FIRST NAME" , "LEAGUE", "TEAM",
-                      "POSITION", "1 POINT GOALS" , "2 POINT GOALS",
-                      "SHOT ATTEMPTS", "EFFECTIVE SHOOTING %" ] 
+        colHeaders = [ "LAST",  "FIRST" , "LEAGUE", "TEAM",
+                      "POSITION", "1PG" , "2PG",
+                      "SHOTS", "ES%" ] 
         rowList.append( colHeaders )
         for player in playerList:
-            playerList.append( player.toRow() )      
+            rowList.append( player.toRow() )      
         writer.writerows( rowList )
         writeFile.close()
         
