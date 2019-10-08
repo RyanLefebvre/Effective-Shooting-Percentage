@@ -7,7 +7,7 @@ Created on Sat Sep 28 16:47:13 2019
 import requests
 from bs4 import BeautifulSoup
 import json
-
+import csv
 
 #class for holding important information about a player 
 class Player(object):
@@ -21,8 +21,7 @@ class Player(object):
     totalShotAttempts = 0
     effectiveShootingPercentage = 0.0
     
-    
-    
+    # used for printing player to the console
     def toString( self ):
         return ( "Name: " + self.firstName + " " + self.lastName +
                 "\t League: " + self.league  + "\tTeam: " + self.team +
@@ -30,6 +29,26 @@ class Player(object):
                 str(self.onePointGoals) + "\t Two Point Goals: " + str(self.twoPointGoals) + 
                 "\t Shots: " + str(self.totalShotAttempts) + "\tES%: " + 
                 str( self.effectiveShootingPercentage) )
+        
+    #used to export the list of players to a csv    
+    def toRow( self ):
+        return [ self.lastName  ,  self.firstName  , self.league 
+               ,  self.team  ,  self.position  ,  self.onePointGoals 
+               ,  self.twoPointGoals  ,  self.totalShotAttempts,
+               self.effectiveShootingPercentage ] 
+
+def exportToCSV( playerList ):
+    with open('players.csv' , 'w' ) as writeFile:
+        writer = csv.writer( writeFile )
+        rowList = []
+        colHeaders = [ "LAST NAME",  "FIRST NAME" , "LEAGUE", "TEAM",
+                      "POSITION", "1 POINT GOALS" , "2 POINT GOALS",
+                      "SHOT ATTEMPTS", "EFFECTIVE SHOOTING %" ] 
+        rowList.append( colHeaders )
+        for player in playerList:
+            playerList.append( player.toRow() )      
+        writer.writerows( rowList )
+        writeFile.close()
         
 #class for holding information about a team 
 class Team(object):
@@ -218,7 +237,8 @@ try:
     
     
     #sort list from lowest to highest Es%
-    #playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
+    playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
+    exportToCSV( playerList )
     for pllPlayer in playerList:
         print( pllPlayer.toString() )
         print("\n----------------------------------\n")
