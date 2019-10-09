@@ -36,19 +36,6 @@ class Player(object):
                ,  self.team  ,  self.position  ,  self.onePointGoals 
                ,  self.twoPointGoals  ,  self.totalShotAttempts,
                self.effectiveShootingPercentage ] 
-
-def exportToCSV( playerList ):
-    with open('players.csv' , 'w' ) as writeFile:
-        writer = csv.writer( writeFile )
-        rowList = []
-        colHeaders = [ "LAST",  "FIRST" , "LEAGUE", "TEAM",
-                      "POSITION", "1PG" , "2PG",
-                      "SHOTS", "ES%" ] 
-        rowList.append( colHeaders )
-        for player in playerList:
-            rowList.append( player.toRow() )      
-        writer.writerows( rowList )
-        writeFile.close()
         
 #class for holding information about a team 
 class Team(object):
@@ -213,12 +200,29 @@ def getFullPosition( abreviation ):
     elif( abreviation == "LSM" ):
         return "Long Stick Midfield" 
     return abreviation
+
+#exports the full list of 2019 professional lacrosse players to a csv file 
+def exportToCSV( playerList ):
+    with open('players.csv' , 'w', newline='' ) as writeFile:
+        writer = csv.writer( writeFile )
+        rowList = []
+        colHeaders = [ "LAST",  "FIRST" , "LEAGUE", "TEAM",
+                      "POSITION", "1PG" , "2PG",
+                      "SHOTS", "ES%" ] 
+        rowList.append( colHeaders )
+        
+        for player in playerList:
+            rowList.append( player.toRow() )      
+        
+        for row in rowList:
+            writer.writerow(row)
+            
+        writeFile.close()
         
 
-    
 #  MAIN   ####################################################################
 # this program scrapes player statisics from MLL and PLL websites to calculate
-# EFG for players and teams.
+# ES% for players and teams.
 try:
     
     #contains a list of all players currently playing professional lacrosse 
