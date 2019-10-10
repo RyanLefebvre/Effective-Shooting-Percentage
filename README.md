@@ -12,3 +12,5 @@ two point shots. EFG% has been a significant predicator of a teams offensive per
 example in 2013, the Miami Heat and San Antonio Spurs had the highest EFG% and in the league and 
 ended up meeting in the NBA finals that year. This project aims to explore if a similar relationship 
 between scoring efficiency and team/player success exists in professional lacrosse. 
+
+Built with: Python, React and AWS
