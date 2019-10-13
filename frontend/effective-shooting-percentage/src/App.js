@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestComp from './components/TestComp'
 import './App.css';
+import MainInfoComp from './components/MainInfoComp';
 
 function App() {
   return (
     <div className="App">
-      <h1> HELLO THERE</h1>
-      <TestComp />
+      <MainInfoComp />
     </div>
   );
 }
