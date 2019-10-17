@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/effectiveShootingPercentage/static/css/main.09d313b6.chunk.css",
+    "main.js": "/effectiveShootingPercentage/static/js/main.0be03365.chunk.js",
+    "main.js.map": "/effectiveShootingPercentage/static/js/main.0be03365.chunk.js.map",
+    "runtime-main.js": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js",
+    "runtime-main.js.map": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js.map",
+    "static/js/2.2220b9bf.chunk.js": "/effectiveShootingPercentage/static/js/2.2220b9bf.chunk.js",
+    "static/js/2.2220b9bf.chunk.js.map": "/effectiveShootingPercentage/static/js/2.2220b9bf.chunk.js.map",
+    "index.html": "/effectiveShootingPercentage/index.html",
+    "precache-manifest.44e16ceaf1e1a83ec9208fd2e227b693.js": "/effectiveShootingPercentage/precache-manifest.44e16ceaf1e1a83ec9208fd2e227b693.js",
+    "service-worker.js": "/effectiveShootingPercentage/service-worker.js",
+    "static/css/main.09d313b6.chunk.css.map": "/effectiveShootingPercentage/static/css/main.09d313b6.chunk.css.map",
+    "static/media/2pg.jpg": "/effectiveShootingPercentage/static/media/2pg.90099611.jpg",
+    "static/media/formula.PNG": "/effectiveShootingPercentage/static/media/formula.d6730715.PNG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.957c16e3.js",
+    "static/js/2.2220b9bf.chunk.js",
+    "static/css/main.09d313b6.chunk.css",
+    "static/js/main.0be03365.chunk.js"
+  ]
+}
