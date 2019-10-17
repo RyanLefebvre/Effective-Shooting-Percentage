@@ -44,31 +44,8 @@ function MainInfoComp() {
       margin:'auto'
     };
 
-    const headerWrapperStyles = {
-      color: 'ghostwhite',
-      width: '99%',
-      textAlign:'center',
-      display:'block',
-      margin:'auto',
-      backgroundColor: '#fc654e',
-      borderColor:'#fc654e',
-      borderWidth:'5px',
-      borderStyle:'solid',
-      borderBottomLeftRadius: '10px',
-      borderBottomRightRadius: '10px',
-      marginBottom: '10px',
-      marginTop: '0'
-    };
-
-
   return (    
     <div className="MainInfo" >
-      
-  
-        <div id ="headerWrapper" style={headerWrapperStyles}>
-          <h1 id = "title" > Effective Shooting Percentage  </h1>
-        </div> 
- 
       
       <Card style={contentStyles}>
         <CardContent>
@@ -77,7 +54,7 @@ function MainInfoComp() {
       player stands behind this line when shooting, a goal is worth two 
       points instead of one. Effective Shooting Percentage (ES%) is a new 
       lacrosse statistic that accounts for the fact that a two point goal 
-      is worth more than a one point goal. The forumla is: 
+      is worth more than a one point goal. The forumla for ES% is shown below: 
         </CardContent>
       </Card>
 
