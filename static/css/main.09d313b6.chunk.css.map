@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,EACE,QAAQ,CACR,SACF,CAEA,KACE,w8CACF","file":"main.09d313b6.chunk.css","sourcesContent":["*{\r\n  margin:0;\r\n  padding:0;\r\n}\r\n\r\nbody{\r\n  background-image: url(./images/triangle-mosaic.png);\r\n}"]}

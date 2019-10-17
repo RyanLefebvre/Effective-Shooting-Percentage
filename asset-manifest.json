@@ -1,23 +1,28 @@
 {
   "files": {
-    "main.css": "/effectiveShootingPercentage/static/css/main.09d313b6.chunk.css",
-    "main.js": "/effectiveShootingPercentage/static/js/main.0be03365.chunk.js",
-    "main.js.map": "/effectiveShootingPercentage/static/js/main.0be03365.chunk.js.map",
+    "main.css": "/effectiveShootingPercentage/static/css/main.4f56b032.chunk.css",
+    "main.js": "/effectiveShootingPercentage/static/js/main.44ec3583.chunk.js",
+    "main.js.map": "/effectiveShootingPercentage/static/js/main.44ec3583.chunk.js.map",
     "runtime-main.js": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js",
     "runtime-main.js.map": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js.map",
-    "static/js/2.2220b9bf.chunk.js": "/effectiveShootingPercentage/static/js/2.2220b9bf.chunk.js",
-    "static/js/2.2220b9bf.chunk.js.map": "/effectiveShootingPercentage/static/js/2.2220b9bf.chunk.js.map",
+    "static/css/2.da5464c4.chunk.css": "/effectiveShootingPercentage/static/css/2.da5464c4.chunk.css",
+    "static/js/2.97b667ca.chunk.js": "/effectiveShootingPercentage/static/js/2.97b667ca.chunk.js",
+    "static/js/2.97b667ca.chunk.js.map": "/effectiveShootingPercentage/static/js/2.97b667ca.chunk.js.map",
     "index.html": "/effectiveShootingPercentage/index.html",
-    "precache-manifest.44e16ceaf1e1a83ec9208fd2e227b693.js": "/effectiveShootingPercentage/precache-manifest.44e16ceaf1e1a83ec9208fd2e227b693.js",
+    "precache-manifest.058726a94e9f3b42c46b678cf699fa59.js": "/effectiveShootingPercentage/precache-manifest.058726a94e9f3b42c46b678cf699fa59.js",
     "service-worker.js": "/effectiveShootingPercentage/service-worker.js",
-    "static/css/main.09d313b6.chunk.css.map": "/effectiveShootingPercentage/static/css/main.09d313b6.chunk.css.map",
+    "static/css/2.da5464c4.chunk.css.map": "/effectiveShootingPercentage/static/css/2.da5464c4.chunk.css.map",
+    "static/css/main.4f56b032.chunk.css.map": "/effectiveShootingPercentage/static/css/main.4f56b032.chunk.css.map",
     "static/media/2pg.jpg": "/effectiveShootingPercentage/static/media/2pg.90099611.jpg",
+    "static/media/mdb.css": "/effectiveShootingPercentage/static/media/arrow_right.8ef6a08c.svg",
+    "static/media/all.min.css": "/effectiveShootingPercentage/static/media/fa-solid-900.c2801fb4.svg",
     "static/media/formula.PNG": "/effectiveShootingPercentage/static/media/formula.d6730715.PNG"
   },
   "entrypoints": [
     "static/js/runtime-main.957c16e3.js",
-    "static/js/2.2220b9bf.chunk.js",
-    "static/css/main.09d313b6.chunk.css",
-    "static/js/main.0be03365.chunk.js"
+    "static/css/2.da5464c4.chunk.css",
+    "static/js/2.97b667ca.chunk.js",
+    "static/css/main.4f56b032.chunk.css",
+    "static/js/main.44ec3583.chunk.js"
   ]
 }

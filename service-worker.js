@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/effectiveShootingPercentage/precache-manifest.44e16ceaf1e1a83ec9208fd2e227b693.js"
+  "/effectiveShootingPercentage/precache-manifest.058726a94e9f3b42c46b678cf699fa59.js"
 );
 
 self.addEventListener('message', (event) => {
