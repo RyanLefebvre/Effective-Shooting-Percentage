@@ -9,7 +9,7 @@ import DataComp from './data'
 import GamesComp from './games'
 import TeamComp from './teams'
 import AboutComp from './about'
-import { BrowserRouter as Router , Route, Switch, } from 'react-router-dom';
+import { HashRouter as Router , Route, Switch, } from 'react-router-dom';
 
 class NavBarComp extends Component {
 
@@ -43,7 +43,7 @@ render() {
     )
 
   return (
-    <Router >
+    <Router  basename={'/effectiveShootingPercentage'}  >
       <MDBNavbar color="indigo" dark expand="md" style={navBarStyles}>
         <MDBNavbarBrand>
         <MDBNavLink to="/"><strong className="white-text">Effective Shooting%</strong></MDBNavLink>
@@ -51,7 +51,7 @@ render() {
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active>
+            <MDBNavItem >
               <MDBNavLink to="/players">Players</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
