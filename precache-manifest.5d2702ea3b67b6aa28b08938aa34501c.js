@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8af0426e43ed6be28fcc25d2f1502002",
+    "revision": "ea66fff0ed3b3e50fac93da14835df1b",
     "url": "/effectiveShootingPercentage/index.html"
   },
   {
-    "revision": "5b332c219ab1cc579ca3",
-    "url": "/effectiveShootingPercentage/static/css/2.da5464c4.chunk.css"
+    "revision": "488214e1b321a337c433",
+    "url": "/effectiveShootingPercentage/static/css/2.27390fbb.chunk.css"
   },
   {
-    "revision": "a0d92d1d4c8722e69d80",
+    "revision": "b3b498175cdcd89ecbf7",
     "url": "/effectiveShootingPercentage/static/css/main.4f56b032.chunk.css"
   },
   {
-    "revision": "5b332c219ab1cc579ca3",
-    "url": "/effectiveShootingPercentage/static/js/2.c7bf73f8.chunk.js"
+    "revision": "488214e1b321a337c433",
+    "url": "/effectiveShootingPercentage/static/js/2.c0549131.chunk.js"
   },
   {
-    "revision": "a0d92d1d4c8722e69d80",
-    "url": "/effectiveShootingPercentage/static/js/main.46942eaa.chunk.js"
+    "revision": "b3b498175cdcd89ecbf7",
+    "url": "/effectiveShootingPercentage/static/js/main.69749b3b.chunk.js"
   },
   {
     "revision": "73bf99fcf99d73dc9caf",
@@ -176,7 +176,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effectiveShootingPercentage/static/media/fa-solid-900.c2801fb4.svg"
   },
   {
-    "revision": "d67307159371eaf248cff516c264defb",
-    "url": "/effectiveShootingPercentage/static/media/formula.d6730715.PNG"
+    "revision": "3b15aef4bef95d281f4ddb0dedb5ed85",
+    "url": "/effectiveShootingPercentage/static/media/formula.3b15aef4.PNG"
   }
 ]);
