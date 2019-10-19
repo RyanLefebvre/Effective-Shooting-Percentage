@@ -8,14 +8,7 @@ import formulaCode from '../images/formula.PNG'
 
 function MainInfoComp() {
 
-    const contentStyles = {
-        marginTop: '25px' ,
-        display: 'block' , 
-        margin: 'auto' ,
-        width: '95%' ,
-        maxWidth: '1000px' ,
-        backgroundColor:'white' ,
-    };
+
 
     const imageContainerStyles = {
       display:'flex',
@@ -46,20 +39,14 @@ function MainInfoComp() {
       margin:'auto'
     };
 
-    const headerStyles = {
-      textAlign:'center'
-    }
 
-    const wrapperStyles = {
-      marginBottom: '25px'
-    }
 
   return (    
-    <div className="MainInfo" style={wrapperStyles} >
+    <div  className="wrapperStyles">
 
-      <h1 style = {headerStyles}> Project Definition </h1>
+      <h1 className ="headerStyles"> Project Definition </h1>
       
-      <Card style={contentStyles}>
+      <Card className ="cardContentStyles">
         <CardContent>
       Professional field lacrosse leagues have created a "two point line". If a 
       player stands behind this line when shooting, a goal is worth two 
@@ -79,7 +66,7 @@ function MainInfoComp() {
       </div>
       <br></br><br></br>
 
-      <Card style={contentStyles}>
+      <Card className ="cardContentStyles">
         <CardContent>
         ES% is inspired by a powerful statistic in basketball called effective field goal percentage (EFG%). 
         EFG% accounts for the fact that three point shots are worth more than two point shots. 
@@ -90,7 +77,7 @@ function MainInfoComp() {
       </Card>
 
       <br></br>
-      <h1 style = {headerStyles}> Results </h1>
+      <h1 className = "headerStyles"> Results </h1>
 
     </div>
   );

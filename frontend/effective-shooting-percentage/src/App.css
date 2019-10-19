@@ -8,3 +8,20 @@
 body{
   background-image: url(./images/triangle-mosaic.png);
 }
+
+.cardContentStyles{
+margin-top: 25px ;
+display: block ;
+margin: auto ;
+width: 95% ;
+max-width: 1000px ;
+background-color:white; 
+}
+
+.headerStyles {
+  text-align:center;
+}
+
+.wrapperStyles{
+  margin-bottom: 25px;
+}
