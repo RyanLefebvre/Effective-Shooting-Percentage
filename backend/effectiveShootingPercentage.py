@@ -57,6 +57,11 @@ class Team(object):
                 "\t Shots: " + str(self.totalShotAttempts) + "\tES%: " + 
                 str( self.effectiveShootingPercentage) )    
         
+    def toRow( self ):
+        return [ self.name, self.league, self.onePointGoals,
+                self.twoPointGoals, self.totalShotAttempts,
+                self.effectiveShootingPercentage ]
+        
 
 #function for calculating ES% of a player
 def getEffectiveShootingPercentage( onePointGoals ,
@@ -114,7 +119,7 @@ def getPLLData( playerList , teamDict ):
        for player in team['Players']:
            newPlayer = ( makePlayer( 
                    player['FirstName'] , player['LastName'],
-                   getFullTeamName(player['TeamId']), player['OnePointGoals'], 
+                   getFullPLLTeamName(player['TeamId']), player['OnePointGoals'], 
                    player['TwoPointGoals'] , eval(player['Shots']),
                    "PLL" , getFullPosition( player["Position"] ) ) )
            playerList.append( newPlayer )
@@ -129,7 +134,7 @@ def getMLLData( playerList , teamDict ):
                                 "offense-stats-table-iframe.php")
     mllSoup = BeautifulSoup( mll_response.text ,"lxml" ).find("div" ,
                            {"id":"regular-season"}).find("table" ,
-                           {"id":"player-table"}).find("tbody").findAll("tr")
+                           {"id":"player-table"}).find("tbody").findAll("tr") 
     for player in mllSoup:
         playerColumns = player.findAll("td")
         #name in MLL data is one column of form last , first 
@@ -146,15 +151,14 @@ def getMLLData( playerList , teamDict ):
         if( len( newPlayer.team) > 3 ):
             #just grab the first team 
             newPlayer.team = newPlayer.team[0:3]
-        newPlayer.team = getFullTeamName( newPlayer.team )
+        newPlayer.team = getFullMLLTeamName( newPlayer.team )
         addPlayerToTeam( newPlayer , newPlayer.team , teamDict )      
     return
 
 # converts a 3 letter team abbreviation to the temas full name 
-def getFullTeamName( abreviation ):
+def getFullPLLTeamName( abreviation ):
     abreviation = abreviation.lower()
     fullName = abreviation #default in case we dont know the team 
-    
     #PLL team names 
     if( abreviation == "arc" ):
         fullName = "Archers"
@@ -168,8 +172,15 @@ def getFullTeamName( abreviation ):
         fullName = "Redwoods"
     elif( abreviation == "whp" ):
         fullName = "Whipsnakes"
+        
+    return fullName
+
+# converts a 3 letter team abbreviation to the temas full name 
+def getFullMLLTeamName( abreviation ):
+    abreviation = abreviation.lower()
+    fullName = abreviation #default in case we dont know the team     
     #MLL
-    elif( abreviation == "atl" ):
+    if( abreviation == "atl" ):
         fullName = "Blaze"
     elif( abreviation == "che"):
         fullName = "Bayhawks"
@@ -183,6 +194,8 @@ def getFullTeamName( abreviation ):
         fullName = "Lizards"
         
     return fullName
+
+
 
 #converts position abreviations to full position names, if the position
 # is not abreviated, then the original position is returned 
@@ -202,7 +215,7 @@ def getFullPosition( abreviation ):
     return abreviation
 
 #exports the full list of 2019 professional lacrosse players to a csv file 
-def exportToCSV( playerList ):
+def exportPlayersToCSV( playerList ):
     with open('players.csv' , 'w', newline='' ) as writeFile:
         writer = csv.writer( writeFile )
         rowList = []
@@ -210,7 +223,7 @@ def exportToCSV( playerList ):
                       "POSITION", "1PG" , "2PG",
                       "SHOTS", "ES%" ] 
         rowList.append( colHeaders )
-        
+         
         for player in playerList:
             rowList.append( player.toRow() )      
         
@@ -219,19 +232,36 @@ def exportToCSV( playerList ):
             
         writeFile.close()
         
-
+#exports known information about all teams from 2019 PLL and MLL season
+def exportTeamsToCSV( teamList ):
+    with open('teams.csv' , 'w', newline='' ) as writeFile:
+        writer = csv.writer( writeFile )
+        rowList = []
+        colHeaders = [ "NAME",  "LEAUGE" , "1PG", "2PG",
+                      "SHOTS", "ES%" ] 
+        rowList.append( colHeaders )
+        
+        for team in teamList:
+            rowList.append( team.toRow() )      
+        
+        for row in rowList:
+            writer.writerow(row)
+            
+        writeFile.close()
+        
+        
+        
 #  MAIN   ####################################################################
 # this program scrapes player statisics from MLL and PLL websites to calculate
 # ES% for players and teams.
 try:
-    
     #contains a list of all players currently playing professional lacrosse 
     playerList = []
     teamDict  = {}
     print( " Grabbing PLL data ")
     getPLLData( playerList , teamDict )   
     #need to get MLL player data 
-    print( " Grabbing  MLL data ")
+    print( " Grabbing MLL data ")
     getMLLData( playerList , teamDict )
     #still need to calc ES% for each team 
     for team in teamDict.keys():
@@ -241,22 +271,13 @@ try:
     
     
     #sort list from lowest to highest Es%
-    playerList.sort( key=lambda x: x.effectiveShootingPercentage )       
-    exportToCSV( playerList )
-    for pllPlayer in playerList:
-        print( pllPlayer.toString() )
-        print("\n----------------------------------\n")
+    playerList.sort( key=lambda x: x.effectiveShootingPercentage, reverse=True)       
+    exportPlayersToCSV( playerList )  
+    exportTeamsToCSV( teamDict.values() )
     
+   
     
-    #need to fix weird team names for players on multiple teams and 
-    # need to add checks to put the names to the real teams *********************************************
-    # same with positions 
-    #for key in teamDict.keys():
-        #print( teamDict[key].toString() )
-        #print("\n----------------------------------\n")
-           
-
-    # going to want to be able to calc ES% for games most likely 
+# going to want to be able to calc ES% for games most likely 
 except Exception as e:
     print( "ERROR, PROGRAM TERMINATING\n" )
     print( e )

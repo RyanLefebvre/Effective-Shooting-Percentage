@@ -6,6 +6,7 @@ import trevor from '../images/trevor-baptiste.jpg'
 import teams from '../images/teams.jpg'
 import games from '../images/games.jpg'
 import playerData from '../sourceCode/players.csv'
+import teamData from '../sourceCode/teams.csv'
 
 function DataComp() {
 
@@ -90,7 +91,7 @@ function DataComp() {
                 for player and team statistics and I was able to scrape player statistics from this site.
 
                 <br></br><br></br>
-                2019 PLL/MLL player Dataset: <a href ={playerData} style={linkStyle}>players.csv</a>
+                2019 PLL/MLL Player Dataset: <a href ={playerData} style={linkStyle}>players.csv</a>
               </CardContent>
             </Card>
         </div>
@@ -106,8 +107,13 @@ function DataComp() {
         <h1 className="headerStyles"> Team Data </h1>
           <Card  className="cardContentStyles">
             <CardContent>
-              This is a long sentence that will cause a line break. if there is 
-              insufficient content in the card then it is not styled correctly
+              Compiling the statistics for teams was trivial once the data set for individual players was created. The team 
+              stats could be calculated by summing all of the one and two point goals of the individual players on a team and 
+              then calculating that teams ES%. The following dataset contains information on all 12 professional lacrosse teams 
+              in the PLL and MLL during 2019.
+
+              <br></br><br></br>
+                2019 PLL/MLL Team Dataset: <a href ={teamData} style={linkStyle}>teams.csv</a>
             </CardContent>
           </Card>
       </div>
