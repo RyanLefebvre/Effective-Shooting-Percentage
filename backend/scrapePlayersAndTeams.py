@@ -276,8 +276,6 @@ try:
     exportTeamsToCSV( teamDict.values() )
     
    
-    
-# going to want to be able to calc ES% for games most likely 
 except Exception as e:
     print( "ERROR, PROGRAM TERMINATING\n" )
     print( e )
