@@ -7,6 +7,8 @@ import teams from '../images/teams.jpg'
 import games from '../images/games.jpg'
 import playerData from '../sourceCode/players.csv'
 import teamData from '../sourceCode/teams.csv'
+import playerScraper from '../sourceCode/scrapePlayersAndTeams.py'
+
 
 function DataComp() {
 
@@ -22,7 +24,7 @@ function DataComp() {
   const imgStyles = {
       display:'block',
       margin:'auto',
-      maxWidth: '350px',
+      maxWidth: '450px',
       marginBottom: '25px',
       marginTop:'25px',
       width:'90%',
@@ -33,24 +35,23 @@ function DataComp() {
     display:'flex',
     jusitfyContent:'center',
     flexWrap: 'wrap',
-    maxWidth:'1200px',
+    maxWidth:'1300px',
     margin:'auto'
   }
 
   const flexChildBigStyles = {
     display:'block',
     margin:'auto',
-    maxWidth: '700px',
+    maxWidth: '800px',
     minWidth: '320px',
     width:'65%'
   }
 
   return(    
     <div className ="wrapperStyles">
-    <h1 className="headerStyles"> Data Collection </h1>
-
     <div style={flexManagerStyles} class ="flexManager">
       <div style={flexChildBigStyles}>
+      <h1 className="headerStyles"> Data Collection </h1>
       <Card  className="cardContentStyles">
         <CardContent>
           Unlike other professional sports, lacrosse has a relatively small following.
@@ -60,7 +61,11 @@ function DataComp() {
           <br></br><br></br>
           Unfortunately there is no publicly available data for previous seasons statistics, 
           all data is from the 2019 PLL and MLL seasons.I used the 'Beautiful Soup' Python library
-           and general knowledge of website architecture to extract and aggregate data for both leagues.
+           and general knowledge of website architecture to extract and aggregate data for both leagues. The programs I wrote to 
+           perform the scraping can by clicking the links below
+           <br></br><br></br>
+           Player/Team Web Scraping Program: <a href ={playerScraper} style={linkStyle}>scrapePlayersAndTeams.py</a>
+          <br></br><br></br>
         </CardContent>
       </Card>
       </div>
