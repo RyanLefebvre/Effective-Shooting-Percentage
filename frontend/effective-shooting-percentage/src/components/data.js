@@ -62,7 +62,7 @@ function DataComp() {
           Unfortunately there is no publicly available data for previous seasons statistics, 
           all data is from the 2019 PLL and MLL seasons.I used the 'Beautiful Soup' Python library
            and general knowledge of website architecture to extract and aggregate data for both leagues. The programs I wrote to 
-           perform the scraping can by clicking the links below
+           perform the scraping can be downloaded below.
            <br></br><br></br>
            Player/Team Web Scraping Program: <a href ={playerScraper} style={linkStyle}>scrapePlayersAndTeams.py</a>
           <br></br><br></br>

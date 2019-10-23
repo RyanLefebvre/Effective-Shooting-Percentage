@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import csv
+import scrapePlayersAndTeams as calculator
 
 class Game(object):
     date = ""
@@ -26,12 +27,41 @@ class Game(object):
     effectiveShootingDifference = 0
     gameJsonURL = "" 
     
-    def toString( self ): #placeholder 
-        return ""
+    def toString( self ): 
+        return ( "Date: " + str(self.date) + "\tHome: " + str(self.home) + "\tAway: " +
+                str(self.away) +"\tLeague: " + str(self.league) +
+                "\tHomeOnePointGoals: " + str(self.homeOnePointGoals) +
+                "\tHomeTwoPointGoals: " + str(self.homeTwoPointGoals) + 
+                "\tHomeShots: " + str(self.homeTotalShots) + "\tHomeES%: " +
+                str(self.homeEffectiveShootingPercentage) + 
+                "\tAwayOnePointGoals: " + str(self.awayOnePointGoals) +
+                "\tAwayTwoPointGOals: " + str(self.awayTwoPointGoals) + 
+                "\tAwayEffectiveShootingPercentage: " + 
+                str(self.awayEffectiveShootingPercentage) +
+                "\tEfectiveShootingDifference: " +
+                str(self.effectiveShootingDifference) + "\tGameJsonURL: " +  str(self.gameJsonURL) )
     
     def toRow(self): #placeholder 
         return []
     
+def makeGame( date, home, away, league, homeOnePointGoals, 
+             homeTwoPointGoals, homeTotalShots, homeEffectiveShootingPercentage,
+             awayOnePointGoals, awayTwoPointGoals, awayTotalShots,
+             awayEffectiveShootingPercentage, effectiveShootingDifference,
+             gameJsonURL):
+    newGame = Game()
+    newGame.date = date
+    newGame.home = home
+    newGame.homeOnePointGoals = homeOnePointGoals
+    newGame.homeTwoPointGoals = homeTwoPointGoals
+    newGame.homeTotalShots = homeTotalShots
+    newGame.homeEffectiveShootingPercentage
+    newGame.awayOnePointGoals = awayOnePointGoals
+    newGame.awayTwoPointGoals = awayTwoPointGoals
+    newGame.awayEffectiveShootingPercentage = awayEffectiveShootingPercentage
+    newGame.effectiveShootingDifference = effectiveShootingDifference
+    newGame.gameJsonURL = gameJsonURL
+    return newGame
 
 # helper method for storing list of json objects that contain 
 # info about PLL games, excludes All-Star game. Data for 37 games 
@@ -94,9 +124,34 @@ def getListOfPLLGameJsons():
 
 #gets data from PLL website for games and stores data in the game List 
 def getPLLData( gameList ):
-    print( "Grabbing PLL game data" )
     gameJSONs = getListOfPLLGameJsons()
-    print( len( gameJSONs ) )
+    for game in gameJSONs:
+        gameResponse = requests.get(game)
+        gameSoup = BeautifulSoup( gameResponse.text ,"lxml" )
+        gameJson = json.loads( gameSoup.text )
+       
+        gameDate = gameJson['timestamp'].split(" ")[0] #removes excess timestamp info
+        homeTeam = gameJson['BoxScoreOverview']['HomeTeam']
+        awayTeam = gameJson['BoxScoreOverview']['AwayTeam']
+        league = "PLL"
+        homeTwoPointGoals = eval(gameJson['TeamStats']['HomeTeam']['TwoPointGoals'])
+        homeTotalShots = eval(gameJson['TeamStats']['HomeTeam']['Shots'])
+        #onepoint goals not listed but we can calc manually from final score
+        # and # of two point goals
+        homeOnePointGoals = ( eval(gameJson['BoxScoreOverview']['HomeTeamScores']['FinalScore']) - ( homeTwoPointGoals * 2))
+        homeEffectiveShootingPercentage =  calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)
+       
+
+        awayTwoPointGoals =  eval(gameJson['TeamStats']['AwayTeam']['TwoPointGoals'])
+        awayTotalShots = eval(gameJson['TeamStats']['AwayTeam']['Shots'])
+        awayOnePointGoals = ( eval(gameJson['BoxScoreOverview']['AwayTeamScores']['FinalScore']) - ( awayTwoPointGoals * 2))
+        awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots)      
+        effectiveShootingDifference = abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage )
+        gameJsonURL = game
+        
+        newGame = makeGame( gameDate , homeTeam , awayTeam , league , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
+                           awayOnePointGoals, awayTwoPointGoals, awayTotalShots , awayEffectiveShootingPercentage , effectiveShootingDifference , gameJsonURL )
+        print( newGame.toString())
     
     
 #  MAIN   ####################################################################
