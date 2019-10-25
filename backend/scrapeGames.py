@@ -35,14 +35,23 @@ class Game(object):
                 "\tHomeShots: " + str(self.homeTotalShots) + "\tHomeES%: " +
                 str(self.homeEffectiveShootingPercentage) + 
                 "\tAwayOnePointGoals: " + str(self.awayOnePointGoals) +
-                "\tAwayTwoPointGOals: " + str(self.awayTwoPointGoals) + 
+                "\tAwayTwoPointGoals: " + str(self.awayTwoPointGoals) + 
                 "\tAwayEffectiveShootingPercentage: " + 
                 str(self.awayEffectiveShootingPercentage) +
                 "\tEfectiveShootingDifference: " +
                 str(self.effectiveShootingDifference) + "\tGameJsonURL: " +  str(self.gameJsonURL) )
     
     def toRow(self): #placeholder 
-        return []
+        return [ str(self.date), self.home, self.away,
+                self.effectiveShootingDifference, self.league,
+                
+                self.homeOnePointGoals, self.homeTwoPointGoals,
+                self.homeTotalShots , self.homeEffectiveShootingPercentage, 
+                self.awayOnePointGoals,
+                
+                self.awayTwoPointGoals,
+                self.awayTotalShots, self.awayEffectiveShootingPercentage,
+                self.gameJsonURL]
     
 def makeGame( date, home, away, league, homeOnePointGoals, 
              homeTwoPointGoals, homeTotalShots, homeEffectiveShootingPercentage,
@@ -52,12 +61,15 @@ def makeGame( date, home, away, league, homeOnePointGoals,
     newGame = Game()
     newGame.date = date
     newGame.home = home
+    newGame.away = away
+    newGame.league = league
     newGame.homeOnePointGoals = homeOnePointGoals
     newGame.homeTwoPointGoals = homeTwoPointGoals
     newGame.homeTotalShots = homeTotalShots
-    newGame.homeEffectiveShootingPercentage
+    newGame.homeEffectiveShootingPercentage = homeEffectiveShootingPercentage
     newGame.awayOnePointGoals = awayOnePointGoals
     newGame.awayTwoPointGoals = awayTwoPointGoals
+    newGame.awayTotalShots = awayTotalShots
     newGame.awayEffectiveShootingPercentage = awayEffectiveShootingPercentage
     newGame.effectiveShootingDifference = effectiveShootingDifference
     newGame.gameJsonURL = gameJsonURL
@@ -124,6 +136,7 @@ def getListOfPLLGameJsons():
 
 #gets data from PLL website for games and stores data in the game List 
 def getPLLData( gameList ):
+    print( "Scraping PLL data" )
     gameJSONs = getListOfPLLGameJsons()
     for game in gameJSONs:
         gameResponse = requests.get(game)
@@ -133,7 +146,6 @@ def getPLLData( gameList ):
         gameDate = gameJson['timestamp'].split(" ")[0] #removes excess timestamp info
         homeTeam = gameJson['BoxScoreOverview']['HomeTeam']
         awayTeam = gameJson['BoxScoreOverview']['AwayTeam']
-        league = "PLL"
         homeTwoPointGoals = eval(gameJson['TeamStats']['HomeTeam']['TwoPointGoals'])
         homeTotalShots = eval(gameJson['TeamStats']['HomeTeam']['Shots'])
         #onepoint goals not listed but we can calc manually from final score
@@ -146,23 +158,47 @@ def getPLLData( gameList ):
         awayTotalShots = eval(gameJson['TeamStats']['AwayTeam']['Shots'])
         awayOnePointGoals = ( eval(gameJson['BoxScoreOverview']['AwayTeamScores']['FinalScore']) - ( awayTwoPointGoals * 2))
         awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots)      
-        effectiveShootingDifference = abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage )
+        effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
         gameJsonURL = game
         
-        newGame = makeGame( gameDate , homeTeam , awayTeam , league , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
+        newGame = makeGame( gameDate , homeTeam , awayTeam , "PLL" , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
                            awayOnePointGoals, awayTwoPointGoals, awayTotalShots , awayEffectiveShootingPercentage , effectiveShootingDifference , gameJsonURL )
-        print( newGame.toString())
-    
+        
+        print( newGame.toString() + "\n----------------------------\n")
+        gameList.append( newGame )
+
+
+#exports the full list of 2019 professional lacrosse players to a csv file 
+def exportGamesToCSV( gameList ):
+    with open('games.csv' , 'w', newline='' ) as writeFile:
+        writer = csv.writer( writeFile )
+        rowList = []
+        colHeaders = [ "DATE", "HOME", "AWAY", "ES%D", "LEAGUE",
+                 "HOME 1PG", "HOME 2PG","HOME SHOTS", "HOME ES%",
+                 "AWAY 1PG", "AWAY 2PG", "AWAY SHOTS","AWAY ES%",
+                 "URL"] 
+        rowList.append( colHeaders )
+         
+        for game in gameList:
+            rowList.append( game.toRow() )      
+        
+        for row in rowList:
+            writer.writerow(row)
+            
+        writeFile.close()
     
 #  MAIN   ####################################################################
 # this program scrapes game statisics from MLL and PLL websites to calculate
 # ES% and ES%D for teams per game .
-try:
-    gameList = []
-    getPLLData( gameList ) 
-    
-    #MLL DATA IS IN PDF FORMAT, need to figure out how to deal w/ this 
+def main():
+    try:
+        gameList = []
+        getPLLData( gameList ) 
+        exportGamesToCSV( gameList )
+        #MLL DATA IS IN PDF FORMAT, need to figure out how to deal w/ this     
+    except Exception as e:
+        print( "ERROR, PROGRAM TERMINATING\n" )
+        print( e )
         
-except Exception as e:
-    print( "ERROR, PROGRAM TERMINATING\n" )
-    print( e )
+if __name__ == '__main__':
+    main()

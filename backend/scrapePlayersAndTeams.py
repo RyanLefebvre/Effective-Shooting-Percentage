@@ -254,28 +254,33 @@ def exportTeamsToCSV( teamList ):
 #  MAIN   ####################################################################
 # this program scrapes player statisics from MLL and PLL websites to calculate
 # ES% for players and teams.
-try:
-    #contains a list of all players currently playing professional lacrosse 
-    playerList = []
-    teamDict  = {}
-    print( " Grabbing PLL data ")
-    getPLLData( playerList , teamDict )   
-    #need to get MLL player data 
-    print( " Grabbing MLL data ")
-    getMLLData( playerList , teamDict )
-    #still need to calc ES% for each team 
-    for team in teamDict.keys():
-        teamDict[team].effectiveShootingPercentage = getEffectiveShootingPercentage(
-                 teamDict[team].onePointGoals, teamDict[team].twoPointGoals,
-                 teamDict[team].totalShotAttempts )
+def main():
+    try:
+        #contains a list of all players currently playing professional lacrosse 
+        playerList = []
+        teamDict  = {}
+        print( " Scraping PLL data ")
+        getPLLData( playerList , teamDict )   
+        #need to get MLL player data 
+        print( " Scraping MLL data ")
+        getMLLData( playerList , teamDict )
+        #still need to calc ES% for each team 
+        for team in teamDict.keys():
+            teamDict[team].effectiveShootingPercentage = getEffectiveShootingPercentage(
+                    teamDict[team].onePointGoals, teamDict[team].twoPointGoals,
+                    teamDict[team].totalShotAttempts )
     
     
-    #sort list from lowest to highest Es%
-    playerList.sort( key=lambda x: x.effectiveShootingPercentage, reverse=True)       
-    exportPlayersToCSV( playerList )  
-    exportTeamsToCSV( teamDict.values() )
+        #sort list from lowest to highest Es%
+        playerList.sort( key=lambda x: x.effectiveShootingPercentage, reverse=True)       
+        exportPlayersToCSV( playerList )  
+        exportTeamsToCSV( teamDict.values() )
     
    
-except Exception as e:
-    print( "ERROR, PROGRAM TERMINATING\n" )
-    print( e )
+    except Exception as e:
+        print( "ERROR, PROGRAM TERMINATING\n" )
+        print( e )
+
+
+if __name__ == '__main__':
+    main()
