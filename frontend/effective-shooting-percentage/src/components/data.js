@@ -59,9 +59,8 @@ function DataComp() {
           There are currently two professional field lacrosse leagues, the PLL and MLL.
           Each league maintains player and team statistics on their websites. 
           <br></br><br></br>
-          Unfortunately there is no publicly available data for previous seasons statistics, 
-          all data is from the 2019 PLL and MLL seasons.I used the 'Beautiful Soup' Python library
-           and general knowledge of website architecture to extract and aggregate data for both leagues. The programs I wrote to 
+            I used the 'Beautiful Soup' Python library and general knowledge of website 
+            architecture to extract and aggregate data for both leagues. The programs I wrote to 
            perform the scraping can be downloaded below.
            <br></br><br></br>
            Player/Team Web Scraping Program: <a href ={playerScraper} style={linkStyle}>scrapePlayersAndTeams.py</a>

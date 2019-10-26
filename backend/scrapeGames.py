@@ -10,6 +10,8 @@ from bs4 import BeautifulSoup
 import json
 import csv
 import scrapePlayersAndTeams as calculator
+import selenium as se
+
 
 class Game(object):
     date = ""
@@ -136,7 +138,7 @@ def getListOfPLLGameJsons():
 
 #gets data from PLL website for games and stores data in the game List 
 def getPLLData( gameList ):
-    print( "Scraping PLL data" )
+    print( "Scraping PLL Data" )
     gameJSONs = getListOfPLLGameJsons()
     for game in gameJSONs:
         gameResponse = requests.get(game)
@@ -164,10 +166,55 @@ def getPLLData( gameList ):
         newGame = makeGame( gameDate , homeTeam , awayTeam , "PLL" , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
                            awayOnePointGoals, awayTwoPointGoals, awayTotalShots , awayEffectiveShootingPercentage , effectiveShootingDifference , gameJsonURL )
         
-        print( newGame.toString() + "\n----------------------------\n")
         gameList.append( newGame )
+        
+       
+#helper method for scraping MLL data, process is a little different because 
+# we have data for more than one season, first step is to get a list of 
+# seasons we have data for, then for each game in a given season
+#scrape the games data and add it to the game list 
+def getMLLData( gameList ):
+    print("Scraping MLL Data")
+    seasonList = getMLLSeasonList()
+    seasonURL = "http://mll.stats.pointstreak.com/leagueschedule.html"    
+    
+    for season in seasonList: 
+        options = se.webdriver.ChromeOptions()
+        driver = se.webdriver.Chrome()
+        driver.get( seasonURL + season )
+        gameTable = driver.find_element_by_class_name('tablelines').get_attribute('innerHTML')
+        gameTableSoup = BeautifulSoup( gameTable , "lxml" )
+        gameURLs = []
+        for gameRow in gameTableSoup.find_all('tr',{'class':'light'}):
+            gameSheetParams = gameRow.find('td' , {'align':'center'} ).find('a') 
+            if( not( gameSheetParams == None ) ):
+                gameURLs.append( gameSheetParams.get('href') )
+        
+        print( gameURLs )
+        driver.close()
 
-
+#returns a list of query params that can be used to navigate to each season 
+# the MLL has data for
+def getMLLSeasonList():
+    seasonList = []
+    #start with an arbitrary season since they all contain the same select
+    # element that has the list of seasons
+    options = se.webdriver.ChromeOptions()
+    driver = se.webdriver.Chrome()
+    driver.get( "http://mll.stats.pointstreak.com/leagueschedule.html" )
+    
+    
+    selectDiv = driver.find_element_by_class_name('proSeason')
+    selectSoup = BeautifulSoup( selectDiv.get_attribute('innerHTML') ,"lxml" )
+    for seasonOption in selectSoup.find_all('option'):
+        value = seasonOption.get('value')
+        #some options in list have values that are not query params, all 
+        # query params we want start with a '?', this filters list 
+        if( not( value == None ) and value[0] == '?' ):
+            seasonList.append( value )
+    
+    return seasonList
+    
 #exports the full list of 2019 professional lacrosse players to a csv file 
 def exportGamesToCSV( gameList ):
     with open('games.csv' , 'w', newline='' ) as writeFile:
@@ -193,9 +240,9 @@ def exportGamesToCSV( gameList ):
 def main():
     try:
         gameList = []
-        getPLLData( gameList ) 
-        exportGamesToCSV( gameList )
-        #MLL DATA IS IN PDF FORMAT, need to figure out how to deal w/ this     
+        #getPLLData( gameList ) 
+        #exportGamesToCSV( gameList )
+        getMLLData(gameList)    
     except Exception as e:
         print( "ERROR, PROGRAM TERMINATING\n" )
         print( e )
