@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import json
 import csv
 import scrapePlayersAndTeams as calculator
+from selenium import webdriver
 import selenium as se
 
 
@@ -189,13 +190,53 @@ def getMLLData( gameList ):
             gameSheetParams = gameRow.find('td' , {'align':'center'} ).find('a') 
             if( not( gameSheetParams == None ) ):
                 gameURLs.append( gameSheetParams.get('href') )
-        
-        print( gameURLs )
         driver.close()
-
+        print( gameURLs )
+        for game in gameURLs:
+            #get full html after js has been rendered inside beautiful soup object 
+            gameSheetURL = "http://mll.stats.pointstreak.com/" + game
+            driver = se.webdriver.Chrome()
+            driver.get( gameSheetURL )
+            gameSheetHTML = driver.page_source
+            gameSheetSoup = BeautifulSoup( gameSheetHTML , "lxml" )
+            #variables neeeded for a game that havent been taken care of 
+            date = ""
+            home = ""
+            away = ""
+            league = ""
+            homeOnePointGoals = 0
+            homeTwoPointGoals = 0
+            homeTotalShots = 0 
+            homeEffectiveShootingPercentage =  0
+            awayOnePointGoals = 0
+            awayTwoPointGoals = 0
+            awayTotalShots = 0
+            awayEffectiveShootingPercentage = 0
+            effectiveShootingDifference = 0
+            gameJsonURL = "" 
+            
+            gameInfo = gameSheetSoup.find('p',{'class':'gameinfo'})
+            #scraping will be messy because of not many sleectors
+            splitInfo = gameInfo.text.split( " " )
+            print( "length is " + str( len( splitInfo)))
+            print( str( splitInfo ))
+            
+            home = splitInfo[len(splitInfo)-6]
+            away = splitInfo[len(splitInfo)-3]
+            
+            # going to need a method for making home and away team names correct
+            
+            print( "home is " + home )
+            print( "away is " + away  + "\n-----------------------------\n"  )
+            
+            
+            
+            
+        
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
 def getMLLSeasonList():
+    return [ "?leagueid=323&seasonid=4634"]
     seasonList = []
     #start with an arbitrary season since they all contain the same select
     # element that has the list of seasons
