@@ -28,7 +28,7 @@ class Game(object):
     awayTotalShots = 0
     awayEffectiveShootingPercentage = 0
     effectiveShootingDifference = 0
-    gameJsonURL = "" 
+    gameURL = "" 
     
     def toString( self ): 
         return ( "Date: " + str(self.date) + "\tHome: " + str(self.home) + "\tAway: " +
@@ -42,7 +42,7 @@ class Game(object):
                 "\tAwayEffectiveShootingPercentage: " + 
                 str(self.awayEffectiveShootingPercentage) +
                 "\tEfectiveShootingDifference: " +
-                str(self.effectiveShootingDifference) + "\tGameJsonURL: " +  str(self.gameJsonURL) )
+                str(self.effectiveShootingDifference) + "\tgameURL: " +  str(self.gameURL) )
     
     def toRow(self): #placeholder 
         return [ str(self.date), self.home, self.away,
@@ -54,13 +54,13 @@ class Game(object):
                 
                 self.awayTwoPointGoals,
                 self.awayTotalShots, self.awayEffectiveShootingPercentage,
-                self.gameJsonURL]
+                self.gameURL]
     
 def makeGame( date, home, away, league, homeOnePointGoals, 
              homeTwoPointGoals, homeTotalShots, homeEffectiveShootingPercentage,
              awayOnePointGoals, awayTwoPointGoals, awayTotalShots,
              awayEffectiveShootingPercentage, effectiveShootingDifference,
-             gameJsonURL):
+             gameURL):
     newGame = Game()
     newGame.date = date
     newGame.home = home
@@ -75,7 +75,7 @@ def makeGame( date, home, away, league, homeOnePointGoals,
     newGame.awayTotalShots = awayTotalShots
     newGame.awayEffectiveShootingPercentage = awayEffectiveShootingPercentage
     newGame.effectiveShootingDifference = effectiveShootingDifference
-    newGame.gameJsonURL = gameJsonURL
+    newGame.gameURL = gameURL
     return newGame
 
 # helper method for storing list of json objects that contain 
@@ -162,10 +162,10 @@ def getPLLData( gameList ):
         awayOnePointGoals = ( eval(gameJson['BoxScoreOverview']['AwayTeamScores']['FinalScore']) - ( awayTwoPointGoals * 2))
         awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots)      
         effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
-        gameJsonURL = game
+        gameURL = game
         
         newGame = makeGame( gameDate , homeTeam , awayTeam , "PLL" , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
-                           awayOnePointGoals, awayTwoPointGoals, awayTotalShots , awayEffectiveShootingPercentage , effectiveShootingDifference , gameJsonURL )
+                           awayOnePointGoals, awayTwoPointGoals, awayTotalShots , awayEffectiveShootingPercentage , effectiveShootingDifference , gameURL )
         
         gameList.append( newGame )
         
@@ -201,37 +201,58 @@ def getMLLData( gameList ):
             gameSheetSoup = BeautifulSoup( gameSheetHTML , "lxml" )
             #variables neeeded for a game that havent been taken care of 
             date = ""
-            home = ""
-            away = ""
-            league = ""
-            homeOnePointGoals = 0
-            homeTwoPointGoals = 0
-            homeTotalShots = 0 
-            homeEffectiveShootingPercentage =  0
-            awayOnePointGoals = 0
-            awayTwoPointGoals = 0
-            awayTotalShots = 0
-            awayEffectiveShootingPercentage = 0
-            effectiveShootingDifference = 0
-            gameJsonURL = "" 
+            league = "MLL"
+            gameURL = gameSheetURL
+
+
+            
+            
+           
             
             gameInfo = gameSheetSoup.find('p',{'class':'gameinfo'})
-            #scraping will be messy because of not many sleectors
-            splitInfo = gameInfo.text.split( " " )
-            print( "length is " + str( len( splitInfo)))
-            print( str( splitInfo ))
             
-            home = splitInfo[len(splitInfo)-6]
+            
+            #scraping will be messy because of not many sleectors
+   
+            splitInfo = gameInfo.text.split( " " )            
+            home = splitInfo[len(splitInfo)-6]         
+            homeTotalGoals = eval(splitInfo[len(splitInfo)-5])     
             away = splitInfo[len(splitInfo)-3]
             
+            awayTotalGoals = eval(splitInfo[len(splitInfo)-2])
+            index = 0
             # going to need a method for making home and away team names correct
+            #for table in gameSheetSoup.find_all('table'):
+             #   print( "\n-----idx: " + str( index) + " ----" + gameSheetURL + "-\n" )
+              #  print( table )
+               # index+=1
+                
+            allTables = gameSheetSoup.find_all('table')
+            homeRoster = allTables[9]
+            homeRoster = homeRoster.find_all('tr')
+            homeTwoPointGoals = eval(homeRoster[len(homeRoster)-1].find_all('td')[3].text)
+            homeTotalShots = eval(homeRoster[len(homeRoster)-1].find_all('td')[6].text)
+            homeOnePointGoals = homeTotalGoals - ( 2 * homeTwoPointGoals )
+            homeEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)
             
-            print( "home is " + home )
-            print( "away is " + away  + "\n-----------------------------\n"  )
+            awayRoster = allTables[11]
+            awayRoster = awayRoster.find_all('tr')
+            awayTwoPointGoals = eval(awayRoster[len(awayRoster)-1].find_all('td')[3].text)
+            awayTotalShots = eval(awayRoster[len(awayRoster)-1].find_all('td')[6].text)
+            awayOnePointGoals = awayTotalGoals - ( 2 * awayTwoPointGoals )
+            awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots )
             
+         
             
+            effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
             
-            
+            newGame = makeGame( date, home, away, league , homeOnePointGoals,
+                               homeTwoPointGoals, homeTotalShots,
+                               homeEffectiveShootingPercentage,
+                               awayOnePointGoals, awayTwoPointGoals,
+                               awayTotalShots, awayEffectiveShootingPercentage,
+                               effectiveShootingDifference, gameURL)
+            print( "\n-------------------------\n" + newGame.toString() )
         
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
