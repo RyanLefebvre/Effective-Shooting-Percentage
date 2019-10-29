@@ -184,14 +184,24 @@ def getMLLData( gameList ):
         driver = se.webdriver.Chrome()
         driver.get( seasonURL + season )
         gameTable = driver.find_element_by_class_name('tablelines').get_attribute('innerHTML')
+        fullPageSoup = BeautifulSoup( driver.page_source ,"lxml" )
+        #need this to get the date 
+        seasonSplit =
+        fullPageSoup.find('select' , {'name':'seasons'}).find('option',{'value':season}).text.split(" ")
+        year = seasonSplit[len(seasonSplit)-1]
         gameTableSoup = BeautifulSoup( gameTable , "lxml" )
         gameURLs = []
         for gameRow in gameTableSoup.find_all('tr',{'class':'light'}):
             gameSheetParams = gameRow.find('td' , {'align':'center'} ).find('a') 
+            dayMonthString = gameRow.find_all('td')[1].text
+            dayMonthString = dayMonthString.split(" ")
+            day = dayMonthString[2]
+            month = dayMonthString[1]
+            date =  str(month) + "/" + str(day) + "/" + str(year)
+            print(" Game Date is:" + date )
             if( not( gameSheetParams == None ) ):
                 gameURLs.append( gameSheetParams.get('href') )
         driver.close()
-        print( gameURLs )
         for game in gameURLs:
             #get full html after js has been rendered inside beautiful soup object 
             gameSheetURL = "http://mll.stats.pointstreak.com/" + game
@@ -199,42 +209,29 @@ def getMLLData( gameList ):
             driver.get( gameSheetURL )
             gameSheetHTML = driver.page_source
             gameSheetSoup = BeautifulSoup( gameSheetHTML , "lxml" )
+            driver.close()
             #variables neeeded for a game that havent been taken care of 
-            date = ""
+       
             league = "MLL"
             gameURL = gameSheetURL
-
-
-            
-            
-           
-            
             gameInfo = gameSheetSoup.find('p',{'class':'gameinfo'})
-            
-            
             #scraping will be messy because of not many sleectors
-   
-            splitInfo = gameInfo.text.split( " " )            
-            home = splitInfo[len(splitInfo)-6]         
+            splitInfo = gameInfo.text.split( " " )    
+            #print( splitInfo )
+            home = splitInfo[len(splitInfo)-6]    
+            #remove time informationthat may accidentally be appended to home team 
+            home = home.replace("pm","")
             homeTotalGoals = eval(splitInfo[len(splitInfo)-5])     
-            away = splitInfo[len(splitInfo)-3]
-            
+            away = splitInfo[len(splitInfo)-3] 
             awayTotalGoals = eval(splitInfo[len(splitInfo)-2])
             index = 0
-            # going to need a method for making home and away team names correct
-            #for table in gameSheetSoup.find_all('table'):
-             #   print( "\n-----idx: " + str( index) + " ----" + gameSheetURL + "-\n" )
-              #  print( table )
-               # index+=1
-                
             allTables = gameSheetSoup.find_all('table')
             homeRoster = allTables[9]
             homeRoster = homeRoster.find_all('tr')
             homeTwoPointGoals = eval(homeRoster[len(homeRoster)-1].find_all('td')[3].text)
             homeTotalShots = eval(homeRoster[len(homeRoster)-1].find_all('td')[6].text)
             homeOnePointGoals = homeTotalGoals - ( 2 * homeTwoPointGoals )
-            homeEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)
-            
+            homeEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)            
             awayRoster = allTables[11]
             awayRoster = awayRoster.find_all('tr')
             awayTwoPointGoals = eval(awayRoster[len(awayRoster)-1].find_all('td')[3].text)
@@ -252,7 +249,7 @@ def getMLLData( gameList ):
                                awayOnePointGoals, awayTwoPointGoals,
                                awayTotalShots, awayEffectiveShootingPercentage,
                                effectiveShootingDifference, gameURL)
-            print( "\n-------------------------\n" + newGame.toString() )
+            #print( "\n-------------------------\n" + newGame.toString() )
         
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
@@ -274,7 +271,7 @@ def getMLLSeasonList():
         # query params we want start with a '?', this filters list 
         if( not( value == None ) and value[0] == '?' ):
             seasonList.append( value )
-    
+    driver.close()
     return seasonList
     
 #exports the full list of 2019 professional lacrosse players to a csv file 
