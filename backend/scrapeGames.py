@@ -178,7 +178,6 @@ def getMLLData( gameList ):
     print("Scraping MLL Data")
     seasonList = getMLLSeasonList()
     seasonURL = "http://mll.stats.pointstreak.com/leagueschedule.html"    
-    
     for season in seasonList: 
         options = se.webdriver.ChromeOptions()
         driver = se.webdriver.Chrome()
@@ -186,9 +185,10 @@ def getMLLData( gameList ):
         gameTable = driver.find_element_by_class_name('tablelines').get_attribute('innerHTML')
         fullPageSoup = BeautifulSoup( driver.page_source ,"lxml" )
         #need this to get the date 
-        seasonSplit =
-        fullPageSoup.find('select' , {'name':'seasons'}).find('option',{'value':season}).text.split(" ")
+        seasonSplit = fullPageSoup.find('select' , {'name':'seasons'}).find('option',{'value':season}).text.strip().split(" ")
+    
         year = seasonSplit[len(seasonSplit)-1]
+        print( "season Split " + str( seasonSplit) + "\n--------------------------\n" )
         gameTableSoup = BeautifulSoup( gameTable , "lxml" )
         gameURLs = []
         for gameRow in gameTableSoup.find_all('tr',{'class':'light'}):
@@ -196,9 +196,8 @@ def getMLLData( gameList ):
             dayMonthString = gameRow.find_all('td')[1].text
             dayMonthString = dayMonthString.split(" ")
             day = dayMonthString[2]
-            month = dayMonthString[1]
+            month = getNumericMonth( dayMonthString[1] )
             date =  str(month) + "/" + str(day) + "/" + str(year)
-            print(" Game Date is:" + date )
             if( not( gameSheetParams == None ) ):
                 gameURLs.append( gameSheetParams.get('href') )
         driver.close()
@@ -210,21 +209,33 @@ def getMLLData( gameList ):
             gameSheetHTML = driver.page_source
             gameSheetSoup = BeautifulSoup( gameSheetHTML , "lxml" )
             driver.close()
-            #variables neeeded for a game that havent been taken care of 
-       
+            #variables neeeded for a game that havent been taken care of     
             league = "MLL"
             gameURL = gameSheetURL
             gameInfo = gameSheetSoup.find('p',{'class':'gameinfo'})
             #scraping will be messy because of not many sleectors
+            
+            
+            
+            
+            
+            
+            
+            
+            #spit info gets messed up with new york, need to refactor this to accomodate for
+            #cities with names that are two words long 
+            
+            
+            
             splitInfo = gameInfo.text.split( " " )    
-            #print( splitInfo )
-            home = splitInfo[len(splitInfo)-6]    
+            print( "SplitInfo is: " + str( splitInfo )  )
+            home = splitInfo[len(splitInfo)-6]  
             #remove time informationthat may accidentally be appended to home team 
             home = home.replace("pm","")
+            print( "Home is " + str(home) )
             homeTotalGoals = eval(splitInfo[len(splitInfo)-5])     
             away = splitInfo[len(splitInfo)-3] 
             awayTotalGoals = eval(splitInfo[len(splitInfo)-2])
-            index = 0
             allTables = gameSheetSoup.find_all('table')
             homeRoster = allTables[9]
             homeRoster = homeRoster.find_all('tr')
@@ -249,20 +260,17 @@ def getMLLData( gameList ):
                                awayOnePointGoals, awayTwoPointGoals,
                                awayTotalShots, awayEffectiveShootingPercentage,
                                effectiveShootingDifference, gameURL)
-            #print( "\n-------------------------\n" + newGame.toString() )
+            print( "\n-------------------------\n" + newGame.toString() )
         
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
 def getMLLSeasonList():
-    return [ "?leagueid=323&seasonid=4634"]
     seasonList = []
     #start with an arbitrary season since they all contain the same select
     # element that has the list of seasons
     options = se.webdriver.ChromeOptions()
     driver = se.webdriver.Chrome()
     driver.get( "http://mll.stats.pointstreak.com/leagueschedule.html" )
-    
-    
     selectDiv = driver.find_element_by_class_name('proSeason')
     selectSoup = BeautifulSoup( selectDiv.get_attribute('innerHTML') ,"lxml" )
     for seasonOption in selectSoup.find_all('option'):
@@ -292,6 +300,36 @@ def exportGamesToCSV( gameList ):
             writer.writerow(row)
             
         writeFile.close()
+        
+#helper method for construction of MLL dates, converts 3 letter month 
+# abbreviation to numeric value so dates can be put in mm/dd/yyyy format 
+def getNumericMonth( month ):
+    month = month.lower()    
+    if( month == "jan" ):
+        return 1
+    elif( month ==  "feb"):
+        return 2
+    elif( month ==  "mar"):
+        return 3;
+    elif( month ==  "apr"):
+        return 4;
+    elif( month ==  "may"):
+        return 5;
+    elif( month ==  "jun"):
+        return 6;
+    elif( month ==  "jul"):
+        return 7
+    elif( month ==  "aug"):
+        return 8
+    elif( month ==  "sep"):
+        return 9
+    elif( month ==  "oct"):
+        return 10
+    elif( month ==  "nov"):
+        return 11
+    elif( month == "dec" ):
+        return 12
+        
     
 #  MAIN   ####################################################################
 # this program scrapes game statisics from MLL and PLL websites to calculate
