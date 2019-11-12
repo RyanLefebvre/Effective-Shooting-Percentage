@@ -193,7 +193,7 @@ def isTwoWordTeamName( teamName ):
                         teamName.upper() == "ISLAND" )
 
 #returns the full MLL team name, assumes teamname will be in the form that gets 
-# passed from splitInfo 
+# passed from splitInfo in scrape MLL games method 
 def getTeamNameMLL( teamName ):
     if( teamName.upper() == "BOSTON" ):
         return "Boston Cannons"
@@ -332,6 +332,20 @@ def getMLLData( gameList ):
             except Exception as e:
                 print( "ERROR SCRAPING GAME: " + str(e) )
                 print( "\n-------------------------\n")
+
+
+#creates a mapping from seasons -> teams -> team win% for mll
+def getMLLWinPecentages():
+    return 
+
+#creates a mapping from seasons -> teams -> team win% for pll
+def getPLLWInPercentages():
+    return 
+
+#performs a regression analysis on the list of game objects
+# looks for a relationship between teams average ES%d and win%
+def performRegressionAnalysis():
+    return
                 
         
 #returns a list of query params that can be used to navigate to each season 
@@ -359,7 +373,7 @@ def exportGamesToCSV( gameList ):
     with open('games.csv' , 'w', newline='' ) as writeFile:
         writer = csv.writer( writeFile )
         rowList = []
-        colHeaders = [ "DATE", "HOME", "AWAY", "ES%D", "LEAGUE",
+        colHeaders = [ "DATE", "HOME", "AWAY", "ES%D", "LEAGUE", "SEASON",
                  "HOME 1PG", "HOME 2PG","HOME SHOTS", "HOME ES%",
                  "AWAY 1PG", "AWAY 2PG", "AWAY SHOTS","AWAY ES%",
                  "URL"] 
