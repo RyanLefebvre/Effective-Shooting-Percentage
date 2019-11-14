@@ -335,8 +335,10 @@ def getMLLData( gameList ):
 
 
 #creates a mapping from seasons -> teams -> team win% for mll
+                
+                #ALSO A POSSIBILITY TO MANUALLY CALC FROM GAME LISTS!!!!
 def getMLLWinPecentages():
-    return 
+    return   #http://mll.stats.pointstreak.com/playoffstandings.html?leagueid=323&seasonid=18576
 
 #creates a mapping from seasons -> teams -> team win% for pll
 def getPLLWInPercentages():
@@ -424,7 +426,7 @@ def main():
     try:
         gameList = []
         getPLLData( gameList )
-        getMLLData(gameList) 
+        #getMLLData(gameList) 
         exportGamesToCSV( gameList )
     except Exception as e:
         print( "ERROR, PROGRAM TERMINATING\n" )

@@ -4,7 +4,7 @@ instead of one. Effective Shooting Percentage (ES%) is a new lacrosse statistic 
 fact that a two point goal is worth more than a one point goal. 
 
 The forumla is:
-    ( OnePointGoals + ( 1.5 * TwoPointGoals ) ) / TotalShotAttempts   =  ES%
+    ( OnePointGoals + ( 2 * TwoPointGoals ) ) / TotalShotAttempts   =  ES%
     
 ES% is inspired by a relatively new and powerful statistic in basketball called effective field goal 
 percentage ( EFG% ). EFG% accounts for the fact that three point shots are worth more than 

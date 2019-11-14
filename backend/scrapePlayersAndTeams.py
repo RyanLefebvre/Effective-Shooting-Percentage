@@ -63,12 +63,12 @@ class Team(object):
                 self.effectiveShootingPercentage ]
         
 
-#function for calculating ES% of a player
+#function for calculating ES% 
 def getEffectiveShootingPercentage( onePointGoals ,
                                    twoPointGoals , totalShotAttempts ):
     if( totalShotAttempts == 0 ):
         return 0 
-    return round( ( onePointGoals + ( 1.5 * twoPointGoals ) ) /
+    return round( ( onePointGoals + ( 2 * twoPointGoals ) ) /
                  totalShotAttempts , 2 ) 
 
 # creates and returns a new player object based on the arguments passed in as 
