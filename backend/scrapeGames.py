@@ -9,10 +9,12 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import csv
-import scrapePlayersAndTeams as calculator
 from selenium import webdriver
+from numpy import *
+from regression_functions import *
+import regression_functions as regFunc 
+import matplotlib.pyplot as plt
 import selenium as se
-
 
 class Game(object):
     date = ""
@@ -97,6 +99,14 @@ def makeGame( date, home, away, league, homeOnePointGoals,
     newGame.gameURL = gameURL
     newGame.season = season
     return newGame
+
+#function for calculating ES% 
+def getEffectiveShootingPercentage( onePointGoals ,
+                                   twoPointGoals , totalShotAttempts ):
+    if( totalShotAttempts == 0 ):
+        return 0 
+    return round( ( onePointGoals + ( 2 * twoPointGoals ) ) /
+                 totalShotAttempts , 2 ) 
 
 def isPLLPlayOffGame( gameURL ):
     return( gameURL == "https://dn0a11v09sa0t.cloudfront.net/BoxScores/PLL_RED_WHP_20190921_1.json" or 
@@ -189,13 +199,13 @@ def getPLLData( gameList ):
         #onepoint goals not listed but we can calc manually from final score
         # and # of two point goals
         homeOnePointGoals = ( eval(gameJson['BoxScoreOverview']['HomeTeamScores']['FinalScore']) - ( homeTwoPointGoals * 2))
-        homeEffectiveShootingPercentage =  calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)
+        homeEffectiveShootingPercentage =  getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots)
        
 
         awayTwoPointGoals =  eval(gameJson['TeamStats']['AwayTeam']['TwoPointGoals'])
         awayTotalShots = eval(gameJson['TeamStats']['AwayTeam']['Shots'])
         awayOnePointGoals = ( eval(gameJson['BoxScoreOverview']['AwayTeamScores']['FinalScore']) - ( awayTwoPointGoals * 2))
-        awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots)      
+        awayEffectiveShootingPercentage = getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots)      
         effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
         gameURL = game
         newGame = makeGame( gameDate , homeTeam , awayTeam , "PLL" , homeOnePointGoals , homeTwoPointGoals , homeTotalShots , homeEffectiveShootingPercentage, 
@@ -333,13 +343,13 @@ def getMLLData( gameList ):
                 homeTwoPointGoals = eval(homeRoster[len(homeRoster)-1].find_all('td')[3].text)
                 homeTotalShots = eval(homeRoster[len(homeRoster)-1].find_all('td')[6].text)
                 homeOnePointGoals = homeTotalGoals - ( 2 * homeTwoPointGoals )
-                homeEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots) 
+                homeEffectiveShootingPercentage = getEffectiveShootingPercentage( homeOnePointGoals, homeTwoPointGoals, homeTotalShots) 
                 awayRoster = allTables[11]
                 awayRoster = awayRoster.find_all('tr')
                 awayTwoPointGoals = eval(awayRoster[len(awayRoster)-1].find_all('td')[3].text)
                 awayTotalShots = eval(awayRoster[len(awayRoster)-1].find_all('td')[6].text)
                 awayOnePointGoals = awayTotalGoals - ( 2 * awayTwoPointGoals )
-                awayEffectiveShootingPercentage = calculator.getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots )
+                awayEffectiveShootingPercentage = getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots )
                 effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
             
                 newGame = makeGame( date, home, away, league , homeOnePointGoals,
@@ -406,24 +416,59 @@ def getWinPercentagesAndAESD( gameList ):
     #############CREATE FINAL MAPPING ###################
     # convert from: teams -> seasons -> ( ESDTotal , numWins , numGames )
     # to: teams -> seasons -> ( AESD , szn win pct )
-    print( " |------------------------------------------------|" )
+    print( "\n|--------------------TEAM MAPPINGS--------------------|" )
     for team in teamDict:
         print( "\tTeam: " + str( team ) )
         for season in teamDict[team]:
-            print( "\t\tSzn->: " + str( season ) )
+            print( "\t\tSzn->:  " + str( season ) )
             previousValue = teamDict[team][season]
             teamDict[team][season] =  ( 
                     round( previousValue[0] / previousValue[2]  * 100 , 2),
                     round( previousValue[1] / previousValue[2]  * 100 , 2)) 
-            print( "\t\t\tAES%D: " + str( teamDict[team][season][0] )+"%" )
-            print( "\t\t\tWin%: " + str( teamDict[team][season][1] ) )
+            print( "\t\t\t\tAES%D: " + str( teamDict[team][season][0] )+"%" )
+            print( "\t\t\t\tWin%:  "  + str( teamDict[team][season][1] )+"%" )
     return teamDict
             
             
 #performs a regression analysis on the list of game objects
-# looks for a relationship between teams average ES%d and win%
-def performRegressionAnalysis():
+# looks for a relationship between teams xValues and YValues
+# depends on regression_functions.py
+def performRegressionAnalysis( xValues , yValues ):
+    print("\n-------------Beginning Regression Analysis-------------" )
+    mbTuple = regFunc.compute_m_and_b( xValues , yValues )
+    m = mbTuple[0]
+    print( "m:\t " + str( m ) )
+    b = mbTuple[1]
+    print( "b:\t " + str( b ) )
+    fxResidTuple = compute_fx_residual( xValues , yValues , m, b )
+    fx = fxResidTuple[0]
+    print( "fx:\t " + str( fx ) )
+    r = compute_pearson_coefficient( xValues , yValues )
+    print( "r:\t " + str( r ) )
+    #matplotlib stuff
+    plt.plot( xValues , yValues , 'bo' )
+    plt.plot( xValues , fx , 'red' )
+    
+    plt.title("Linear Least Squares Fit")
     return
+
+#expects a dictionary of the form returned from getWinPercentagesAndAESD()
+# this method looks for a relationship between x: AES%D and y: Win%
+def avgEffectDiffRegression( mappingDict ):
+    xVals = []
+    yVals = []
+    for team in mappingDict:
+        for season in mappingDict[team]:
+            xVals.append(  mappingDict[team][season][0]  ) 
+            yVals.append(  mappingDict[team][season][1]  )
+    performRegressionAnalysis( xVals , yVals )
+
+#expects a dictionary of the form returned from getWinPercentagesAndAESD()
+# this method looks for a relationship between x: AES% and y: Win%
+def avgEffectShootPercRegression( mappingDict ):
+    
+    #GOING TO WANT TO EXPORT THIS TO A CSV TO READ IN THROUGH REACT SOMEHOW 
+    return 
                 
         
 #returns a list of query params that can be used to navigate to each season 
@@ -465,36 +510,13 @@ def exportGamesToCSV( gameList ):
             
         writeFile.close()
         
-#helper method for construction of MLL dates, converts 3 letter month 
-# abbreviation to numeric value so dates can be put in mm/dd/yyyy format 
-def getNumericMonth( month ):
-    month = month.lower()    
-    if( month == "jan" ):
-        return 1
-    elif( month ==  "feb"):
-        return 2
-    elif( month ==  "mar"):
-        return 3;
-    elif( month ==  "apr"):
-        return 4;
-    elif( month ==  "may"):
-        return 5;
-    elif( month ==  "jun"):
-        return 6;
-    elif( month ==  "jul"):
-        return 7
-    elif( month ==  "aug"):
-        return 8
-    elif( month ==  "sep"):
-        return 9
-    elif( month ==  "oct"):
-        return 10
-    elif( month ==  "nov"):
-        return 11
-    elif( month == "dec" ):
-        return 12
-        
-    
+
+def exportAvgDiffRegrToCSV( xVals , yVals ):
+    return
+
+def exportAvgShootPercRegrToCSV( xVals , yVals ):
+    return
+            
 #  MAIN   ####################################################################
 # this program scrapes game statisics from MLL and PLL websites to calculate
 # ES% and ES%D for teams per game .
@@ -503,7 +525,8 @@ def main():
         gameList = []
         getPLLData( gameList )
         #getMLLData(gameList) 
-        getWinPercentagesAndAESD( gameList )
+        mappingDict = getWinPercentagesAndAESD( gameList )
+        avgEffectDiffRegression( mappingDict )
         exportGamesToCSV( gameList )
     except Exception as e:
         print( "ERROR, PROGRAM TERMINATING\n" )
