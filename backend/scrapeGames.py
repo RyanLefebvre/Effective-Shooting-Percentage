@@ -45,7 +45,7 @@ class Game(object):
                 "\n\tEfectiveShootingDifference: " +
                 str(self.effectiveShootingDifference) + "\n\tgameURL: " +  str(self.gameURL) )
     
-    def toRow(self): #placeholder 
+    def toRow(self): 
         return [ str(self.date), self.home, self.away,
                 self.effectiveShootingDifference, self.league, self.season,
                 self.homeOnePointGoals, self.homeTwoPointGoals,
@@ -54,6 +54,26 @@ class Game(object):
                 self.awayTwoPointGoals,
                 self.awayTotalShots, self.awayEffectiveShootingPercentage,
                 self.gameURL]
+        
+    #helper methods for getting true true ES%D
+    def homeEffectiveDifference(self):
+        return self.homeEffectiveShootingPercentage - self.awayEffectiveShootingPercentage
+    
+    def awayEffectiveDifference(self):
+        return self.awayEffectiveShootingPercentage - self.homeEffectiveShootingPercentage
+
+    #helper methods for calculating game score
+    def homeWon( self ):
+        return self.homeGoals() > self.awayGoals()
+    
+    def awayWon( self ):
+        return not( self.homeWon() )
+    
+    def homeGoals(self):
+        return self.homeOnePointGoals + ( 2 * self.homeTwoPointGoals )
+    
+    def awayGoals(self):
+        return self.awayOnePointGoals + ( 2 * self.awayTwoPointGoals )
     
 def makeGame( date, home, away, league, homeOnePointGoals, 
              homeTwoPointGoals, homeTotalShots, homeEffectiveShootingPercentage,
@@ -334,16 +354,72 @@ def getMLLData( gameList ):
                 print( "\n-------------------------\n")
 
 
-#creates a mapping from seasons -> teams -> team win% for mll
-                
-                #ALSO A POSSIBILITY TO MANUALLY CALC FROM GAME LISTS!!!!
-def getMLLWinPecentages():
-    return   #http://mll.stats.pointstreak.com/playoffstandings.html?leagueid=323&seasonid=18576
+#creates a mapping from teams -> seasons -> ( AESD , szn win pct )
+def getWinPercentagesAndAESD( gameList ):
+    #initial mapping built will be of form: 
+        # teams -> seasons -> ( ESDTotal , numWins , numGames )
+        # then we can divide ESDTotal / numGames to get average ESD
+        # and we can divide numWins by numGames to get winpct 
+    # teams -> seasons 
+    teamDict = {}
+    for game in gameList:
+        
+        ##########HOME##############
+        #first check if team is in team list 
+        if( not( game.home in teamDict.keys() ) ):
+            #if not add team 
+            teamDict[game.home] = {}          
+        numHomeWins = 0
+        if( game.homeWon() ):
+            numHomeWins += 1 
+        #check if this season has information yet 
+        if( not( game.season in teamDict[game.home]) ):
+            #if not then add season to the teams dictionary with default 
+            # values 
+            teamDict[game.home][game.season] = ( game.homeEffectiveDifference(), numHomeWins , 1 )
+        else: # season has info so it needs to be updated 
+            previous = teamDict[game.home][game.season] 
+            teamDict[game.home][game.season] = ( previous[0] +
+                    game.homeEffectiveDifference() , previous[1] + numHomeWins,
+                    previous[2] + 1 )
+        
+        ##########AWAY##############
+        #first check if team is in team list 
+        if( not( game.away in teamDict.keys() ) ):
+            #if not add team 
+            teamDict[game.away] = {}          
+        numAwayWins = 0
+        if( game.awayWon() ):
+            numAwayWins += 1 
+        #check if this season has information yet 
+        if( not( game.season in teamDict[game.away]) ):
+            #if not then add season to the teams dictionary with default 
+            # values 
+            teamDict[game.away][game.season] = ( game.awayEffectiveDifference(), numAwayWins , 1 )
+        else: # season has info so it needs to be updated 
+            previous = teamDict[game.away][game.season] 
+            teamDict[game.away][game.season] = ( previous[0] +
+                    game.awayEffectiveDifference() , previous[1] + numAwayWins,
+                    previous[2] + 1 )
 
-#creates a mapping from seasons -> teams -> team win% for pll
-def getPLLWInPercentages():
-    return 
-
+    
+    #############CREATE FINAL MAPPING ###################
+    # convert from: teams -> seasons -> ( ESDTotal , numWins , numGames )
+    # to: teams -> seasons -> ( AESD , szn win pct )
+    print( " |------------------------------------------------|" )
+    for team in teamDict:
+        print( "\tTeam: " + str( team ) )
+        for season in teamDict[team]:
+            print( "\t\tSzn->: " + str( season ) )
+            previousValue = teamDict[team][season]
+            teamDict[team][season] =  ( 
+                    round( previousValue[0] / previousValue[2]  * 100 , 2),
+                    round( previousValue[1] / previousValue[2]  * 100 , 2)) 
+            print( "\t\t\tAES%D: " + str( teamDict[team][season][0] )+"%" )
+            print( "\t\t\tWin%: " + str( teamDict[team][season][1] ) )
+    return teamDict
+            
+            
 #performs a regression analysis on the list of game objects
 # looks for a relationship between teams average ES%d and win%
 def performRegressionAnalysis():
@@ -427,6 +503,7 @@ def main():
         gameList = []
         getPLLData( gameList )
         #getMLLData(gameList) 
+        getWinPercentagesAndAESD( gameList )
         exportGamesToCSV( gameList )
     except Exception as e:
         print( "ERROR, PROGRAM TERMINATING\n" )
