@@ -24,8 +24,10 @@ def compute_m_and_b(xvalues, yvalues):
     n = len(xvalues)
     m_numerator = (sum(xvalues) * sum(yvalues)) - (compute_sxy(xvalues, yvalues) * n)
     m_denominator = (sum(xvalues)**2) - (compute_sum_of_squared(xvalues) * n)
-    m = m_numerator/m_denominator
-    b = (sum(yvalues) - (sum(xvalues) * m))/n
+    m = m_numerator/m_denominator   
+    b = 0 
+    if( n > 0 ): 
+        b = (sum(yvalues) - (sum(xvalues) * m))/n
     return(m, b)
     
 def compute_fx_residual(xvalues, yvalues, m, b):

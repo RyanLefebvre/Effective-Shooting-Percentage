@@ -11,7 +11,7 @@ import regression_functions as regFunc
 import matplotlib.pyplot as plt
 import scrape_MLL
 import scrape_PLL 
-
+import time
 
 
 class Game(object):
@@ -79,9 +79,15 @@ class Game(object):
     
     #heper methods for shooting percentage and shooting percentage difference
     def homeShootingPercentage(self):
+        if( self.homeTotalShots == 0 ):
+            return 0
+        
         return round( ( self.homeOnePointGoals + self.homeTwoPointGoals ) / self.homeTotalShots , 2 ) 
     
     def awayShootingPercentage(self):
+        if( self.awayTotalShots == 0 ):
+            return 0
+        
         return round( ( self.awayOnePointGoals + self.awayTwoPointGoals ) / self.awayTotalShots , 2 ) 
     
     def homeShootingPercentageDifference(self):
@@ -144,7 +150,6 @@ def getTeamRegressionData( gameList ):
     # teams -> seasons 
     teamDict = {}
     for game in gameList:
-        
         ##########HOME##############
         #first check if team is in team list 
         if( not( game.home in teamDict.keys() ) ):
@@ -223,6 +228,11 @@ def getTeamRegressionData( gameList ):
 # looks for a relationship between teams xValues and YValues
 # depends on regression_functions.py
 def performRegressionAnalysis( xValues , yValues, title ):
+    
+    #saves method from breaking if list passed in is empty 
+    if( len(xValues) == 0 or len(yValues) == 0 ):
+        return "Insufficient data for analysis"
+    
     regressionResults = ""
     plt.figure()
     regressionResults += "------------ Regression Analysis " + title + "-------------" 
@@ -325,7 +335,6 @@ def exportGamesToCSV( gameList ):
          
         for game in gameList:
             rowList.append( game.toRow() )      
-        
         for row in rowList:
             writer.writerow(row)
             
@@ -356,36 +365,59 @@ def exportRegrResults( results ):
     file1 = open("RESULTS.txt","w")
     file1.write( results )
     file1.close()
-
-
+    
+# helper emthod for filtering out games we scraped that cannotbe used 
+# some of the older games have very poorly tracked stats, thus we 
+# if they are missing values for a variable like shots we cannot 
+# calculate any of the statistics of interest so game should eb excluded 
+# from the data set
+def gameHasHomeAndAwayShots( game ):
+    if( game.homeTotalShots > 0 and game.awayTotalShots > 0 ):
+        return True 
+    return False
+    
             
 #  MAIN   ####################################################################
 # this program scrapes game statisics from MLL and PLL websites to calculate
 # ES% and ES%D for teams per game .
 def main():
     try:
-        #scrape/calculate data
+        startTime = time.time()
+        #scrape~filter~calculate data
         gameList = []
-        getPLLData( gameList )
-        getMLLData(gameList) 
+        #getPLLData( gameList )
+        getMLLData( gameList ) 
         mappingDict = getTeamRegressionData( gameList )
+        
+        #get rid of games that dont have enough info for analysis
+        # but keep a reference to the unfiltered lists for exporting data
+        filteredGameList = filter( gameHasHomeAndAwayShots, gameList )
+        filteredMappingDict = getTeamRegressionData( filteredGameList )
         
         #perform analysis
         regressionResults = ""
             #Regression analysis between AES%D and Win % 
-        regressionResults+= avgEffectDiffRegression( mappingDict )
+        regressionResults+= avgEffectDiffRegression( filteredMappingDict )
             #Regression analysis between AES% and Win % 
-        regressionResults+= avgEffectShootPercRegression( mappingDict )
+        regressionResults+= avgEffectShootPercRegression( filteredMappingDict )
             #Regression analysis between AS% and Win% 
-        regressionResults+= avgShootingPercRegression( mappingDict )
+        regressionResults+= avgShootingPercRegression( filteredMappingDict )
             #Regression analysis between AS%D and Win% 
-        regressionResults+= avgShootingDiffRegression( mappingDict )
+        regressionResults+= avgShootingDiffRegression( filteredMappingDict )
+        
         
         #export data for future use
         exportGamesToCSV( gameList )
         exportTeamsToCSV( mappingDict )
         exportRegrResults( regressionResults )
         
+        endTime = time.time()
+        hours, rem = divmod( endTime - startTime , 3600 )
+        minutes, seconds = divmod( rem, 60 )
+        print("\n-------------------------")
+        print("Analysis Complete")
+        print("Total Run Time: " + str(hours) + " Hours  " +
+              str(minutes) + " min  " + str(round(seconds,2)) + " seconds")
     except Exception as e:
         print( "ERROR, PROGRAM TERMINATING\n" )
         print( e )

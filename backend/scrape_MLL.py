@@ -133,7 +133,14 @@ def getMLLSeason( seasonName ):
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
 def getMLLSeasonList():
-    seasonList = []
+    #seasonList = []
+    seasonList = [
+                  #'?leagueid=323&seasonid=17505',
+                  #'?leagueid=323&seasonid=17504',
+              #    '?leagueid=323&seasonid=17503',
+               #   '?leagueid=323&seasonid=17502',
+                  '?leagueid=323&seasonid=17501']
+    return seasonList
     #start with an arbitrary season since they all contain the same select
     # element that has the list of seasons
     options = se.webdriver.ChromeOptions()
@@ -206,6 +213,7 @@ def getMLLData( gameList ):
         year = seasonSplit[len(seasonSplit)-1]
         gameTableSoup = BeautifulSoup( gameTable , "lxml" )
         gameURLs = []
+        dates = []
         for gameRow in gameTableSoup.find_all('tr',{'class':'light'}):
             gameSheetParams = gameRow.find('td' , {'align':'center'} ).find('a') 
             dayMonthString = gameRow.find_all('td')[1].text
@@ -215,6 +223,7 @@ def getMLLData( gameList ):
             date =  str(month) + "/" + str(day) + "/" + str(year)
             if( not( gameSheetParams == None ) ):
                 gameURLs.append( gameSheetParams.get('href') )
+                dates.append( date )
         driver.close()
         for game in gameURLs:
             try:
@@ -227,6 +236,7 @@ def getMLLData( gameList ):
                 driver.close()
                 league = "MLL"
                 gameURL = gameSheetURL
+                date = dates[gameURLs.index( game )]
                 gameInfo = gameSheetSoup.find('p',{'class':'gameinfo'})
                 #scraping will be messy because of not many selectors    
                 #spit info gets messed up with new york, need to refactor this to accomodate for
@@ -263,7 +273,6 @@ def getMLLData( gameList ):
                 awayOnePointGoals = awayTotalGoals - ( 2 * awayTwoPointGoals )
                 awayEffectiveShootingPercentage = getEffectiveShootingPercentage( awayOnePointGoals, awayTwoPointGoals, awayTotalShots )
                 effectiveShootingDifference = round( abs( homeEffectiveShootingPercentage - awayEffectiveShootingPercentage ) , 2 )
-            
                 newGame = makeGame( date, home, away, league , homeOnePointGoals,
                                    homeTwoPointGoals, homeTotalShots,
                                    homeEffectiveShootingPercentage,
