@@ -270,6 +270,7 @@ def getMLLData( gameList ):
                                    awayOnePointGoals, awayTwoPointGoals,
                                    awayTotalShots, awayEffectiveShootingPercentage,
                                    effectiveShootingDifference, gameURL, season)
+                gameList.append( newGame )
                 print( "\n-------------------------\n" + newGame.toString() )
             except Exception as e:
                 print( "ERROR SCRAPING GAME: " + str(e) )

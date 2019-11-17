@@ -211,7 +211,7 @@ def getTeamRegressionData( gameList ):
         for season in teamDict[team]:
             previousValue = teamDict[team][season]
             teamDict[team][season] =  ( 
-                    round( previousValue[0] / previousValue[3]  , 2),
+                    round( previousValue[0] / previousValue[3] , 2),
                     round( previousValue[1] / previousValue[3] , 2),
                     round( previousValue[2] / previousValue[3] , 2),
                     round( previousValue[4] / previousValue[3] , 2 ),
@@ -367,7 +367,7 @@ def main():
         #scrape/calculate data
         gameList = []
         getPLLData( gameList )
-        #getMLLData(gameList) 
+        getMLLData(gameList) 
         mappingDict = getTeamRegressionData( gameList )
         
         #perform analysis
