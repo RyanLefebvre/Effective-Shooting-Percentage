@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa9796af43c2cd1291932e40fd2c5433",
+    "revision": "d2f78996f03e8432fa2be77967395a72",
     "url": "/effectiveShootingPercentage/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effectiveShootingPercentage/static/css/2.27390fbb.chunk.css"
   },
   {
-    "revision": "7bc81fef4e45ee345b75",
+    "revision": "64e2db65d0e5ce710393",
     "url": "/effectiveShootingPercentage/static/css/main.b95445f4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effectiveShootingPercentage/static/js/2.4ffd4ee7.chunk.js"
   },
   {
-    "revision": "7bc81fef4e45ee345b75",
-    "url": "/effectiveShootingPercentage/static/js/main.13947d67.chunk.js"
+    "revision": "64e2db65d0e5ce710393",
+    "url": "/effectiveShootingPercentage/static/js/main.6af890c3.chunk.js"
   },
   {
     "revision": "73bf99fcf99d73dc9caf",
