@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea66fff0ed3b3e50fac93da14835df1b",
+    "revision": "fa9796af43c2cd1291932e40fd2c5433",
     "url": "/effectiveShootingPercentage/index.html"
   },
   {
-    "revision": "488214e1b321a337c433",
+    "revision": "ec27703614ccc4e85e42",
     "url": "/effectiveShootingPercentage/static/css/2.27390fbb.chunk.css"
   },
   {
-    "revision": "b3b498175cdcd89ecbf7",
-    "url": "/effectiveShootingPercentage/static/css/main.4f56b032.chunk.css"
+    "revision": "7bc81fef4e45ee345b75",
+    "url": "/effectiveShootingPercentage/static/css/main.b95445f4.chunk.css"
   },
   {
-    "revision": "488214e1b321a337c433",
-    "url": "/effectiveShootingPercentage/static/js/2.c0549131.chunk.js"
+    "revision": "ec27703614ccc4e85e42",
+    "url": "/effectiveShootingPercentage/static/js/2.4ffd4ee7.chunk.js"
   },
   {
-    "revision": "b3b498175cdcd89ecbf7",
-    "url": "/effectiveShootingPercentage/static/js/main.69749b3b.chunk.js"
+    "revision": "7bc81fef4e45ee345b75",
+    "url": "/effectiveShootingPercentage/static/js/main.13947d67.chunk.js"
   },
   {
     "revision": "73bf99fcf99d73dc9caf",
@@ -116,6 +116,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effectiveShootingPercentage/static/media/arrow_right.8ef6a08c.svg"
   },
   {
+    "revision": "5edd424bc79548ebc43729fa621a8e8d",
+    "url": "/effectiveShootingPercentage/static/media/beautifulSoup.5edd424b.png"
+  },
+  {
     "revision": "06147b6cd88c7346cecd1edd060cd5de",
     "url": "/effectiveShootingPercentage/static/media/fa-brands-400.06147b6c.ttf"
   },
@@ -176,7 +180,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/effectiveShootingPercentage/static/media/fa-solid-900.c2801fb4.svg"
   },
   {
-    "revision": "3b15aef4bef95d281f4ddb0dedb5ed85",
-    "url": "/effectiveShootingPercentage/static/media/formula.3b15aef4.PNG"
+    "revision": "89c525465a770b606067cfc533b118ae",
+    "url": "/effectiveShootingPercentage/static/media/farrell.89c52546.jpg"
+  },
+  {
+    "revision": "23e917220b7b020e2ae1897625e6b0f0",
+    "url": "/effectiveShootingPercentage/static/media/formula.23e91722.PNG"
+  },
+  {
+    "revision": "ffc67644731aab3dcedbac5669d09fc4",
+    "url": "/effectiveShootingPercentage/static/media/games.ffc67644.jpg"
+  },
+  {
+    "revision": "dd526669401a36cc3d9a4fa7e500e66c",
+    "url": "/effectiveShootingPercentage/static/media/lizards.dd526669.jpg"
+  },
+  {
+    "revision": "1b2107762176bbc460e3f4346aa8e806",
+    "url": "/effectiveShootingPercentage/static/media/trevor-baptiste.1b210776.jpg"
   }
 ]);

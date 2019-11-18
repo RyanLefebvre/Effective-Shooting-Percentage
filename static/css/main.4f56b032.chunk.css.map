@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,EACE,QAAQ,CACR,SAAS,CACT,eAAiB,CACjB,2CACF,CAEA,KACE,w8CACF","file":"main.4f56b032.chunk.css","sourcesContent":["*{\r\n  margin:0;\r\n  padding:0;\r\n  font-weight: bold;\r\n  font-family: \"Lucida Console\", Monaco, monospace;\r\n}\r\n\r\nbody{\r\n  background-image: url(./images/triangle-mosaic.png);\r\n}"]}
