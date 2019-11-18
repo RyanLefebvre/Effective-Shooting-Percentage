@@ -283,6 +283,7 @@ def avgEffectDiffRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][0]  ) 
             yVals.append(  mappingDict[team][season][2]  )
+    exportRegrData( xVals, "AES%D" , yVals , "WIN%" , "AES%D_vs_WIN%_Regr" )
     return performRegressionAnalysis( xVals , yVals, "AES%D vs WIN%" )
 
 #expects a dictionary of the form returned from getTeamRegressionData()
@@ -294,6 +295,7 @@ def avgEffectShootPercRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][1]  ) 
             yVals.append(  mappingDict[team][season][2]  )
+    exportRegrData( xVals, "AES%" , yVals , "WIN%" , "AES%_vs_WIN%_Regr" )
     return performRegressionAnalysis( xVals , yVals, "AES% vs WIN%")
     
 
@@ -306,6 +308,7 @@ def avgShootingPercRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][3]  ) 
             yVals.append(  mappingDict[team][season][2]  )
+    exportRegrData( xVals, "ASh%" , yVals , "WIN%" , "ASh%_vs_WIN%_Regr" )
     return performRegressionAnalysis( xVals , yVals, "ASh% vs WIN%")
     
 
@@ -318,6 +321,7 @@ def avgShootingDiffRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][4]  ) 
             yVals.append(  mappingDict[team][season][2]  )
+    exportRegrData( xVals, "ASh%D" , yVals , "WIN%" , "ASh%D_vs_WIN%_Regr" )
     return performRegressionAnalysis( xVals , yVals, "ASh%D vs WIN%")
 
     
@@ -356,6 +360,20 @@ def exportTeamsToCSV( mappingDict ):
         for row in rowList:
             writer.writerow(row)
             
+        writeFile.close()
+        
+# used to export regression data, useful for frontend because it is easy format 
+# to read in data to make graphs         
+def exportRegrData( xValues, xName , yValues , yName , exportFileName ):
+    with open( str( exportFileName ) + ".csv", 'w', newline='' ) as writeFile:
+        writer = csv.writer( writeFile )
+        rowList = []
+        colHeaders = [ "X: " + str(xName), "Y: " + str(yName) ] 
+        rowList.append( colHeaders )
+        for x in xValues:
+            rowList.append( x , yValues[xValues.index(x)])
+        for row in rowList:
+            writer.writerow(row)
         writeFile.close()
     
 #exports regression results to text file, this way after program runs we 
