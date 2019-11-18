@@ -133,14 +133,7 @@ def getMLLSeason( seasonName ):
 #returns a list of query params that can be used to navigate to each season 
 # the MLL has data for
 def getMLLSeasonList():
-    #seasonList = []
-    seasonList = [
-                  #'?leagueid=323&seasonid=17505',
-                  #'?leagueid=323&seasonid=17504',
-              #    '?leagueid=323&seasonid=17503',
-               #   '?leagueid=323&seasonid=17502',
-                  '?leagueid=323&seasonid=17501']
-    return seasonList
+    seasonList = []
     #start with an arbitrary season since they all contain the same select
     # element that has the list of seasons
     options = se.webdriver.ChromeOptions()

@@ -72,29 +72,29 @@ class Game(object):
         
     #helper methods for getting true true ES%D
     def homeEffectiveDifference(self):
-        return round( self.homeEffectiveShootingPercentage - self.awayEffectiveShootingPercentage, 2 ) 
+        return round( self.homeEffectiveShootingPercentage - self.awayEffectiveShootingPercentage, 3 ) 
     
     def awayEffectiveDifference(self):
-        return round( self.awayEffectiveShootingPercentage - self.homeEffectiveShootingPercentage , 2 )
+        return round( self.awayEffectiveShootingPercentage - self.homeEffectiveShootingPercentage , 3 )
     
     #heper methods for shooting percentage and shooting percentage difference
     def homeShootingPercentage(self):
         if( self.homeTotalShots == 0 ):
             return 0
         
-        return round( ( self.homeOnePointGoals + self.homeTwoPointGoals ) / self.homeTotalShots , 2 ) 
+        return round( ( self.homeOnePointGoals + self.homeTwoPointGoals ) / self.homeTotalShots , 3 ) 
     
     def awayShootingPercentage(self):
         if( self.awayTotalShots == 0 ):
             return 0
         
-        return round( ( self.awayOnePointGoals + self.awayTwoPointGoals ) / self.awayTotalShots , 2 ) 
+        return round( ( self.awayOnePointGoals + self.awayTwoPointGoals ) / self.awayTotalShots , 3 ) 
     
     def homeShootingPercentageDifference(self):
-        return round(  self.homeShootingPercentage() - self.awayShootingPercentage() , 2 ) 
+        return round(  self.homeShootingPercentage() - self.awayShootingPercentage() , 3 ) 
 
     def awayShootingPercentageDifference(self):
-        return round(  self.awayShootingPercentage() - self.homeShootingPercentage() , 2 ) 
+        return round(  self.awayShootingPercentage() - self.homeShootingPercentage() , 3 ) 
 
     #helper methods for calculating game score
     def homeWon(self):
@@ -138,7 +138,7 @@ def getEffectiveShootingPercentage( onePointGoals ,
     if( totalShotAttempts == 0 ):
         return 0 
     return round( ( onePointGoals + ( 2 * twoPointGoals ) ) /
-                 totalShotAttempts , 2 ) 
+                 totalShotAttempts , 3 ) 
 
 
 #creates a mapping from teams -> seasons -> ( AES%D, AES%, szn win pct, ASh%, ASh%D )
@@ -216,11 +216,11 @@ def getTeamRegressionData( gameList ):
         for season in teamDict[team]:
             previousValue = teamDict[team][season]
             teamDict[team][season] =  ( 
-                    round( previousValue[0] / previousValue[3] , 2),
-                    round( previousValue[1] / previousValue[3] , 2),
-                    round( previousValue[2] / previousValue[3] , 2),
-                    round( previousValue[4] / previousValue[3] , 2 ),
-                    round( previousValue[5] / previousValue[3] , 2 ) )
+                    round( previousValue[0] / previousValue[3] , 3),
+                    round( previousValue[1] / previousValue[3] , 3),
+                    round( previousValue[2] / previousValue[3] , 3),
+                    round( previousValue[4] / previousValue[3] , 3 ),
+                    round( previousValue[5] / previousValue[3] , 3 ) )
     return teamDict
             
             
@@ -238,13 +238,13 @@ def performRegressionAnalysis( xValues , yValues, title ):
     regressionResults += "------------ Regression Analysis " + title + "-------------" 
     mbTuple = regFunc.compute_m_and_b( xValues , yValues )
     m = mbTuple[0]
-    regressionResults += "\nm:\t " + str( round( m , 2 ) ) 
+    regressionResults += "\nm:\t " + str( round( m , 3 ) ) 
     b = mbTuple[1]
-    regressionResults += "\nb:\t " + str( round( b , 2 ) )  
+    regressionResults += "\nb:\t " + str( round( b , 3 ) )  
     fxResidTuple = compute_fx_residual( xValues , yValues , m, b )
     fx = fxResidTuple[0]
     r = compute_pearson_coefficient( xValues , yValues )
-    regressionResults += "\nr:\t " + str( round( r , 2 ) ) 
+    regressionResults += "\nr:\t " + str( round( r , 3 ) ) 
     regressionResults += "\n\n  \t Analysis:\t " + interpretPearson( r)   
     regressionResults += "\n\n\n"
     #matplotlib stuff
@@ -385,7 +385,7 @@ def main():
         startTime = time.time()
         #scrape~filter~calculate data
         gameList = []
-        #getPLLData( gameList )
+        getPLLData( gameList )
         getMLLData( gameList ) 
         mappingDict = getTeamRegressionData( gameList )
         
