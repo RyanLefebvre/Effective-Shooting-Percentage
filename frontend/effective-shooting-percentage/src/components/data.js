@@ -3,11 +3,10 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import beautifulSoup from '../images/beautifulSoup.png'
 import trevor from '../images/trevor-baptiste.jpg'
-import farrell from'../images/farrell.jpg'
-import teams from '../images/teams.jpg'
+import farrell from '../images/farrell.jpg'
+import lizards from '../images/lizards.jpg'
 import games from '../images/games.jpg'
-import playerData from '../sourceCode/players.csv'
-import teamData from '../sourceCode/teams.csv'
+
 
 
 function DataComp() {
@@ -19,7 +18,8 @@ function DataComp() {
   const imgWrapper = {
     display:'block',
     margin:'auto',
-    width:'35%'
+    width:'35%',
+    minWidth:'330px'
   }
 
   const imgStyles = {
@@ -91,15 +91,15 @@ function DataComp() {
             <Card  className="cardContentStyles" style ={cardStyles}>
               <CardContent>
                 Gathering data for the PLL was not terribly difficult. The league has only existed for one year 
-                and all stats were well tracked. Each game of the 2019 season has its own page on the site and can easily be scraped.
-                Instead of scraping the pages directly I chose to make a GET request to the PLL's 
-                backend and retrieve the JSON that they were loading game data from. 
+                and all stats were well tracked. Each game of the 2019 season has its own page on the site.
+                Instead of scraping the pages directly I chose to make a GET request to the PLL's server and retrieve
+                 the JSON that they were loading game data from. 
                 <br></br><br></br>
                 This approach made gathering the data 
-                almost effortless but did require some work to gather the URL's for each game. This is because I needed to 
+                almost effortless but did require some work to gather the URL's for each game's JSON. This is because I needed to 
                 reload each page while I had Google Chrome's developer tools open and watch the network tab to see when the JSON 
-                was sent. In retrospect, this approach is not very scalable and if I plan to update this project each year as new 
-                games are played then I am going to need to automate finding the URL's for each games JSON or write a scraper. 
+                was sent to the client. In retrospect, this approach is not very scalable and if I plan to update this project each year as new 
+                games are played then I am going to need to automate finding the URL's for each game's JSON or write a scraper. 
                 <br></br><br></br>
                 Below is an example of one of the JSON's that is used to load stats for games. I noticed in multiple places 
                 on the PLL website that the JSON's sent to the client contained much more information than was displayed on the 
@@ -123,9 +123,27 @@ function DataComp() {
         <h1 className="headerStyles"> MLL Data </h1>
           <Card  className="cardContentStyles" style ={cardStyles}>
             <CardContent>
-              This is a really long placeholder sentence about how I scraped the MLL data for this project so 
-              that this will be styled correctly 
+              When compared to the PLL data, the MLL dataset was much larger, harder to gather and the statistics were tracked
+              poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and have many years worth of data 
+              available through their website. The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/"> Pointstreak.com </a>
+              and store their individual game data in html files they call gamesheets. Below is an example of a game sheet.
               <br></br><br></br>
+              <a href ="http://mll.stats.pointstreak.com/gamesheet_full.html?gameid=3209601" style={linkStyle}>Game Sheet Example</a>             
+              <br></br><br></br>
+              Unlike the PLL, I couldn't find any JSON being sent to the client to extract data from. This forced me to scrape the 
+              game sheets which ended up being difficult for multiple reasons. One of these reasons is that my initial scraping 
+              attempts with Beautiful Soup returned an almost empty html file with none of the stats I needed. This is because the stats 
+              for each game sheet are rendered after the browser loads the page with JavaScript. For this reason I used Selenium to load the 
+              page, render the components that displayed the stats and then scraped the page using Beautiful Soup.
+              <br></br><br></br>
+              Once I had the html for each gamesheet I still needed to parse through the html and extract the stats I needed for this project.
+              This was harder than usual because the gamesheets were layed out in an interesting way. In general when scraping html files you will 
+              look for id or class attributes of html elements to use to locate important information. For example there may be a table that 
+              contains all of the players on a team and the id for that table might be "playerTable". The gamesheets however had almost no 
+              elements with attributes that could be used to locate important information. Instead, I ended up creating a list of all the tables 
+              in the page and figuring out the indexes of where the information I needed would be in that list through trial and error. This 
+              resulted in the code for the MLL scraper taking a while to develop and not making much sense unless you understand the exact 
+              layout of the tables in the gamesheet files.
             </CardContent>
           </Card>
       </div>
@@ -142,13 +160,24 @@ function DataComp() {
         <h1 className="headerStyles"> Regression Data </h1>
           <Card  className="cardContentStyles" style ={cardStyles}>
             <CardContent>
-              This is a long sentence that will cause a line break. if there is 
-              insufficient content in the card then it is not styled correctly
+              The data used for the regression analyses done for this project are just subsets of the data that was 
+              gathered form the MLL and PLL. Once I had collected all of the PLL and MLL data I was able to create 
+              a nested Python Dictionary from that list. Python Dictionaries map keys to values. My outer dictionary 
+              mapped teams to seasons and my inner dictionary mapped seasons to team stats.This dictionary was used to create the 
+              teams.csv file available above. The dictionary structure looked like the following: 
+              <br></br><br></br> 
+              Teams -> Seasons -> Stats. 
+              <br></br><br></br>
+              As mentioned before some of the data from the MLL was poorly tracked and had to be excluded. For example if we take a look at the 
+              gamesheet file I link to in the section above, we can see there are no statistics recorded for shots attempted.
+              This makes all of our statistics of interest impossible to calculate. I filtered these games out of the data for the regression
+              analysis but left them in the datsets I exported to csv format. I also removed any All-Star games from the data set since these
+              were likely not representative of a normal lacrosse game. 
             </CardContent>
           </Card>
       </div>
       <div class ="flexImage" style ={imgWrapper}>
-        <img  style={imgStyles} src ={games} alt ="trevor-baptiste"></img>
+        <img  style={imgStyles} src ={lizards} alt ="lizards defender"></img>
       </div>    
    </div>
     </div>    
