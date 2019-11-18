@@ -12,7 +12,6 @@ function MainInfoComp() {
 
     const imageContainerStyles = {
       display:'flex',
-      jusitfyContent:'spaceBetween',
       flexWrap: 'wrap'
     };
 

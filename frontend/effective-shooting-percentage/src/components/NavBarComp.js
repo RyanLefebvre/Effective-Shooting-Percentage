@@ -4,12 +4,11 @@ MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem,
 MDBNavLink, MDBNavbarToggler, MDBCollapse
 } from "mdbreact";
 import MainInfoComp from './MainInfoComp';
-import PlayerComp from './players'
-import DataComp from './data'
-import GamesComp from './games'
-import TeamComp from './teams'
-import AboutComp from './about'
+import AnalysisComp from './analysis';
+import DataComp from './data';
+import AboutComp from './about';
 import { HashRouter as Router , Route, Switch, } from 'react-router-dom';
+import { red } from "@material-ui/core/colors";
 
 class NavBarComp extends Component {
 
@@ -51,17 +50,11 @@ render() {
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem >
-              <MDBNavLink to="/players">Players</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/teams">Teams</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/games">Games</MDBNavLink>
-            </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/data">Data</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/analysis">Analysis</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/about">About</MDBNavLink>
@@ -73,10 +66,8 @@ render() {
 
       <Switch>
         <Route exact path="/" component={MainInfoComp} />
-        <Route exact path='/players' component={PlayerComp} />
+        <Route exact path='/analysis' component={AnalysisComp} />
         <Route exact path='/data' component={DataComp} />
-        <Route exact path="/teams" component={TeamComp} />
-        <Route exact path='/games' component={GamesComp} />
         <Route exact path='/about' component={AboutComp} />
         <Route component={noMatchingPath}></Route>
       </Switch>
