@@ -60,7 +60,7 @@ function DataComp() {
       <Card  className="cardContentStyles" style ={cardStyles}>
         <CardContent>
           Unlike other professional sports, lacrosse has a relatively small following.
-          For this reason the data used for this project was not readily available . 
+          For this reason the data used for this project was not readily available. 
           There are currently two professional field lacrosse leagues, the 
           <a href = "https://stats.premierlacrosseleague.com/"> PLL</a> and
           <a href = "http://mll.stats.pointstreak.com/scoreboard.html"> MLL. </a> 
@@ -70,7 +70,8 @@ function DataComp() {
            <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/"> Beautiful Soup </a>Python library,
            <a href="https://selenium-python.readthedocs.io/"> Selenium</a> and general knowledge of website architecture.
            The scripts I wrote to scrape and analyze the data can be downloaded below. It should be noted if the regression analysis
-           script is run using both the MLL scraper then the script will run for over 2 hours because of the way I had to scrape the MLL data.
+           script is run using both the MLL scraper and PLL scraper then the script will run for over 2 hours because each game in the 
+           MLL dataset must be laoded in the browser.
            <br></br><br></br>
            Effective Shooting % Scripts: <a href ="" style={linkStyle}>pLAceHoLdEr</a>
           <br></br><br></br>
@@ -124,8 +125,8 @@ function DataComp() {
           <Card  className="cardContentStyles" style ={cardStyles}>
             <CardContent>
               When compared to the PLL data, the MLL dataset was much larger, harder to gather and the statistics were tracked
-              poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and have many years worth of data 
-              available through their website. The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/"> Pointstreak.com </a>
+              poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and has many years worth of data 
+              available through the league's website. The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/"> Pointstreak.com </a>
               and store their individual game data in html files they call gamesheets. Below is an example of a game sheet.
               <br></br><br></br>
               <a href ="http://mll.stats.pointstreak.com/gamesheet_full.html?gameid=3209601" style={linkStyle}>Game Sheet Example</a>             
@@ -137,7 +138,7 @@ function DataComp() {
               page, render the components that displayed the stats and then scraped the page using Beautiful Soup.
               <br></br><br></br>
               Once I had the html for each gamesheet I still needed to parse through the html and extract the stats I needed for this project.
-              This was harder than usual because the gamesheets were layed out in an interesting way. In general when scraping html files you will 
+              This was harder than usual because the gamesheets were laid out in an interesting way. In general when scraping html files you will 
               look for id or class attributes of html elements to use to locate important information. For example there may be a table that 
               contains all of the players on a team and the id for that table might be "playerTable". The gamesheets however had almost no 
               elements with attributes that could be used to locate important information. Instead, I ended up creating a list of all the tables 
@@ -160,19 +161,21 @@ function DataComp() {
         <h1 className="headerStyles"> Regression Data </h1>
           <Card  className="cardContentStyles" style ={cardStyles}>
             <CardContent>
-              The data used for the regression analyses done for this project are just subsets of the data that was 
+              The data used for the regression analyses I conducted in this project are just subsets of the data that was 
               gathered form the MLL and PLL. Once I had collected all of the PLL and MLL data I was able to create 
               a nested Python Dictionary from that list. Python Dictionaries map keys to values. My outer dictionary 
-              mapped teams to seasons and my inner dictionary mapped seasons to team stats.This dictionary was used to create the 
-              teams.csv file available above. The dictionary structure looked like the following: 
+              mapped teams to seasons and my inner dictionary mapped seasons to team stats. This dictionary was used to create the 
+              teams.csv file available above. The nested dictionary structure looked like the following: 
               <br></br><br></br> 
-              Teams -> Seasons -> Stats. 
+              Teams -> Seasons -> Stats
               <br></br><br></br>
               As mentioned before some of the data from the MLL was poorly tracked and had to be excluded. For example if we take a look at the 
-              gamesheet file I link to in the section above, we can see there are no statistics recorded for shots attempted.
+              gamesheet file I link to in the MLL data section, we can see there are no statistics recorded for shots attempted by either team.
               This makes all of our statistics of interest impossible to calculate. I filtered these games out of the data for the regression
               analysis but left them in the datsets I exported to csv format. I also removed any All-Star games from the data set since these
-              were likely not representative of a normal lacrosse game. 
+              were likely not representative of a normal lacrosse game. Also interseting to point out, the game sheet I linked to says Baltimore
+              had 433 ground balls in one game. This is obviously not true and I am assuming these are season totals but, this is a another good 
+              example of why the data from the older gamesheets can't be trusted.
             </CardContent>
           </Card>
       </div>

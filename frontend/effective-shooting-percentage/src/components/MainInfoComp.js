@@ -8,18 +8,17 @@ import formulaCode from '../images/formula.PNG'
 
 function MainInfoComp() {
 
-
-
     const imageContainerStyles = {
       display:'flex',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',   
+      jusitfyContent:'center',
     };
 
     const formulaStyles = {
       display:'block',
       margin:'auto',
       maxWidth: '500px',
-      marginBottom: '25px',
+      marginBottom: '5%',
       width:'90%',
       borderRadius:'5px'
     };
@@ -37,8 +36,6 @@ function MainInfoComp() {
       display:'block',
       margin:'auto'
     };
-
-
 
   return (    
     <div  className="wrapperStyles">
