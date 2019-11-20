@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/effectiveShootingPercentage/static/css/main.b95445f4.chunk.css",
-    "main.js": "/effectiveShootingPercentage/static/js/main.3aa0035b.chunk.js",
-    "main.js.map": "/effectiveShootingPercentage/static/js/main.3aa0035b.chunk.js.map",
+    "main.css": "/effectiveShootingPercentage/static/css/main.fea59376.chunk.css",
+    "main.js": "/effectiveShootingPercentage/static/js/main.a540d454.chunk.js",
+    "main.js.map": "/effectiveShootingPercentage/static/js/main.a540d454.chunk.js.map",
     "runtime-main.js": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js",
     "runtime-main.js.map": "/effectiveShootingPercentage/static/js/runtime-main.957c16e3.js.map",
-    "static/css/2.27390fbb.chunk.css": "/effectiveShootingPercentage/static/css/2.27390fbb.chunk.css",
-    "static/js/2.4ffd4ee7.chunk.js": "/effectiveShootingPercentage/static/js/2.4ffd4ee7.chunk.js",
-    "static/js/2.4ffd4ee7.chunk.js.map": "/effectiveShootingPercentage/static/js/2.4ffd4ee7.chunk.js.map",
+    "static/css/2.5fcc8386.chunk.css": "/effectiveShootingPercentage/static/css/2.5fcc8386.chunk.css",
+    "static/js/2.b4cd1e04.chunk.js": "/effectiveShootingPercentage/static/js/2.b4cd1e04.chunk.js",
+    "static/js/2.b4cd1e04.chunk.js.map": "/effectiveShootingPercentage/static/js/2.b4cd1e04.chunk.js.map",
     "index.html": "/effectiveShootingPercentage/index.html",
-    "precache-manifest.c02175380f66026395c3972b6fa43137.js": "/effectiveShootingPercentage/precache-manifest.c02175380f66026395c3972b6fa43137.js",
+    "precache-manifest.7f6599b48f9b36511911bfbddc277b61.js": "/effectiveShootingPercentage/precache-manifest.7f6599b48f9b36511911bfbddc277b61.js",
     "service-worker.js": "/effectiveShootingPercentage/service-worker.js",
-    "static/css/2.27390fbb.chunk.css.map": "/effectiveShootingPercentage/static/css/2.27390fbb.chunk.css.map",
-    "static/css/main.b95445f4.chunk.css.map": "/effectiveShootingPercentage/static/css/main.b95445f4.chunk.css.map",
+    "static/css/2.5fcc8386.chunk.css.map": "/effectiveShootingPercentage/static/css/2.5fcc8386.chunk.css.map",
+    "static/css/main.fea59376.chunk.css.map": "/effectiveShootingPercentage/static/css/main.fea59376.chunk.css.map",
     "static/media/2pg.jpg": "/effectiveShootingPercentage/static/media/2pg.90099611.jpg",
     "static/media/mdb.css": "/effectiveShootingPercentage/static/media/arrow_right.8ef6a08c.svg",
     "static/media/beautifulSoup.png": "/effectiveShootingPercentage/static/media/beautifulSoup.5edd424b.png",
@@ -25,9 +25,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.957c16e3.js",
-    "static/css/2.27390fbb.chunk.css",
-    "static/js/2.4ffd4ee7.chunk.js",
-    "static/css/main.b95445f4.chunk.css",
-    "static/js/main.3aa0035b.chunk.js"
+    "static/css/2.5fcc8386.chunk.css",
+    "static/js/2.b4cd1e04.chunk.js",
+    "static/css/main.fea59376.chunk.css",
+    "static/js/main.a540d454.chunk.js"
   ]
 }
