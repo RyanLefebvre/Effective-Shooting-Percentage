@@ -4,8 +4,12 @@ import ResultsComp from '../components/results/results'
 import OverviewComp from '../components/overview/overview'
 function MainInfoComp() {
 
+  const wrapperStyle = {
+      margin:'0',
+      padding:'0',
+  }
   return (    
-    <div >
+    <div style={wrapperStyle} >
       <h1 className ="headerStyles"> Project Definition </h1>
       <OverviewComp></OverviewComp>
       <br></br><br></br>

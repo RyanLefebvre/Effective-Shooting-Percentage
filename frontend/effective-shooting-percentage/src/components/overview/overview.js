@@ -35,7 +35,10 @@ function OverviewComp() {
         display:'block',
         margin:'auto'
       };   
-  return( <div>         
+
+
+
+  return( <div >         
     <Card className ="cardContentStyles">
         <CardContent>
       Professional field lacrosse leagues have created a "two point line". If a 
@@ -47,14 +50,14 @@ function OverviewComp() {
       </Card>
 
 
-      <br></br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br></br>
       <div id ="containerContainer" style ={containerContainerStyles}>
       <div id ="imageContainer" style ={imageContainerStyles}>
           <img alt="ES% formula from es%.py" style={formulaStyles} src={formulaCode}/>
           <img alt="Two point shot attempt" style={twoPointerStyles} src={twoPointer}/> 
       </div>
       </div>
-      <br></br><br></br>
+      <br></br>
 
       <Card className ="cardContentStyles">
         <CardContent>

@@ -3,14 +3,27 @@ import ScatterPlot from '../scatterPlot/scatterPlot'
 
 function AnalysisComp() {
 
-  const graphWrap = {
-    width:'70%',
+  const graphFlexStyles = {
     display:'block',
     margin:'auto'
   }
 
-  const graphStyles = {
+  const plotWrapperStyles = {
+    display:'block',
+    margin: 'auto',
+    marginBottom:'10px',
+    minWidth:'320px',
+    width:'45%'
+  }
 
+  const plotStyles = {
+  }
+
+  const plotParentStyles = {
+    display:'flex',
+    flexWrap: 'wrap',   
+    margin:'auto',
+    width:'95%'
   }
 
   //CHART DATA 
@@ -28,9 +41,28 @@ function AnalysisComp() {
 
   return(  
   
-  <div style = {graphWrap}> 
-      <ScatterPlot {...EffectiveDifferenceData} style={graphStyles}>
+  <div style = {graphFlexStyles}> 
+    <div  style ={plotParentStyles}>
+      <div  style={plotWrapperStyles}>
+      <ScatterPlot style={plotStyles} {...EffectiveDifferenceData} >
         </ScatterPlot>
+      </div>
+      <div  style={plotWrapperStyles}>
+      <ScatterPlot {...EffectiveDifferenceData} >
+        </ScatterPlot>
+      </div>
+    </div>
+    <div  style ={plotParentStyles}>
+    <div  style={plotWrapperStyles}>
+      <ScatterPlot {...EffectiveDifferenceData}>
+        </ScatterPlot>
+      </div>
+      <div  style={plotWrapperStyles}>
+      <ScatterPlot {...EffectiveDifferenceData}>
+        </ScatterPlot>
+      </div>
+    </div>
+
   </div> );  
 }
 
