@@ -1,11 +1,11 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import beautifulSoup from '../images/beautifulSoup.png'
-import trevor from '../images/trevor-baptiste.jpg'
-import farrell from '../images/farrell.jpg'
-import lizards from '../images/lizards.jpg'
-import games from '../images/games.jpg'
+import beautifulSoup from '../../images/beautifulSoup.png'
+import trevor from '../../images/trevor-baptiste.jpg'
+import farrell from '../../images/farrell.jpg'
+import lizards from '../../images/lizards.jpg'
+import games from '../../images/games.jpg'
 
 
 

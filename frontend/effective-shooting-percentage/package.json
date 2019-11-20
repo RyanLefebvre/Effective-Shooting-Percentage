@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.9.3",
     "gh-pages": "^2.1.1",
     "mdbootstrap": "^4.8.10",
     "mdbreact": "^4.21.1",

@@ -4,9 +4,9 @@ MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem,
 MDBNavLink, MDBNavbarToggler, MDBCollapse
 } from "mdbreact";
 import MainInfoComp from './MainInfoComp';
-import AnalysisComp from './analysis';
-import DataComp from './data';
-import AboutComp from './about';
+import AnalysisComp from './analysis/analysis';
+import DataComp from './data/data';
+import AboutComp from './about/about';
 import { HashRouter as Router , Route, Switch, } from 'react-router-dom';
 import { red } from "@material-ui/core/colors";
 
@@ -54,9 +54,6 @@ render() {
               <MDBNavLink to="/data">Data</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/analysis">Analysis</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
               <MDBNavLink to="/about">About</MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
@@ -66,7 +63,6 @@ render() {
 
       <Switch>
         <Route exact path="/" component={MainInfoComp} />
-        <Route exact path='/analysis' component={AnalysisComp} />
         <Route exact path='/data' component={DataComp} />
         <Route exact path='/about' component={AboutComp} />
         <Route component={noMatchingPath}></Route>
