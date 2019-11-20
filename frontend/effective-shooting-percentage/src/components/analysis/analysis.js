@@ -16,11 +16,13 @@ function AnalysisComp() {
   //CHART DATA 
 
   const EffectiveDifferenceData = {
-    title: " ES%D vs Win% ",
+    title: "AES%D vs Win% ",
     xLabel: " ES%D",
     yLabel: " Win%" , 
     xValues: [ 1 , 2, 3 , 4 , 5 , 6 , 7 , 8 ,9 ],
-    yValues: [ 1 , 2, 3 , 4 , 5 , 6 , 7 , 8 ,9 ]
+    yValues: [ 1 , 2, 3 , 4 , 5 , 6 , 7 , 8 ,9 ],
+    m: 0.494,
+    b: 0.779
   }
 
 

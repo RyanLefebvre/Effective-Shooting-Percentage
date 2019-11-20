@@ -36,7 +36,7 @@ function OverviewComp() {
         margin:'auto'
       };   
   return( <div>         
-            <Card className ="cardContentStyles">
+    <Card className ="cardContentStyles">
         <CardContent>
       Professional field lacrosse leagues have created a "two point line". If a 
       player stands behind this line when shooting, a goal is worth two 
