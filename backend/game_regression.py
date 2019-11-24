@@ -399,7 +399,7 @@ def gameHasHomeAndAwayShots( game ):
 # this program scrapes game statisics from MLL and PLL websites to calculate
 # ES% and ES%D for teams per game .
 def main():
-    try:
+    try: 
         startTime = time.time()
         #scrape~filter~calculate data
         gameList = []
