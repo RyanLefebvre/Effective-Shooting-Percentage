@@ -371,7 +371,7 @@ def exportRegrData( xValues, xName , yValues , yName , exportFileName ):
         colHeaders = [ "X: " + str(xName), "Y: " + str(yName) ] 
         rowList.append( colHeaders )
         for x in xValues:
-            rowList.append( x , yValues[xValues.index(x)])
+            rowList.append( [x , yValues[xValues.index(x)]])
         for row in rowList:
             writer.writerow(row)
         writeFile.close()
@@ -422,7 +422,6 @@ def main():
         regressionResults+= avgShootingPercRegression( filteredMappingDict )
             #Regression analysis between AS%D and Win% 
         regressionResults+= avgShootingDiffRegression( filteredMappingDict )
-        
         
         #export data for future use
         exportGamesToCSV( gameList )

@@ -1,31 +1,31 @@
 ------------ Regression Analysis AES%D vs WIN%-------------
-m:	 2.654
-b:	 0.494
-r:	 0.779
+m:	 2.65
+b:	 0.493
+r:	 0.78
 
   	 Analysis:	 Postive Strong Relationship
 
 
 ------------ Regression Analysis AES% vs WIN%-------------
-m:	 1.656
-b:	 -0.308
-r:	 0.432
+m:	 1.675
+b:	 -0.317
+r:	 0.435
 
   	 Analysis:	 Postive Moderate Relationship
 
 
 ------------ Regression Analysis ASh% vs WIN%-------------
-m:	 1.54
-b:	 -0.219
-r:	 0.4
+m:	 1.563
+b:	 -0.23
+r:	 0.405
 
   	 Analysis:	 Postive Moderate Relationship
 
 
 ------------ Regression Analysis ASh%D vs WIN%-------------
-m:	 2.72
+m:	 2.722
 b:	 0.493
-r:	 0.756
+r:	 0.76
 
   	 Analysis:	 Postive Strong Relationship
 
