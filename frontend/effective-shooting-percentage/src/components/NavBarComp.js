@@ -34,10 +34,16 @@ render() {
       textAlign:'center'
     }
 
+    const pageContentStyles ={
+      maxWidth:'1300px',
+      display:'block',
+      margin:'auto'
+    }
+
     const noMatchingPath = ({location}) =>
     (
       <div style={noMatchingPathStyles}>
-          <strong><h1> 404 error page not found <br></br><br></br> use the navbar above to find a page </h1></strong>
+          <strong><h1> 404 error page not found </h1></strong>
       </div>
     )
 
@@ -61,12 +67,15 @@ render() {
       </MDBNavbar>
 
 
+      <div style={pageContentStyles}>
       <Switch>
         <Route exact path="/" component={MainInfoComp} />
         <Route exact path='/data' component={DataComp} />
         <Route exact path='/about' component={AboutComp} />
         <Route component={noMatchingPath}></Route>
       </Switch>
+      </div>
+
 
     </Router>
     );

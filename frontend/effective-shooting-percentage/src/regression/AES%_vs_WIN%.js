@@ -1,0 +1,2 @@
+const AESP_vs_WINP = {'title': 'AES% vs WIN%', 'xLabel': 'AES%', 'yLabel': 'WIN%', 'xValues': [0.289, 0.284, 0.307, 0.289, 0.303, 0.324], 'yValues': [0.667, 0.538, 0.5, 0.538, 0.167, 0.583], 'm': -1.6599763872492934, 'b': 0.9957195985832885}
+export default AESP_vs_WINP;

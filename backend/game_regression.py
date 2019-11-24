@@ -227,12 +227,12 @@ def getTeamRegressionData( gameList ):
 #performs a regression analysis on the list of game objects
 # looks for a relationship between teams xValues and YValues
 # depends on regression_functions.py
-def performRegressionAnalysis( xValues , yValues, title ):
+def performRegressionAnalysis( xValues , yValues, xName , yName ):
     
     #saves method from breaking if list passed in is empty 
     if( len(xValues) == 0 or len(yValues) == 0 ):
         return "Insufficient data for analysis"
-    
+    title = xName + " vs " + yName 
     regressionResults = ""
     plt.figure()
     regressionResults += "------------ Regression Analysis " + title + "-------------" 
@@ -251,6 +251,7 @@ def performRegressionAnalysis( xValues , yValues, title ):
     plt.plot( xValues , yValues , 'bo' )
     plt.plot( xValues , fx , 'red' )    
     plt.title(title)
+    exportRegrData( xValues, xName , yValues , yName , m , b, title )
     return regressionResults
 
 # interprets pearsons r , determines strength of innear relationship 
@@ -283,8 +284,7 @@ def avgEffectDiffRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][0]  ) 
             yVals.append(  mappingDict[team][season][2]  )
-    exportRegrData( xVals, "AES%D" , yVals , "WIN%" , "AES%D_vs_WIN%_Regr" )
-    return performRegressionAnalysis( xVals , yVals, "AES%D vs WIN%" )
+    return performRegressionAnalysis( xVals , yVals, "AES%D",  "WIN%" )
 
 #expects a dictionary of the form returned from getTeamRegressionData()
 # this method looks for a relationship between x: AES% and y: Win%
@@ -295,8 +295,7 @@ def avgEffectShootPercRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][1]  ) 
             yVals.append(  mappingDict[team][season][2]  )
-    exportRegrData( xVals, "AES%" , yVals , "WIN%" , "AES%_vs_WIN%_Regr" )
-    return performRegressionAnalysis( xVals , yVals, "AES% vs WIN%")
+    return performRegressionAnalysis( xVals , yVals, "AES%", "WIN%")
     
 
 #expects a dictionary of the form returned from getTeamRegressionData()
@@ -308,8 +307,7 @@ def avgShootingPercRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][3]  ) 
             yVals.append(  mappingDict[team][season][2]  )
-    exportRegrData( xVals, "ASh%" , yVals , "WIN%" , "ASh%_vs_WIN%_Regr" )
-    return performRegressionAnalysis( xVals , yVals, "ASh% vs WIN%")
+    return performRegressionAnalysis( xVals , yVals, "ASh%" , "WIN%")
     
 
 #expects a dictionary of the form returned from getTeamRegressionData()
@@ -321,8 +319,7 @@ def avgShootingDiffRegression( mappingDict ):
         for season in mappingDict[team]:
             xVals.append(  mappingDict[team][season][4]  ) 
             yVals.append(  mappingDict[team][season][2]  )
-    exportRegrData( xVals, "ASh%D" , yVals , "WIN%" , "ASh%D_vs_WIN%_Regr" )
-    return performRegressionAnalysis( xVals , yVals, "ASh%D vs WIN%")
+    return performRegressionAnalysis( xVals , yVals, "ASh%D" , "WIN%")
 
     
 #exports the full list of 2019 professional lacrosse players to a csv file 
@@ -362,27 +359,36 @@ def exportTeamsToCSV( mappingDict ):
             
         writeFile.close()
         
-# used to export regression data, useful for frontend because it is easy format 
-# to read in data to make graphs         
-def exportRegrData( xValues, xName , yValues , yName , exportFileName ):
-    with open( str( exportFileName ) + ".csv", 'w', newline='' ) as writeFile:
-        writer = csv.writer( writeFile )
-        rowList = []
-        colHeaders = [ "X: " + str(xName), "Y: " + str(yName) ] 
-        rowList.append( colHeaders )
-        for x in xValues:
-            rowList.append( [x , yValues[xValues.index(x)]])
-        for row in rowList:
-            writer.writerow(row)
-        writeFile.close()
+# used to export regression data,exports  a js file containing a single json 
+# this is the format expected by react. Cannot use CSV's easily with react 
+# so JSON is the preffered format 
+def exportRegrData( xValues, xName , yValues , yName , m , b, exportFileName ):
+    regrJson = {}
+    regrJson['title'] = exportFileName
+    regrJson['xLabel'] = xName
+    regrJson['yLabel'] = yName
+    regrJson['xValues'] = xValues
+    regrJson['yValues'] = yValues
+    regrJson['m'] = m
+    regrJson['b'] = b
+    snakeCaseFileName = exportFileName.replace(" " , "_" )
+    jsVarName = snakeCaseFileName.replace("%","P")
+    regDataFile = open( snakeCaseFileName + ".js" , "w+" )
+    regDataFile.write( "const " + jsVarName + " = " + 
+                      str(regrJson) + "\nexport default " +
+                      jsVarName + ";")
+    regDataFile.close()
+    
+    
+    
     
 #exports regression results to text file, this way after program runs we 
 #dont have to rely on the terminam output and will have a permanent 
 #record of the regr analysis.    
 def exportRegrResults( results ):
-    file1 = open("RESULTS.txt","w")
-    file1.write( results )
-    file1.close()
+    resultsFile = open("RESULTS.txt","w")
+    resultsFile.write( results )
+    resultsFile.close()
     
 # helper emthod for filtering out games we scraped that cannotbe used 
 # some of the older games have very poorly tracked stats, thus we 

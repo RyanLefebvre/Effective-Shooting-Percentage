@@ -1,0 +1,2 @@
+const AShP_vs_WINP = {'title': 'ASh% vs WIN%', 'xLabel': 'ASh%', 'yLabel': 'WIN%', 'xValues': [0.261, 0.272, 0.286, 0.273, 0.286, 0.299], 'yValues': [0.667, 0.538, 0.5, 0.538, 0.167, 0.583], 'm': -4.602429596908338, 'b': 1.785212405669214}
+export default AShP_vs_WINP;

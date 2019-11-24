@@ -1,6 +1,9 @@
 import React from 'react';
 import ScatterPlot from '../scatterPlot/scatterPlot'
-
+import AESP_vs_WINP from '../../regression/AES%_vs_WIN%'
+import AESPD_vs_WINP from '../../regression/AES%D_vs_WIN%'
+import AShP_vs_WINP from '../../regression/ASh%_vs_WIN%'
+import AShPD_vs_WINP from '../../regression/ASh%D_vs_WIN%'
 function AnalysisComp() {
 
   const graphFlexStyles = {
@@ -16,9 +19,6 @@ function AnalysisComp() {
     width:'45%'
   }
 
-  const plotStyles = {
-  }
-
   const plotParentStyles = {
     display:'flex',
     flexWrap: 'wrap',   
@@ -26,44 +26,38 @@ function AnalysisComp() {
     width:'95%'
   }
 
-  //CHART DATA 
-
-  const EffectiveDifferenceData = {
-    title: "AES%D vs Win% ",
-    xLabel: " ES%D",
-    yLabel: " Win%" , 
-    xValues: [ 1 , 2, 3 , 4 , 5 , 6 , 7 , 8 ,9 ],
-    yValues: [ 1 , 2, 3 , 4 , 5 , 6 , 7 , 8 ,9 ],
-    m: 0.494,
-    b: 0.779
-  }
-
-
   return(  
   
   <div style = {graphFlexStyles}> 
     <div  style ={plotParentStyles}>
       <div  style={plotWrapperStyles}>
-      <ScatterPlot style={plotStyles} {...EffectiveDifferenceData} >
+      <ScatterPlot  {...AShP_vs_WINP} >
         </ScatterPlot>
       </div>
       <div  style={plotWrapperStyles}>
-      <ScatterPlot {...EffectiveDifferenceData} >
+      <ScatterPlot {...AESP_vs_WINP} >
         </ScatterPlot>
       </div>
     </div>
     <div  style ={plotParentStyles}>
     <div  style={plotWrapperStyles}>
-      <ScatterPlot {...EffectiveDifferenceData}>
+      <ScatterPlot {...AShPD_vs_WINP}>
         </ScatterPlot>
       </div>
       <div  style={plotWrapperStyles}>
-      <ScatterPlot {...EffectiveDifferenceData}>
+      <ScatterPlot {...AESPD_vs_WINP}>
         </ScatterPlot>
       </div>
     </div>
 
   </div> );  
+}
+
+//helper method that parses csv files containing regr data 
+// returns an instance of the regr data class that the scatterplot 
+//component is expecting 
+function readRegrFile( filePath ){
+  //console.log( filePath )
 }
 
 
