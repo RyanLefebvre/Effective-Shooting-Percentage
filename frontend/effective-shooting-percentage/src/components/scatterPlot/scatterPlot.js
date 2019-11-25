@@ -26,10 +26,10 @@ export default class ScatterPlot extends Component {
         const max = regrData[ regrDataMapped_xTimesy.indexOf( Math.max( ...regrDataMapped_xTimesy ) ) ]
         pointBackgroundColors[regrData.indexOf(max)] = 'green'
 
-        const suggestedMinX = Math.floor(  min.x - ( min.x * .10 ) )
-        const suggestedMaxX = Math.ceil(  max.x + ( max.x * .10 ) )
-        const suggestedMinY = Math.floor(  min.y - ( min.y * .10 ) )
-        const suggestedMaxY= Math.floor(  min.y - ( min.y * .10 ) )
+        const suggestedMinX = Math.floor(  min.x - ( min.x * .01 ) )
+        const suggestedMaxX = Math.ceil(  max.x + ( max.x * .01 ) )
+        const suggestedMinY = Math.floor(  min.y - ( min.y * .01 ) )
+        const suggestedMaxY= Math.floor(  min.y - ( min.y * .01 ) )
 
         //plot the line of best fit ( 100 points )
         const incrementAmount = Math.ceil( ( suggestedMaxX - suggestedMinX ) / 100 )

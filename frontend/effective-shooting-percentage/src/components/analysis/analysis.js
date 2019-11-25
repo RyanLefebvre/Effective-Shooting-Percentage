@@ -53,12 +53,4 @@ function AnalysisComp() {
   </div> );  
 }
 
-//helper method that parses csv files containing regr data 
-// returns an instance of the regr data class that the scatterplot 
-//component is expecting 
-function readRegrFile( filePath ){
-  //console.log( filePath )
-}
-
-
 export default AnalysisComp;
