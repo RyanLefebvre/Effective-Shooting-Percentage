@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import './overview.css';
 // images
 import twoPointer from '../../images/2pg.jpg'
-import formulaCode from '../../images/formula.PNG'
+import formulaCode from '../../images/formula.png'
 
 function OverviewComp() {
 

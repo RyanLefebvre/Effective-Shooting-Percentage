@@ -19,26 +19,21 @@ export default class ScatterPlot extends Component {
         });
         //will be used to find min and max data points, mx of X * Y will be most northeast point
         //min will will be most southwest point
-        const regrDataMapped_xTimesy = regrData.map( element => element.x * element.y  )
-        const min = regrData[ regrDataMapped_xTimesy.indexOf( Math.min( ...regrDataMapped_xTimesy ) ) ]
-        pointBackgroundColors[regrData.indexOf(min)] = 'red'
-        const max = regrData[ regrDataMapped_xTimesy.indexOf( Math.max( ...regrDataMapped_xTimesy ) ) ]
-        pointBackgroundColors[regrData.indexOf(max)] = 'green'
+        const regrDataMapped = regrData.map( element => element.x   )
+        const min = regrData[ regrDataMapped.indexOf( Math.min( ...regrDataMapped ) ) ]
+        const max = regrData[ regrDataMapped.indexOf( Math.max( ...regrDataMapped ) ) ]
 
-        const suggestedMinX = Math.floor(  min.x - ( min.x * .01 ) )
-        const suggestedMaxX = Math.ceil(  max.x + ( max.x * .01 ) )
-        const suggestedMinY = Math.floor(  min.y - ( min.y * .01 ) )
-        const suggestedMaxY= Math.floor(  min.y - ( min.y * .01 ) )
-
+    
         //plot the line of best fit ( 100 points )
-        const incrementAmount = Math.ceil( ( suggestedMaxX - suggestedMinX ) / 100 )
-        for( let i = suggestedMinX; i <= suggestedMaxX; i = i + incrementAmount ){
+        const incrementAmount =  ( max.x - min.x ) / 100 
+        for( let i = min.x; i <= max.x; i = i + incrementAmount ){
              const yVal = ( i * this.props.m ) + this.props.b 
              lineOfBestFit.push( { x:i,y:yVal})
         }
 
 
-        const myChartRef = this.chartRef.current.getContext("2d");       
+        const myChartRef = this.chartRef.current.getContext("2d");    
+        
         new Chart(myChartRef, {
             type: "scatter",
             data: {
@@ -69,30 +64,19 @@ export default class ScatterPlot extends Component {
                       scaleLabel: {
                         display: true,
                         labelString: this.props.yLabel,
-                    },
-                    ticks:{
-                        suggestedMin: suggestedMinY,
-                        suggestedMax: suggestedMaxY
-                      }
-                    }],
+                    }}],
                     xAxes: [{
                         scaleLabel: {
                           display: true,
                           labelString: this.props.xLabel
-                        }
-                        ,
-                    ticks:{
-                        suggestedMin: suggestedMinX,
-                        suggestedMax: suggestedMaxX
-                      }
-                      }]
-                  } ,
+                        }}]
+                },
             }
         });
     }
     render() {
         return (
-            <Card>
+            <Card id="canvasWrapper">
                 <CardContent>
                 <canvas
                     id="myChart"

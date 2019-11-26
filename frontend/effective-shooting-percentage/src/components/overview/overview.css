@@ -5,13 +5,15 @@
   }
 
   #formula{
-    display: block;
+    /* display: block;
     margin:auto;
-    max-width: 500px;
-    margin-bottom: 5%;
-    width:'90%';
-    border-radius:5px;
+    width:'100%';*/
+    border-radius:5px; 
+    max-width:500px;
+    width:90%;
+    margin-bottom: 5px;;
   }
+
 
   #twoPointer {
     display:block;
