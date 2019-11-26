@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "297e541875b5f31dd8b02fa5df1f2f8a",
+    "revision": "10b32fd96bed2bade5db10da78a5a0c9",
     "url": "/Effective-Shooting-Percentage/index.html"
   },
   {
-    "revision": "299403aa82a4d3961541",
+    "revision": "fb1b377e71778f7751c2",
     "url": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css"
   },
   {
-    "revision": "f3f709daa8ac4ab16443",
-    "url": "/Effective-Shooting-Percentage/static/css/main.fea59376.chunk.css"
+    "revision": "9760baa0fadf08b88615",
+    "url": "/Effective-Shooting-Percentage/static/css/main.173ca460.chunk.css"
   },
   {
-    "revision": "299403aa82a4d3961541",
-    "url": "/Effective-Shooting-Percentage/static/js/2.b4cd1e04.chunk.js"
+    "revision": "fb1b377e71778f7751c2",
+    "url": "/Effective-Shooting-Percentage/static/js/2.3a82e877.chunk.js"
   },
   {
-    "revision": "f3f709daa8ac4ab16443",
-    "url": "/Effective-Shooting-Percentage/static/js/main.702103c2.chunk.js"
+    "revision": "9760baa0fadf08b88615",
+    "url": "/Effective-Shooting-Percentage/static/js/main.287c2ed3.chunk.js"
   },
   {
     "revision": "9e531467232d2b32af3b",
@@ -184,12 +184,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Effective-Shooting-Percentage/static/media/farrell.89c52546.jpg"
   },
   {
-    "revision": "23e917220b7b020e2ae1897625e6b0f0",
-    "url": "/Effective-Shooting-Percentage/static/media/formula.23e91722.PNG"
-  },
-  {
-    "revision": "ffc67644731aab3dcedbac5669d09fc4",
-    "url": "/Effective-Shooting-Percentage/static/media/games.ffc67644.jpg"
+    "revision": "06cfd6908a6a83ebb95ada141b26416b",
+    "url": "/Effective-Shooting-Percentage/static/media/formula.06cfd690.png"
   },
   {
     "revision": "dd526669401a36cc3d9a4fa7e500e66c",
