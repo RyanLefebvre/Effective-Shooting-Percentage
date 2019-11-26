@@ -5,59 +5,17 @@ import beautifulSoup from '../../images/beautifulSoup.png'
 import trevor from '../../images/trevor-baptiste.jpg'
 import farrell from '../../images/farrell.jpg'
 import lizards from '../../images/lizards.jpg'
-import games from '../../images/games.jpg'
-
+import './data.css'
 
 
 function DataComp() {
 
-  const linkStyle = {
-    textDecoration: 'underline'
-  }
-
-  const imgWrapper = {
-    display:'block',
-    margin:'auto',
-    width:'35%',
-    minWidth:'330px'
-  }
-
-  const imgStyles = {
-      display:'block',
-      margin:'auto',
-      maxWidth: '450px',
-      marginBottom: '25px',
-      marginTop:'25px',
-      width:'90%',
-      borderRadius:'5px'
-  }
-
-  const flexManagerStyles = {
-    display:'flex',
-    jusitfyContent:'center',
-    flexWrap: 'wrap',
-    maxWidth:'1300px',
-    margin:'auto',
-  }
-
-  const flexChildBigStyles = {
-    display:'block',
-    margin:'auto',
-    maxWidth: '800px',
-    minWidth: '320px',
-    width:'65%'
-  }
-
-  const cardStyles = {
-    width: '100%'
-  }
-
   return(    
     <div className ="wrapperStyles">
-    <div style={flexManagerStyles} class ="flexManager">
-      <div style={flexChildBigStyles}>
+    <div  className="flexManager">
+      <div className="flexChildBig">
       <h1 className="headerStyles"> Data Collection </h1>
-      <Card  className="cardContentStyles" style ={cardStyles}>
+      <Card  className="cardContentStyles fullWidthCard" >
         <CardContent>
           Unlike other professional sports, lacrosse has a relatively small following.
           For this reason the data used for this project was not readily available. 
@@ -73,23 +31,23 @@ function DataComp() {
            script is run using both the MLL scraper and PLL scraper then the script will run for over 2 hours because each game in the 
            MLL dataset must be laoded in the browser.
            <br></br><br></br>
-           Effective Shooting % Scripts: <a href ="" style={linkStyle}>pLAceHoLdEr</a>
+           Effective Shooting % Scripts: <a href ="https://selenium-python.readthedocs.io/" className="link">pLAceHoLdEr</a>
           <br></br><br></br>
         </CardContent>
       </Card>
       </div>
   
-      <div style ={imgWrapper}>
-        <img  style={imgStyles} src ={beautifulSoup} alt="beautifulSoup"></img>
+      <div className="imgWrapper">
+        <img  className="imgInside" src ={beautifulSoup} alt="beautifulSoup"></img>
       </div>
     </div>
 
     <br></br> <br></br>
     
-      <div style={flexManagerStyles} class ="flexManager">
-        <div style={flexChildBigStyles} >
+      <div className="flexManager">
+        <div className="flexChildBig" >
           <h1 className="headerStyles"> PLL Data </h1>
-            <Card  className="cardContentStyles" style ={cardStyles}>
+            <Card  className="cardContentStyles fullWidthCard">
               <CardContent>
                 Gathering data for the PLL was not terribly difficult. The league has only existed for one year 
                 and all stats were well tracked. Each game of the 2019 season has its own page on the site.
@@ -107,29 +65,29 @@ function DataComp() {
                 page. The JSON is worth looking at, some of the information is interesting for individual players like shot's on goal,
                 and shooting percentage for one and two point shots. 
                 <br></br><br></br>
-                <a href ="https://dn0a11v09sa0t.cloudfront.net/BoxScores/PLL_RED_WHP_20190921_1.json" style={linkStyle}>PLL  GAME JSON</a>
+                <a href ="https://dn0a11v09sa0t.cloudfront.net/BoxScores/PLL_RED_WHP_20190921_1.json" className ='link'>PLL  GAME JSON</a>
               </CardContent>
             </Card>
         </div>
 
-        <div class ="flexImage" style ={imgWrapper}>
-          <img  style={imgStyles} src ={farrell} alt ="Connor Farrell"></img>
+        <div className="flexImage imgWrapper" >
+          <img  className ="imgInside"  src ={farrell} alt ="Connor Farrell"></img>
         </div>    
       </div>
 
     <br></br> <br></br>
     
-    <div style={flexManagerStyles} class ="flexManager">
-      <div style={flexChildBigStyles}>
+    <div className="flexManager">
+      <div className="flexChildBig">
         <h1 className="headerStyles"> MLL Data </h1>
-          <Card  className="cardContentStyles" style ={cardStyles}>
+          <Card  className="cardContentStyles fullWidthCard">
             <CardContent>
               When compared to the PLL data, the MLL dataset was much larger, harder to gather and the statistics were tracked
               poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and has many years worth of data 
-              available through the league's website. The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/"> Pointstreak.com </a>
+              available through the league's website. The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/" className ='link'> Pointstreak.com </a>
               and store their individual game data in html files they call gamesheets. Below is an example of a game sheet.
               <br></br><br></br>
-              <a href ="http://mll.stats.pointstreak.com/gamesheet_full.html?gameid=3209601" style={linkStyle}>Game Sheet Example</a>             
+              <a href ="http://mll.stats.pointstreak.com/gamesheet_full.html?gameid=3209601" className="link">Game Sheet Example</a>             
               <br></br><br></br>
               Unlike the PLL, I couldn't find any JSON being sent to the client to extract data from. This forced me to scrape the 
               game sheets which ended up being difficult for multiple reasons. One of these reasons is that my initial scraping 
@@ -148,18 +106,18 @@ function DataComp() {
             </CardContent>
           </Card>
       </div>
-      <div class ="flexImage" style ={imgWrapper}>
-        <img  style={imgStyles} src ={trevor} alt ="trevor-baptiste"></img>
+      <div className="flexImage imgWrapper">
+        <img  className="imgInside" src ={trevor} alt ="trevor-baptiste"></img>
       </div> 
    
    </div>
 
    <br></br> <br></br>
     
-    <div style={flexManagerStyles} class ="flexManager">
-      <div style={flexChildBigStyles}>
+    <div className="flexManager">
+      <div className ="flexChildBig">
         <h1 className="headerStyles"> Regression Data </h1>
-          <Card  className="cardContentStyles" style ={cardStyles}>
+          <Card  className="cardContentStyles fullWidthCard">
             <CardContent>
               The data used for the regression analyses I conducted in this project are just subsets of the data that was 
               gathered form the MLL and PLL. Once I had collected all of the PLL and MLL data I was able to create 
@@ -179,8 +137,8 @@ function DataComp() {
             </CardContent>
           </Card>
       </div>
-      <div class ="flexImage" style ={imgWrapper}>
-        <img  style={imgStyles} src ={lizards} alt ="lizards defender"></img>
+      <div className="flexImage imgWrapper">
+        <img  class="imgInside" src ={lizards} alt ="lizards defender"></img>
       </div>    
    </div>
     </div>    

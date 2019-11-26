@@ -1,0 +1,28 @@
+  #imageContainer{
+    display:flex;
+    flex-wrap:wrap;   
+    justify-content: center;
+  }
+
+  #formula{
+    display: block;
+    margin:auto;
+    max-width: 500px;
+    margin-bottom: 5%;
+    width:'90%';
+    border-radius:5px;
+  }
+
+  #twoPointer {
+    display:block;
+    margin:auto;
+    max-width: 400px;
+    width:90%;
+    border-radius:5px;
+  }
+
+  #containerContainer {
+    max-width: 950px;
+    display:block;
+    margin:auto;
+  }   

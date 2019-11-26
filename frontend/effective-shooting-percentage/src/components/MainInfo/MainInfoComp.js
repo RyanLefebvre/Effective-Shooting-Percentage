@@ -1,15 +1,13 @@
 import React from 'react';
-import AnalysisComp from '../components/analysis/analysis'
-import ResultsComp from '../components/results/results'
-import OverviewComp from '../components/overview/overview'
+import AnalysisComp from '../analysis/analysis'
+import ResultsComp from '../results/results'
+import OverviewComp from '../overview/overview'
+import './MainInfo.css'
+
 function MainInfoComp() {
 
-  const wrapperStyle = {
-      margin:'0',
-      padding:'0',
-  }
   return (    
-    <div style={wrapperStyle} >
+    <div id="wrapper">
       <h1 className ="headerStyles"> Project Definition </h1>
       <OverviewComp></OverviewComp>
       <br></br><br></br>

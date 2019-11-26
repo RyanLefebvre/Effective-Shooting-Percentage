@@ -1,0 +1,20 @@
+
+  #graphFlex {
+    display:block;
+    margin:auto;
+  }
+
+  .plotWrapper{
+    display:block;
+    margin:auto;
+    margin-bottom:10px;
+    min-width:320px;
+    width:45%;
+  }
+
+  .plotParent{
+    display:flex;
+    flex-wrap:wrap;   
+    margin:auto;
+    width:95%;
+  }

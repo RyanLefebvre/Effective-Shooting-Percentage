@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import Chart from "chart.js";
 import { Card , CardContent } from '@material-ui/core';
+import './scatterPlot.css'
 
 export default class ScatterPlot extends Component {
     chartRef = React.createRef();
     
-
-
     componentDidMount() {
         let regrData = []
         let lineOfBestFit = []

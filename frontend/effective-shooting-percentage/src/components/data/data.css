@@ -1,0 +1,40 @@
+ .link {
+    text-decoration: underline;
+}
+
+  .imgWrapper {
+    display:block;
+    margin:auto;
+    width:35%;
+    min-width:330px;
+  }
+
+  .imgInside{
+      display:block;
+      margin:auto;
+      max-width:450px;
+      margin-bottom:25px;
+      margin-top:25px;
+      width:90%;
+      border-radius:5px
+  }
+
+  .flexManager {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    max-width:1300px;
+    margin:auto;
+  }
+
+  .flexChildBig {
+    display:block;
+    margin:auto;
+    max-width:800px;
+    min-width:320px;
+    width:65%;
+  }
+
+  .fullWidthCard {
+    width: '100%'
+  }

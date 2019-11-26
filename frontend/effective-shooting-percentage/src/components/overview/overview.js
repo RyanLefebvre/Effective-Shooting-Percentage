@@ -1,42 +1,12 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import './overview.css';
 // images
 import twoPointer from '../../images/2pg.jpg'
 import formulaCode from '../../images/formula.PNG'
 
 function OverviewComp() {
-
-    const imageContainerStyles = {
-        display:'flex',
-        flexWrap: 'wrap',   
-        jusitfyContent:'center',
-      };
-  
-      const formulaStyles = {
-        display:'block',
-        margin:'auto',
-        maxWidth: '500px',
-        marginBottom: '5%',
-        width:'90%',
-        borderRadius:'5px'
-      };
-  
-      const twoPointerStyles ={
-        display:'block',
-        margin:'auto',
-        maxWidth: '400px',
-        width:'90%',
-        borderRadius:'5px'
-      };
-  
-      const containerContainerStyles = {
-        maxWidth: '950px',
-        display:'block',
-        margin:'auto'
-      };   
-
-
 
   return( <div >         
     <Card className ="cardContentStyles">
@@ -49,12 +19,11 @@ function OverviewComp() {
         </CardContent>
       </Card>
 
-
       <br></br>
-      <div id ="containerContainer" style ={containerContainerStyles}>
-      <div id ="imageContainer" style ={imageContainerStyles}>
-          <img alt="ES% formula from es%.py" style={formulaStyles} src={formulaCode}/>
-          <img alt="Two point shot attempt" style={twoPointerStyles} src={twoPointer}/> 
+      <div id ="containerContainer" >
+      <div id ="imageContainer">
+          <img alt="ES% formula from es%.py" id="formula"    src={formulaCode}/>
+          <img alt="Two point shot attempt"  id="twoPointer" src={twoPointer}/> 
       </div>
       </div>
       <br></br>
