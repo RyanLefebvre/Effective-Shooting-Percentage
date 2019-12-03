@@ -4,6 +4,8 @@ import AESP_vs_WINP from '../../regression/AES%_vs_WIN%'
 import AESPD_vs_WINP from '../../regression/AES%D_vs_WIN%'
 import AShP_vs_WINP from '../../regression/ASh%_vs_WIN%'
 import AShPD_vs_WINP from '../../regression/ASh%D_vs_WIN%'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 import './analysis.css'
 
 
@@ -12,6 +14,13 @@ function AnalysisComp() {
   return(  
     
   <div id="graphFlex"> 
+
+  <Card className = "cardContentStyles" >
+        <CardContent>
+      Explain why using linnear regression
+        </CardContent>
+      </Card>
+
     <div  className ="plotParent">
       <div  className="plotWrapper">
       <ScatterPlot  {...AShP_vs_WINP} >
@@ -22,6 +31,14 @@ function AnalysisComp() {
         </ScatterPlot>
       </div>
     </div>
+
+    <Card className = "cardContentStyles" >
+        <CardContent>
+      Results of initial linnear regression
+        </CardContent>
+      </Card>
+
+
     <div  className ="plotParent">
     <div  className="plotWrapper">
       <ScatterPlot {...AShPD_vs_WINP}>
@@ -32,6 +49,12 @@ function AnalysisComp() {
         </ScatterPlot>
       </div>
     </div>
+
+    <Card className = "cardContentStyles" >
+        <CardContent>
+      Results of second linnear regression
+        </CardContent>
+      </Card>
 
   </div> );  
 }

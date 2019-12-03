@@ -2,6 +2,7 @@
   #graphFlex {
     display:block;
     margin:auto;
+    width:100%;
   }
 
   .plotWrapper{
@@ -16,5 +17,5 @@
     display:flex;
     flex-wrap:wrap;   
     margin:auto;
-    width:95%;
+    margin-top:10px;
   }

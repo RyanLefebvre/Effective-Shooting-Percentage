@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import {MDBTooltip} from "mdbreact";
 import CardContent from '@material-ui/core/CardContent';
 import './overview.css';
 // images
@@ -23,7 +24,13 @@ function OverviewComp() {
       <div id ="containerContainer" >
       <div id ="imageContainer">
           <img alt="ES% formula from es%.py" id="formula"    src={formulaCode}/>
-          <img alt="Two point shot attempt"  id="twoPointer" src={twoPointer}/> 
+          <MDBTooltip domElement={true} placement = "bottom">
+              <img alt="Two point shot attempt"  id="twoPointer" src={twoPointer}/> 
+              <div>
+                Tom Schreiber taking a two point shot.
+              </div>
+          </MDBTooltip>
+
       </div>
       </div>
       <br></br>
