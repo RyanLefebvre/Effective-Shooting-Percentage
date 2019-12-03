@@ -34,7 +34,7 @@ function OverviewComp() {
         EFG% accounts for the fact that three point shots are worth more than two point shots. 
         EFG% has been a significant predicator of a teams offensive performance: for example in 2013, 
         the Miami Heat and San Antonio Spurs had the highest EFG% and in the league and ended up meeting in the NBA finals that year. 
-        This project aims to explore if a similar relationship between scoring efficiency and team/player success exists in professional lacrosse.
+        <br></br><br></br>This project aims to explore if a similar relationship between scoring efficiency and team/player success exists in professional lacrosse.
         </CardContent>
       </Card>
   </div> );

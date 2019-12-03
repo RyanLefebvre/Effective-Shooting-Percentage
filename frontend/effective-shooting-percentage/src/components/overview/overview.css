@@ -2,23 +2,24 @@
     display:flex;
     flex-wrap:wrap;   
     justify-content: center;
+    width:95%;
+    margin:auto;
   }
 
   #formula{
     border-radius:5px; 
-    max-width:500px;
-    width:90%;
+    width:70%;
     margin-bottom: 5px;
     margin-top:5px;
     margin-left:auto;
     margin-right:auto;
     display:block;
+    min-width:320px;
   }
 
 
   #twoPointer {
-    max-width: 400px;
-    width:90%;
+    width:30%;
     border-radius:5px;
     margin-bottom: 5px;
     margin-top:5px;
@@ -26,10 +27,10 @@
     margin-right:auto;
     display:block;
     max-height: 270px;
+    min-width:320px;
   }
 
   #containerContainer {
-    max-width: 950px;
     display:block;
     margin:auto;
   }   
