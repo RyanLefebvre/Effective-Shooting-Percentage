@@ -4,8 +4,7 @@ a "two point line". If a player stands behind this line when shooting, a goal is
 instead of one. Effective Shooting Percentage (ES%) is a new lacrosse statistic that accounts for the 
 fact that a two point goal is worth more than a one point goal. 
 
-ES% Formula:
-    ( OnePointGoals + ( 2 * TwoPointGoals ) ) / TotalShotAttempts   =  ES%
+ES% = ( OnePointGoals + ( 2 * TwoPointGoals ) ) / TotalShotAttempts   
 
 ## Motivation
 ES% is inspired by a relatively new and powerful statistic in basketball called effective field goal 
