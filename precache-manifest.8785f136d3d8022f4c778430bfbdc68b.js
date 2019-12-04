@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "40febb2370e46bc0b27b79188da8f9c3",
+    "revision": "893786dfdf20c52450a531ea794db2ac",
     "url": "/Effective-Shooting-Percentage/index.html"
   },
   {
-    "revision": "7f8d8218f963e9aa3daa",
+    "revision": "b21ea7d1a51377266c53",
     "url": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css"
   },
   {
-    "revision": "0958fc038a5dd0398d7e",
-    "url": "/Effective-Shooting-Percentage/static/css/main.82d5d439.chunk.css"
+    "revision": "f39bf5c7c137955b3f9a",
+    "url": "/Effective-Shooting-Percentage/static/css/main.9a0c638e.chunk.css"
   },
   {
-    "revision": "7f8d8218f963e9aa3daa",
-    "url": "/Effective-Shooting-Percentage/static/js/2.7bc122bc.chunk.js"
+    "revision": "b21ea7d1a51377266c53",
+    "url": "/Effective-Shooting-Percentage/static/js/2.b5d8bb6b.chunk.js"
   },
   {
-    "revision": "0958fc038a5dd0398d7e",
-    "url": "/Effective-Shooting-Percentage/static/js/main.266da0e3.chunk.js"
+    "revision": "f39bf5c7c137955b3f9a",
+    "url": "/Effective-Shooting-Percentage/static/js/main.ab38ec7d.chunk.js"
   },
   {
     "revision": "9e531467232d2b32af3b",
@@ -120,6 +120,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Effective-Shooting-Percentage/static/media/beautifulSoup.5edd424b.png"
   },
   {
+    "revision": "c2d8db9c308bbf744726d50d0b3abc93",
+    "url": "/Effective-Shooting-Percentage/static/media/brentAdams.c2d8db9c.jpg"
+  },
+  {
     "revision": "71d5e2ef3db641532924010033443c8c",
     "url": "/Effective-Shooting-Percentage/static/media/buczek2bomb.71d5e2ef.gif"
   },
@@ -218,6 +222,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "904b22b4128109e06d6b0730901cbad5",
     "url": "/Effective-Shooting-Percentage/static/media/pointStreak.904b22b4.jpg"
+  },
+  {
+    "revision": "8cbcbb42ec72a99258a24e00d68a4677",
+    "url": "/Effective-Shooting-Percentage/static/media/tehoka.8cbcbb42.jpg"
+  },
+  {
+    "revision": "0c1ed6a07cfda41c6d7fb830d6464403",
+    "url": "/Effective-Shooting-Percentage/static/media/towers.0c1ed6a0.jpg"
   },
   {
     "revision": "1b2107762176bbc460e3f4346aa8e806",

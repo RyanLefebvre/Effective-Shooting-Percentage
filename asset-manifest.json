@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/Effective-Shooting-Percentage/static/css/main.82d5d439.chunk.css",
-    "main.js": "/Effective-Shooting-Percentage/static/js/main.266da0e3.chunk.js",
-    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.266da0e3.chunk.js.map",
+    "main.css": "/Effective-Shooting-Percentage/static/css/main.9a0c638e.chunk.css",
+    "main.js": "/Effective-Shooting-Percentage/static/js/main.ab38ec7d.chunk.js",
+    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.ab38ec7d.chunk.js.map",
     "runtime-main.js": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js",
     "runtime-main.js.map": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js.map",
     "static/css/2.df7962b7.chunk.css": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css",
-    "static/js/2.7bc122bc.chunk.js": "/Effective-Shooting-Percentage/static/js/2.7bc122bc.chunk.js",
-    "static/js/2.7bc122bc.chunk.js.map": "/Effective-Shooting-Percentage/static/js/2.7bc122bc.chunk.js.map",
+    "static/js/2.b5d8bb6b.chunk.js": "/Effective-Shooting-Percentage/static/js/2.b5d8bb6b.chunk.js",
+    "static/js/2.b5d8bb6b.chunk.js.map": "/Effective-Shooting-Percentage/static/js/2.b5d8bb6b.chunk.js.map",
     "index.html": "/Effective-Shooting-Percentage/index.html",
-    "precache-manifest.c518e4c8bf4d52ede5bd3cad71ddec00.js": "/Effective-Shooting-Percentage/precache-manifest.c518e4c8bf4d52ede5bd3cad71ddec00.js",
+    "precache-manifest.8785f136d3d8022f4c778430bfbdc68b.js": "/Effective-Shooting-Percentage/precache-manifest.8785f136d3d8022f4c778430bfbdc68b.js",
     "service-worker.js": "/Effective-Shooting-Percentage/service-worker.js",
     "static/css/2.df7962b7.chunk.css.map": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css.map",
-    "static/css/main.82d5d439.chunk.css.map": "/Effective-Shooting-Percentage/static/css/main.82d5d439.chunk.css.map",
+    "static/css/main.9a0c638e.chunk.css.map": "/Effective-Shooting-Percentage/static/css/main.9a0c638e.chunk.css.map",
     "static/media/2pg.jpg": "/Effective-Shooting-Percentage/static/media/2pg.90099611.jpg",
     "static/media/mdb.css": "/Effective-Shooting-Percentage/static/media/arrow_right.8ef6a08c.svg",
     "static/media/beautifulSoup.png": "/Effective-Shooting-Percentage/static/media/beautifulSoup.5edd424b.png",
+    "static/media/brentAdams.jpg": "/Effective-Shooting-Percentage/static/media/brentAdams.c2d8db9c.jpg",
     "static/media/buczek2bomb.gif": "/Effective-Shooting-Percentage/static/media/buczek2bomb.71d5e2ef.gif",
     "static/media/callumRobinson.jpg": "/Effective-Shooting-Percentage/static/media/callumRobinson.897c5041.jpg",
     "static/media/cannons.jpg": "/Effective-Shooting-Percentage/static/media/cannons.003d88fd.jpg",
@@ -27,13 +28,15 @@
     "static/media/mylesJones.jpg": "/Effective-Shooting-Percentage/static/media/mylesJones.890861fd.jpg",
     "static/media/networkTab.gif": "/Effective-Shooting-Percentage/static/media/networkTab.b7ea2bff.gif",
     "static/media/pointStreak.jpg": "/Effective-Shooting-Percentage/static/media/pointStreak.904b22b4.jpg",
+    "static/media/tehoka.jpg": "/Effective-Shooting-Percentage/static/media/tehoka.8cbcbb42.jpg",
+    "static/media/towers.jpg": "/Effective-Shooting-Percentage/static/media/towers.0c1ed6a0.jpg",
     "static/media/trevor-baptiste.jpg": "/Effective-Shooting-Percentage/static/media/trevor-baptiste.1b210776.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.b757f9e1.js",
     "static/css/2.df7962b7.chunk.css",
-    "static/js/2.7bc122bc.chunk.js",
-    "static/css/main.82d5d439.chunk.css",
-    "static/js/main.266da0e3.chunk.js"
+    "static/js/2.b5d8bb6b.chunk.js",
+    "static/css/main.9a0c638e.chunk.css",
+    "static/js/main.ab38ec7d.chunk.js"
   ]
 }
