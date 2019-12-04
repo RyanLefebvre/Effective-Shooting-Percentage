@@ -39,9 +39,12 @@ function OverviewComp() {
         <CardContent>
         ES% is inspired by a powerful statistic in basketball called effective field goal percentage (EFG%). 
         EFG% accounts for the fact that three point shots are worth more than two point shots. 
-        EFG% has been a significant predicator of a teams offensive performance: for example in 2013, 
+        EFG% has been a significant predicator of a teams offensive performance. For example in 2013, 
         the Miami Heat and San Antonio Spurs had the highest EFG% in the league and ended up meeting in the NBA finals that year. 
-        <br></br><br></br>This project aims to explore if a similar relationship between scoring efficiency and team/player success exists in professional lacrosse.
+        <br></br><br></br>
+        This project aims to explore if a similar relationship to the one seen in basketball between shooting efficiency and
+        team success exists in professional lacrosse. I will compare the realtionship between shooting efficiency and team success with
+        the relationship between traditional shooting percentage and team success as a baseline.
         </CardContent>
       </Card>
   </div> );

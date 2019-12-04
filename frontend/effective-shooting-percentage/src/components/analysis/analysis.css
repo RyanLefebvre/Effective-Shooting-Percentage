@@ -19,3 +19,42 @@
     margin:auto;
     margin-top:10px;
   }
+
+  .fivePixMarg{
+    margin-top:10px;
+  }
+
+  .flexManager {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    max-width:1300px;
+    margin:auto;
+  }
+
+  .flexChildBig {
+    display:block;
+    margin:auto;
+    max-width:800px;
+    min-width:320px;
+    width:65%;
+  }
+
+  .imgWrapper {
+    width:35%;
+    min-width:330px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin:auto;
+  }
+
+  .imgInside{
+      display:block;
+      margin:auto;
+      max-width:450px;
+      margin-bottom:25px;
+      margin-top:25px;
+      width:90%;
+      border-radius:5px
+  }
