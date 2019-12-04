@@ -1,3 +1,7 @@
 #canvasWrapper{
     min-width: 320px;
 }
+
+#flexReverse{
+    flex-wrap: wrap-reverse;
+}

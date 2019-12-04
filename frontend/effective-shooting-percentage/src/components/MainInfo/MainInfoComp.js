@@ -2,7 +2,7 @@ import React from 'react';
 import AnalysisComp from '../analysis/analysis'
 import ResultsComp from '../results/results'
 import OverviewComp from '../overview/overview'
-import ConclusionComp from '../Conclusion/conclusion'
+import ConclusionComp from '../conclusion/conclusion'
 import './MainInfo.css'
 
 function MainInfoComp() {

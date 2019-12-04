@@ -45,7 +45,7 @@ function AnalysisComp() {
 
   <div class='fivePixMarg'></div>
 
-  <div className="flexManager">
+  <div className="flexManager" id="flexReverse">
     <div className="flexChildBig" >
       <Card className = "cardContentStyles" >
         <CardContent>
