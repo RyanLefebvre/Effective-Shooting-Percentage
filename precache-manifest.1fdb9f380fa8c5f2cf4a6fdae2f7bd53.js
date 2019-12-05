@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "893786dfdf20c52450a531ea794db2ac",
+    "revision": "947cfb6d37e44f5822ba45c024548af4",
     "url": "/Effective-Shooting-Percentage/index.html"
   },
   {
-    "revision": "b21ea7d1a51377266c53",
+    "revision": "15d1c8d9f30e635e0b6a",
     "url": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css"
   },
   {
-    "revision": "f39bf5c7c137955b3f9a",
-    "url": "/Effective-Shooting-Percentage/static/css/main.9a0c638e.chunk.css"
+    "revision": "11db603aaf22e8bad8b1",
+    "url": "/Effective-Shooting-Percentage/static/css/main.970c67fe.chunk.css"
   },
   {
-    "revision": "b21ea7d1a51377266c53",
-    "url": "/Effective-Shooting-Percentage/static/js/2.b5d8bb6b.chunk.js"
+    "revision": "15d1c8d9f30e635e0b6a",
+    "url": "/Effective-Shooting-Percentage/static/js/2.4850c271.chunk.js"
   },
   {
-    "revision": "f39bf5c7c137955b3f9a",
-    "url": "/Effective-Shooting-Percentage/static/js/main.ab38ec7d.chunk.js"
+    "revision": "11db603aaf22e8bad8b1",
+    "url": "/Effective-Shooting-Percentage/static/js/main.d5438a7d.chunk.js"
   },
   {
     "revision": "9e531467232d2b32af3b",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "90099611d8f0fb95d291789a2baedea1",
     "url": "/Effective-Shooting-Percentage/static/media/2pg.90099611.jpg"
+  },
+  {
+    "revision": "77e1462d9de68fd112dd71fdc994b83b",
+    "url": "/Effective-Shooting-Percentage/static/media/Data.77e1462d.zip"
   },
   {
     "revision": "39b2c3031be6b4ea96e2e3e95d307814",
@@ -106,6 +110,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "dfe56a876d0282555d1e2458e278060f",
     "url": "/Effective-Shooting-Percentage/static/media/Roboto-Thin.dfe56a87.eot"
+  },
+  {
+    "revision": "4b86f287b86140edfb9e333fe4f14ff4",
+    "url": "/Effective-Shooting-Percentage/static/media/Scraping.4b86f287.zip"
   },
   {
     "revision": "11911410dca2de148f30954eb2fd5eab",
