@@ -28,8 +28,8 @@ function AnalysisComp() {
       <Card className = "cardContentStyles" >
         <CardContent>
           The dataset used for this project contains information about 872 professional lacrosse games ranging from 2001-2019. This data was scraped from the
-          official MLL and PLL website, then converted into a format that would be useful for an analysis. To learn more about the data for this project, visit
-          the data page of this site. 
+          official MLL and PLL website using python scripts, then converted into a format that would be useful for an analysis. To learn more about the data for this project, visit
+          the < a className="link" href="/#/effectiveShootingPercentage/data">data page</a> of this site. 
           <br></br><br></br>
           In order to determine whether or not a significant relationship exists between shooting efficiency and success in lacrosse,
           I used regression analysis. Linnear regression is used to estimate the strength of the relationship between two

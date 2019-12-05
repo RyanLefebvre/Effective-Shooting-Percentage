@@ -7,6 +7,10 @@ body{
   background-image: url(./images/triangle-mosaic.png);
 }
 
+.App{
+  margin-bottom: 50px;
+}
+
 .cardContentStyles{
 margin-top: 5px;
 display: block ;
@@ -21,4 +25,8 @@ background-color:white;
 
 .wrapperStyles{
   margin-bottom: 25px;
+}
+
+.link {
+  text-decoration: underline;
 }

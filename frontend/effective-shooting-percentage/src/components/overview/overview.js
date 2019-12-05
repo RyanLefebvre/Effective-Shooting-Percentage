@@ -16,7 +16,7 @@ function OverviewComp() {
       player stands behind this line when shooting, a goal is worth two 
       points instead of one. Effective Shooting Percentage (ES%) is a new 
       lacrosse statistic that accounts for the fact that a two point goal 
-      is worth more than a one point goal. The forumla for ES% is shown below: 
+      is worth more than a one point goal. The forumla for ES% is shown below.
         </CardContent>
       </Card>
 

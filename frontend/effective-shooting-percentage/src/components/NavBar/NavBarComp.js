@@ -7,6 +7,7 @@ import MainInfoComp from '../MainInfo/MainInfoComp';
 import DataComp from '../data/data';
 import AboutComp from '../about/about';
 import { HashRouter as Router , Route, Switch, } from 'react-router-dom';
+import ScrollToTop from '../ScrollToTop';
 import './NavBar.css'
 
 class NavBarComp extends Component {
@@ -48,15 +49,15 @@ render() {
 
 
       <div id="pageContentStyles">
-      <Switch>
-        <Route exact path="/" component={MainInfoComp} />
-        <Route exact path='/data' component={DataComp} />
-        <Route exact path='/about' component={AboutComp} />
-        <Route component={noMatchingPath}></Route>
-      </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/" component={MainInfoComp} />
+            <Route exact path='/data' component={DataComp} />
+            <Route exact path='/about' component={AboutComp} />
+            <Route component={noMatchingPath}></Route>
+          </Switch>
+        </ScrollToTop>
       </div>
-
-
     </Router>
     );
   }

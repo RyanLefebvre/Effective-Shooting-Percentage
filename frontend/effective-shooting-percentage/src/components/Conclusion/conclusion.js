@@ -24,7 +24,7 @@ function ConclusionComp() {
             However I still believe that ES% is a superior statistic because in the case of a game where a larger amount of two point 
             goals are scored than normal. ES% and ES%D would take into account the fact that those two point goals were worth 100% more than a one 
             point goal but, Sh% and Sh%d would not account for this. This is reflected by the slightly larger correlation coefficients for the 
-            regression analyses using ES% and ES%D, indicating a slightly stronger relationship between ES%/ES%D and Win% in comparison to the 
+            regression analyses using ES% and ES%D. Thus, indicating a slightly stronger relationship between ES%/ES%D and Win% in comparison to the 
             relationship between Sh%/Sh%D and Win%.  
             <br></br><br></br>
             In my opinion the most valuable outcome of this project was the observation that the difference between a measure of a 

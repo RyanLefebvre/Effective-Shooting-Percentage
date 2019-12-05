@@ -28,7 +28,7 @@ function ResultsComp() {
         When performing a regression analysis, a 'correlation coefficient' is used to determine the strength of a linnear relationship. Values of a correlation 
         coefficeint can range from -1.00 to 1.00, values closer to -1.00 or 1.00 indicate a strong relationship while values closer to 0.00 indicate no relationship.
         The following guidlines will be used to interpret the correlation coefficeints yielded by the regression analyses conducted for this project
-        (<a href="http://www.dmstat1.com/res/TheCorrelationCoefficientDefined.html">Interpetaion guidlines</a>).
+        (<a className='link' href="http://www.dmstat1.com/res/TheCorrelationCoefficientDefined.html">Interpetaion guidlines</a>).
         <br></br><br></br>
         The first scatter plot showcases the relationship between a team's average shooting percentage (ASh%) and a team's winning percentage (Win%). The correlation
         coefficeint yielded by this regression analysis is 0.404 indicating a positive moderate relationship between ASh% and Win%. The second scatter plot explores the 
@@ -58,7 +58,7 @@ function ResultsComp() {
         the relationships found in the inital analyses. 
         <br></br><br></br>
         My hypothesis was correct. The regression analyses conducted using the difference of a teams shooting performance and their opponents shooting performance had 
-        a larger correlation coefficeint than the inital analyses. The regression analyses using ASh%D yielded a correlation coefficient of 0.76 and the analyses using
+        a larger correlation coefficeint than the inital analyses. The regression analysis using ASh%D yielded a correlation coefficient of 0.76 and the analysis using
         AES%D yielded a correlation coefficeint of 0.781. Both of these correlation coefficients indicate a strong positive relationship between their respective 
         measures of shooting performance and Win%. 
       </CardContent>

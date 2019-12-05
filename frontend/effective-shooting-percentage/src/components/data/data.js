@@ -10,6 +10,8 @@ import classGif from '../../images/html5Class.gif'
 import pointStreak from '../../images/pointStreak.jpg'
 import networkTab from '../../images/networkTab.gif'
 import callum from '../../images/callumRobinson.jpg'
+import scraping from '../../sourceCode/Scraping.zip'
+import scrapedData from '../../sourceCode/Data.zip'
 import './data.css'
 
 
@@ -32,13 +34,16 @@ function DataComp() {
            To extract and aggregate data for both professional lacrosse leagues I used the 
            <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/"> Beautiful Soup </a>Python library,
            <a href="https://selenium-python.readthedocs.io/"> Selenium</a> and general knowledge of website architecture.
-           The scripts I wrote to scrape and analyze the data can be downloaded below.
+           The scripts I wrote to scrape and analyze the data can be downloaded below. Also available and likely more useful 
+           are the datasets yielded from my scraping scripts.
            <br></br><br></br> It should be noted if the regression analysis
            script is run using both the MLL scraper and PLL scraper then the script will run for over 2 hours because each game in the 
-           MLL dataset must be laoded in the browser.
+           MLL dataset must be loaded in the browser.
            <br></br><br></br>
-           Scripts: <a href ="https://selenium-python.readthedocs.io/" className="link">pLAceHoLdEr</a>
-          <br></br><br></br>
+           Scripts: <a href ={scraping} className="link">Scraping.zip</a>
+           <br></br>
+           Data:&nbsp;&nbsp;&nbsp; <a href ={scrapedData} className="link">Data.zip</a>
+
         </CardContent>
       </Card>
       </div>
@@ -65,7 +70,7 @@ function DataComp() {
                 reload each page while I had Google Chrome's developer tools open and watch the network tab to see when the JSON 
                 was sent to the client.
                 <br></br><br></br> In retrospect, this approach is not very scalable and if I plan to update this project each year as new 
-                games are played then I am going to need to automate finding the URL's for each game's JSON or write a scraper. 
+                games are played then I am going to need to automate finding the URL's for each game's JSON or write a true scraper. 
                 <br></br><br></br>
                 Below is an example of one of the JSON's that is used to load stats for games. I noticed in multiple places 
                 on the PLL website that the JSON's sent to the client contained much more information than was displayed on the 
@@ -157,12 +162,11 @@ function DataComp() {
           <Card  className="cardContentStyles fullWidthCard">
             <CardContent>
               The data used for the regression analyses I conducted in this project are just subsets of the data that was 
-              gathered form the MLL and PLL. Once I had collected all of the PLL and MLL data I was able to create 
-              a nested Python Dictionary from that list.
+              gathered form the MLL and PLL. Once I had collected all of the PLL and MLL game data I was able to create 
+              a nested Python Dictionary from that list of games.
               <br></br><br></br>
                Python Dictionaries map keys to values. My outer dictionary 
-              mapped teams to seasons and my inner dictionary mapped seasons to team stats. This dictionary was used to create the 
-              teams.csv file available above. The nested dictionary structure looked like the following: 
+              mapped teams to seasons and my inner dictionary mapped seasons to team stats. The nested dictionary structure looked like the following: 
               <br></br><br></br> 
               Teams -> Seasons -> Stats
               <br></br><br></br>
