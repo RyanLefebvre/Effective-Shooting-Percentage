@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "947cfb6d37e44f5822ba45c024548af4",
+    "revision": "86d790851dc09d9e010532b34c1b23ef",
     "url": "/Effective-Shooting-Percentage/index.html"
   },
   {
-    "revision": "15d1c8d9f30e635e0b6a",
+    "revision": "99158558ad6b154cfe63",
     "url": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css"
   },
   {
-    "revision": "11db603aaf22e8bad8b1",
-    "url": "/Effective-Shooting-Percentage/static/css/main.970c67fe.chunk.css"
+    "revision": "d147c58d21fe2ca580c3",
+    "url": "/Effective-Shooting-Percentage/static/css/main.e88ca4ce.chunk.css"
   },
   {
-    "revision": "15d1c8d9f30e635e0b6a",
-    "url": "/Effective-Shooting-Percentage/static/js/2.4850c271.chunk.js"
+    "revision": "99158558ad6b154cfe63",
+    "url": "/Effective-Shooting-Percentage/static/js/2.1d1b387c.chunk.js"
   },
   {
-    "revision": "11db603aaf22e8bad8b1",
-    "url": "/Effective-Shooting-Percentage/static/js/main.d5438a7d.chunk.js"
+    "revision": "d147c58d21fe2ca580c3",
+    "url": "/Effective-Shooting-Percentage/static/js/main.99d695b3.chunk.js"
   },
   {
     "revision": "9e531467232d2b32af3b",
@@ -216,6 +216,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Effective-Shooting-Percentage/static/media/ghitelman.049f1d48.gif"
   },
   {
+    "revision": "8dfc65b43937e6b51066f6c5e93b964f",
+    "url": "/Effective-Shooting-Percentage/static/media/gonkLax.8dfc65b4.png"
+  },
+  {
     "revision": "6e40933a995eeb074edcdaddb8d011a5",
     "url": "/Effective-Shooting-Percentage/static/media/html5Class.6e40933a.gif"
   },
@@ -232,6 +236,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Effective-Shooting-Percentage/static/media/pointStreak.904b22b4.jpg"
   },
   {
+    "revision": "2135835429bcbcd60600896c825ee4d0",
+    "url": "/Effective-Shooting-Percentage/static/media/profile.21358354.png"
+  },
+  {
     "revision": "8cbcbb42ec72a99258a24e00d68a4677",
     "url": "/Effective-Shooting-Percentage/static/media/tehoka.8cbcbb42.jpg"
   },
@@ -242,5 +250,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1b2107762176bbc460e3f4346aa8e806",
     "url": "/Effective-Shooting-Percentage/static/media/trevor-baptiste.1b210776.jpg"
+  },
+  {
+    "revision": "ccdd7b8bb0cf53df26b2a10d3b5c9ff5",
+    "url": "/Effective-Shooting-Percentage/static/media/webDev.ccdd7b8b.jpg"
   }
 ]);

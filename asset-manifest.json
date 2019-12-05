@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Effective-Shooting-Percentage/static/css/main.970c67fe.chunk.css",
-    "main.js": "/Effective-Shooting-Percentage/static/js/main.d5438a7d.chunk.js",
-    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.d5438a7d.chunk.js.map",
+    "main.css": "/Effective-Shooting-Percentage/static/css/main.e88ca4ce.chunk.css",
+    "main.js": "/Effective-Shooting-Percentage/static/js/main.99d695b3.chunk.js",
+    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.99d695b3.chunk.js.map",
     "runtime-main.js": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js",
     "runtime-main.js.map": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js.map",
     "static/css/2.df7962b7.chunk.css": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css",
-    "static/js/2.4850c271.chunk.js": "/Effective-Shooting-Percentage/static/js/2.4850c271.chunk.js",
-    "static/js/2.4850c271.chunk.js.map": "/Effective-Shooting-Percentage/static/js/2.4850c271.chunk.js.map",
+    "static/js/2.1d1b387c.chunk.js": "/Effective-Shooting-Percentage/static/js/2.1d1b387c.chunk.js",
+    "static/js/2.1d1b387c.chunk.js.map": "/Effective-Shooting-Percentage/static/js/2.1d1b387c.chunk.js.map",
     "index.html": "/Effective-Shooting-Percentage/index.html",
-    "precache-manifest.1fdb9f380fa8c5f2cf4a6fdae2f7bd53.js": "/Effective-Shooting-Percentage/precache-manifest.1fdb9f380fa8c5f2cf4a6fdae2f7bd53.js",
+    "precache-manifest.d1a3fb9dd52117ca270a9aea1c23ce99.js": "/Effective-Shooting-Percentage/precache-manifest.d1a3fb9dd52117ca270a9aea1c23ce99.js",
     "service-worker.js": "/Effective-Shooting-Percentage/service-worker.js",
     "static/css/2.df7962b7.chunk.css.map": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css.map",
-    "static/css/main.970c67fe.chunk.css.map": "/Effective-Shooting-Percentage/static/css/main.970c67fe.chunk.css.map",
+    "static/css/main.e88ca4ce.chunk.css.map": "/Effective-Shooting-Percentage/static/css/main.e88ca4ce.chunk.css.map",
     "static/media/2pg.jpg": "/Effective-Shooting-Percentage/static/media/2pg.90099611.jpg",
     "static/media/Data.zip": "/Effective-Shooting-Percentage/static/media/Data.77e1462d.zip",
     "static/media/mdb.css": "/Effective-Shooting-Percentage/static/media/arrow_right.8ef6a08c.svg",
@@ -26,19 +26,22 @@
     "static/media/farrell.jpg": "/Effective-Shooting-Percentage/static/media/farrell.89c52546.jpg",
     "static/media/formula.png": "/Effective-Shooting-Percentage/static/media/formula.ae689752.png",
     "static/media/ghitelman.gif": "/Effective-Shooting-Percentage/static/media/ghitelman.049f1d48.gif",
+    "static/media/gonkLax.png": "/Effective-Shooting-Percentage/static/media/gonkLax.8dfc65b4.png",
     "static/media/html5Class.gif": "/Effective-Shooting-Percentage/static/media/html5Class.6e40933a.gif",
     "static/media/mylesJones.jpg": "/Effective-Shooting-Percentage/static/media/mylesJones.890861fd.jpg",
     "static/media/networkTab.gif": "/Effective-Shooting-Percentage/static/media/networkTab.b7ea2bff.gif",
     "static/media/pointStreak.jpg": "/Effective-Shooting-Percentage/static/media/pointStreak.904b22b4.jpg",
+    "static/media/profile.png": "/Effective-Shooting-Percentage/static/media/profile.21358354.png",
     "static/media/tehoka.jpg": "/Effective-Shooting-Percentage/static/media/tehoka.8cbcbb42.jpg",
     "static/media/towers.jpg": "/Effective-Shooting-Percentage/static/media/towers.0c1ed6a0.jpg",
-    "static/media/trevor-baptiste.jpg": "/Effective-Shooting-Percentage/static/media/trevor-baptiste.1b210776.jpg"
+    "static/media/trevor-baptiste.jpg": "/Effective-Shooting-Percentage/static/media/trevor-baptiste.1b210776.jpg",
+    "static/media/webDev.jpg": "/Effective-Shooting-Percentage/static/media/webDev.ccdd7b8b.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.b757f9e1.js",
     "static/css/2.df7962b7.chunk.css",
-    "static/js/2.4850c271.chunk.js",
-    "static/css/main.970c67fe.chunk.css",
-    "static/js/main.d5438a7d.chunk.js"
+    "static/js/2.1d1b387c.chunk.js",
+    "static/css/main.e88ca4ce.chunk.css",
+    "static/js/main.99d695b3.chunk.js"
   ]
 }
