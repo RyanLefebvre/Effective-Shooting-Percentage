@@ -15,9 +15,9 @@ function AboutComp() {
           <MDBCardTitle>About Me</MDBCardTitle>
           <MDBCardText>
             My name is Ryan Lefebvre. I am a Computer Science major at University of New Hampshire.
-            Other projects I have worked on can be found through my github below.
+            Other projects I have worked on can be found through my GitHub below.
           </MDBCardText>
-          <MDBBtn href="#">MDBBtn</MDBBtn>
+          <MDBBtn href="https://github.com/RyanLefebvre">Github</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
@@ -28,10 +28,9 @@ function AboutComp() {
         <MDBCardBody>
           <MDBCardTitle>Why Lacrosse?</MDBCardTitle>
           <MDBCardText>
-            My best memories form high school are all from my time playing Lacrosse.
+            My best memories from high school are all from my time playing lacrosse.
             This project was a fun way to revisit something I am passionate about. 
           </MDBCardText>
-          <MDBBtn href="#">MDBBtn</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
@@ -46,7 +45,7 @@ function AboutComp() {
             I plan to continue pursuing full-stack oppourtunites. Below 
             is my LinkedIn.
           </MDBCardText>
-          <MDBBtn href="#">MDBBtn</MDBBtn>
+          <MDBBtn href="https://www.linkedin.com/in/ryan-lefebvre/">LinkedIn</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
