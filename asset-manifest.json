@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Effective-Shooting-Percentage/static/css/main.e88ca4ce.chunk.css",
-    "main.js": "/Effective-Shooting-Percentage/static/js/main.14add74f.chunk.js",
-    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.14add74f.chunk.js.map",
+    "main.js": "/Effective-Shooting-Percentage/static/js/main.b93a657c.chunk.js",
+    "main.js.map": "/Effective-Shooting-Percentage/static/js/main.b93a657c.chunk.js.map",
     "runtime-main.js": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js",
     "runtime-main.js.map": "/Effective-Shooting-Percentage/static/js/runtime-main.b757f9e1.js.map",
     "static/css/2.df7962b7.chunk.css": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css",
     "static/js/2.1d1b387c.chunk.js": "/Effective-Shooting-Percentage/static/js/2.1d1b387c.chunk.js",
     "static/js/2.1d1b387c.chunk.js.map": "/Effective-Shooting-Percentage/static/js/2.1d1b387c.chunk.js.map",
     "index.html": "/Effective-Shooting-Percentage/index.html",
-    "precache-manifest.499a9798ea03a49621268147f6c936d4.js": "/Effective-Shooting-Percentage/precache-manifest.499a9798ea03a49621268147f6c936d4.js",
+    "precache-manifest.4ad5a400f8511e27e6b5ca603c097492.js": "/Effective-Shooting-Percentage/precache-manifest.4ad5a400f8511e27e6b5ca603c097492.js",
     "service-worker.js": "/Effective-Shooting-Percentage/service-worker.js",
     "static/css/2.df7962b7.chunk.css.map": "/Effective-Shooting-Percentage/static/css/2.df7962b7.chunk.css.map",
     "static/css/main.e88ca4ce.chunk.css.map": "/Effective-Shooting-Percentage/static/css/main.e88ca4ce.chunk.css.map",
@@ -42,6 +42,6 @@
     "static/css/2.df7962b7.chunk.css",
     "static/js/2.1d1b387c.chunk.js",
     "static/css/main.e88ca4ce.chunk.css",
-    "static/js/main.14add74f.chunk.js"
+    "static/js/main.b93a657c.chunk.js"
   ]
 }
