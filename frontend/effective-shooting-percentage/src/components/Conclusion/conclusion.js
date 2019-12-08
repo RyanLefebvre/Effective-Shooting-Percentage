@@ -13,15 +13,15 @@ function ConclusionComp() {
     <div className="flexChildBig" >
         <Card  className="cardContentStyles fullWidthCard">
           <CardContent>
-            The difference in the results seen from using ES% instead of Sh% as a measure of a teams shooting performance were negligible. The 
+            The difference in the results seen from using ES% instead of Sh% as a measure of a team’s shooting performance were negligible. The 
             correlation coefficients were very similar even when the statistics were adjusted to look at the difference between
-            a team and their opponents shooting performance. This has to do with the proportion of total shot attempts that reuslt
-            in two point goals. For this porject's dataset, the average number of shots taken by a team per game is 26 while the 
-            average number of two point goals per game is 0.6.  This means we would not even expect a team to score a two point goal 
+            a team and their opponents shooting performance. This has to do with the proportion of total shot attempts that result
+            in two point goals. For this project’s dataset, the average number of shots taken by a team per game is 26 while the 
+            average number of two point goals per game is 0.6.  This means we would not even expect a team to score a two-point goal 
             every game.
             <br></br><br></br>
             Because the average amount of two point goals per game is so low, the difference between Sh% and ES% is also very small.
-            However I still believe that ES% is a superior statistic because in the case of a game where a larger amount of two point 
+            However, I still believe that ES% is a superior statistic because in the case of a game where a larger amount of two point 
             goals are scored than normal. ES% and ES%D would take into account the fact that those two point goals were worth 100% more than a one 
             point goal but, Sh% and Sh%d would not account for this. This is reflected by the slightly larger correlation coefficients for the 
             regression analyses using ES% and ES%D. Thus, indicating a slightly stronger relationship between ES%/ES%D and Win% in comparison to the 
@@ -33,10 +33,10 @@ function ConclusionComp() {
             while ES% and Sh% do not. This is a reason why ES% and Sh% only had a moderate positive relationship with Win%. 
             <br></br><br></br>
             In conclusion I believe that ES% and ultimately ES%D are valuable team statistics for professional lacrosse. ES%D is a statistic 
-            that is able to represent an entire teams performance offensively and defensively. This is because it is necessary to not only shoot
+            that is able to represent an entire team’s performance offensively and defensively. This is because it is necessary to not only shoot
             efficiently as a team to maximize ES%D, but it is also necessary to play good enough defense that an opponent is not shooting efficiently.
-            This finding can be applied to college, high school and youth lacrosse as well. These lower levels do not have a two point goal rule,
-            however traditional Sh% and Sh%D can be used as measures of team performance. 
+            This finding can be applied to college, high school and youth lacrosse as well. These lower levels do not have a two-point goal rule,
+            however traditional Sh% and Sh%D can be used as measures of team performance.
           </CardContent>
         </Card>
     </div>

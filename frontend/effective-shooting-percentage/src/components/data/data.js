@@ -25,8 +25,8 @@ function DataComp() {
       <Card  className="cardContentStyles fullWidthCard" >
         <CardContent>
           Unlike other professional sports, lacrosse has a relatively small following.
-          For this reason the data used for this project was not readily available. 
-          There are currently two professional field lacrosse leagues, the 
+          For this reason, the data used for this project was not readily available. 
+          There are currently two professional field lacrosse leagues, the
           <a href = "https://stats.premierlacrosseleague.com/"> PLL</a> and
           <a href = "http://mll.stats.pointstreak.com/scoreboard.html"> MLL. </a> 
           Each league maintains statistics on their websites.
@@ -69,13 +69,15 @@ function DataComp() {
                 almost effortless but did require some work to gather the URL's for each game's JSON. This is because I needed to 
                 reload each page while I had Google Chrome's developer tools open and watch the network tab to see when the JSON 
                 was sent to the client.
-                <br></br><br></br> In retrospect, this approach is not very scalable and if I plan to update this project each year as new 
+                <br></br><br></br>
+                In retrospect, this approach is not very scalable and if I plan to update this project each year as new 
                 games are played then I am going to need to automate finding the URL's for each game's JSON or write a true scraper. 
                 <br></br><br></br>
                 Below is an example of one of the JSON's that is used to load stats for games. I noticed in multiple places 
                 on the PLL website that the JSON's sent to the client contained much more information than was displayed on the 
                 page.
-                <br></br><br></br> The PLL JSON is worth looking at, some of the information is interesting for individual players like shot's on goal,
+                <br></br><br></br> 
+                The PLL JSON is worth looking at, some of the information is interesting for individual players like shots on goal,
                 and shooting percentage for one and two point shots. 
                 <br></br><br></br>
                 <a href ="https://dn0a11v09sa0t.cloudfront.net/BoxScores/PLL_RED_WHP_20190921_1.json" className ='link'>PLL  GAME JSON</a>
@@ -107,9 +109,10 @@ function DataComp() {
           <Card  className="cardContentStyles fullWidthCard">
             <CardContent>
               When compared to the PLL data, the MLL dataset was much larger, harder to gather and the statistics were tracked
-              poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and has many years worth of data 
+              poorly. While the PLL recently finished their inaugural season, the MLL has been around since 2001 and has many years’ worth of data 
               available through the league's website.
-              <br></br><br></br> The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/" className ='link'> Pointstreak.com </a>
+              <br></br><br></br>
+              The MLL outsources their statistics tracking to <a href ="https://pointstreak.com/" className ='link'> Pointstreak.com </a>
               and store their individual game data in HTML files they call gamesheets. Below is an example of a game sheet.
               <br></br><br></br>
               <a href ="http://mll.stats.pointstreak.com/gamesheet_full.html?gameid=3209601" className="link">Game Sheet Example</a>             
@@ -117,15 +120,16 @@ function DataComp() {
               Unlike the PLL, I couldn't find any JSON being sent to the client to extract data from. This forced me to scrape the 
               game sheets which ended up being difficult for multiple reasons. One of these reasons is that my initial scraping 
               attempts with Beautiful Soup returned an almost empty HTML file with none of the stats I needed.
-              <br></br><br></br> This is because the stats 
-              for each game sheet are rendered after the browser loads the page with JavaScript. For this reason I used Selenium to load the 
+              <br></br><br></br>
+              This is because the stats 
+              for each game sheet are rendered after the browser loads the page with JavaScript. For this reason, I used Selenium to load the 
               page, render the components that displayed the stats and then scraped the page using Beautiful Soup.
               <br></br><br></br>
               Once I had the HTML for each gamesheet I still needed to parse through the HTML and extract the stats I needed for this project.
               This was harder than usual because the gamesheets were laid out in an interesting way.
               <br></br><br></br>
-              In general when scraping HTML files you will 
-              look for id or class attributes of HTML elements to use to locate important information. For example there may be a table that 
+              In general, when scraping HTML files, you will 
+              look for id or class attributes of HTML elements to use to locate important information. For example, there may be a table that 
               contains all of the players on a team and the id for that table might be "playerTable". The gamesheets however had almost no 
               elements with attributes that could be used to locate important information.
               <br></br><br></br>
@@ -165,20 +169,21 @@ function DataComp() {
               gathered form the MLL and PLL. Once I had collected all of the PLL and MLL game data I was able to create 
               a nested Python Dictionary from that list of games.
               <br></br><br></br>
-               Python Dictionaries map keys to values. My outer dictionary 
+              Python Dictionaries map keys to values. My outer dictionary 
               mapped teams to seasons and my inner dictionary mapped seasons to team stats. The nested dictionary structure looked like the following: 
               <br></br><br></br> 
               Teams -> Seasons -> Stats
               <br></br><br></br>
-              As mentioned before some of the data from the MLL was poorly tracked and had to be excluded. For example if we take a look at the 
+              As mentioned before some of the data from the MLL was poorly tracked and had to be excluded. For example, if we take a look at the 
               gamesheet file I link to in the MLL data section, we can see there are no statistics recorded for shots attempted by either team.
               This makes all of our statistics of interest impossible to calculate.
               <br></br><br></br>
               I filtered these games out of the data for the regression
-              analysis but left them in the datsets I exported to csv format. I also removed any All-Star games from the data set since these
+              analysis but left them in the datasets I exported to csv format. I also removed any All-Star games from the data set since these
               were likely not representative of a normal lacrosse game.
-              <br></br><br></br> Also interseting to point out, the game sheet I linked to says Baltimore
-              had 433 ground balls in one game. This is obviously not true and I am assuming these are season totals but, this is a another good 
+              <br></br><br></br> 
+              Also interesting to point out, the game sheet I linked to says Baltimore
+              had 433 ground balls in one game. This is obviously not true and I am assuming these are season totals but, this is another good 
               example of why the data from the older gamesheets can't be trusted.
             </CardContent>
           </Card>

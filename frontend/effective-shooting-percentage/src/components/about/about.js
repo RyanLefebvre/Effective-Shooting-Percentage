@@ -42,8 +42,9 @@ function AboutComp() {
           <MDBCardTitle>Professional</MDBCardTitle>
           <MDBCardText>
             I spent Summer 2019 working as a full-stack web development intern.
-            I plan to continue pursuing full-stack oppourtunites. Below 
+            I plan to continue pursuing full-stack opportunities. Below 
             is my LinkedIn.
+
           </MDBCardText>
           <MDBBtn href="https://www.linkedin.com/in/ryan-lefebvre/">LinkedIn</MDBBtn>
         </MDBCardBody>
