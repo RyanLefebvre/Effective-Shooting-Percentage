@@ -22,7 +22,7 @@ between scoring efficiency and team/player success exists in professional lacros
         
 - React (https://reactjs.org/)
     - MDB (https://mdbootstrap.com/docs/react/)
-    - CHartJS (https://www.chartjs.org/docs/latest/)
+    - ChartJS (https://www.chartjs.org/docs/latest/)
     
 ## Project Results
 https://ryanlefebvre.github.io/Effective-Shooting-Percentage/#/
